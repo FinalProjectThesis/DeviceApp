@@ -31,12 +31,13 @@ class login_screen(BoxLayout):
         self.password = self.ids.pass_input.text
 
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
+            print ("both fields are empty")
             if len(str(self.username)) == 0:
                 print("please enter a username") # print this at the error label
             else:
-                print("both textfields are full") # erase error label text 
+                print("username is full") # erase error label text 
             if len(str(self.password)) == 0:
-                print("pleaase enter a password") # print this at the error label
+                print("please enter a password") # print this at the error label
             else:
                 print ("password is full") # erase error label text 
         else:  # if all checks pass 
