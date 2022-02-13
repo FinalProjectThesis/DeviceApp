@@ -1,7 +1,64 @@
 login_screen:
 
+#: import utils kivy.utils
 <login_screen>:
-    Button:
-        text: 'A'
-    Button:
-        text: 'B'
+    orientation: 'vertical'
+    padding: dp(30)
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex('#2D3436')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: None
+        height: dp(80)
+        Label:
+            text: 'Welcome'
+            pos_hint: {'center_x': .5, 'top': 1}
+        Label:
+            text: 'Description'
+            pos_hint: {'center_x': .5}
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: dp(20)
+        TextInput:
+            id: user_input
+            hint_text: 'Username'
+            multiline: False
+            write_tab: False
+            size_hint: .5, None
+            height: dp(32)
+            pos_hint: {'center_x': .5}
+        TextInput:
+            id: pass_input
+            hint_text: 'Password'
+            multiline: False
+            write_tab: False
+            size_hint: .5, None
+            height: dp(32)
+            pos_hint: {'center_x': .5}
+        Label:
+            size_hint: 1, None
+            height: dp(20)
+        Button:
+            spacing: dp(100)
+            text: 'Login'
+            size_hint: .2, None
+            height: dp(40)
+            pos_hint: {'center_x': .5}
+            on_press: root.btn_login_function()
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Description Sign Up'
+            size_hint_y: None
+            height: dp(40)
+            pos_hint: {'center_x': .5}
+        Button:
+            text: 'Sign Up'
+            size_hint: .2, None
+            height: dp(40)
+            pos_hint: {'center_x': .5}
+            on_press: root.btn_login_function()
