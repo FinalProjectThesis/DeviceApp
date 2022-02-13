@@ -11,6 +11,15 @@ from kivy.uix.button import Button
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 
+#for the HTTP 
+import requests
+import json
+import asyncio
+
+#the URL 
+url = 'https://uslsthesisapi.herokuapp.com'
+token = 0
+
 class main_app(App):
     pass
 class login_screen(BoxLayout):
@@ -21,8 +30,19 @@ class login_screen(BoxLayout):
         self.username = self.ids.user_input.text
         self.password = self.ids.pass_input.text
 
-        # test
-        print('Username: ' + self.username + '\nPassword: ' + self.password)
+        if len(str(self.username)) == 0 or len(str(self.password)) == 0:
+            if len(str(self.username)) == 0:
+                print("please enter a username") # print this at the error label
+            else:
+                print("both textfields are full") # erase error label text 
+            if len(str(self.password)) == 0:
+                print("pleaase enter a password") # print this at the error label
+            else:
+                print ("password is full") # erase error label text 
+        else:  # if all checks pass 
+            Username = str(self.username)
+            Password = str(self.password)
+            print("Username : " + Username + "\n" + "Password : " + Password)
 
 class signup_screen(BoxLayout):
     pass
