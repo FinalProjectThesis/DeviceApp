@@ -1,64 +1,82 @@
-login_screen:
+WindowManager:
+    LoginScreen:
+    SignupScreen:
 
 #: import utils kivy.utils
-<login_screen>:
+<LoginScreen>:
+    name: 'login'
+    size: root.width, root.height
     canvas.before:
         Color:
             rgb: utils.get_color_from_hex('#2D3436')
         Rectangle:
             pos: self.pos
             size: self.size
-    orientation: 'vertical'
-    padding: dp(20)
     BoxLayout:
         orientation: 'vertical'
-        size_hint: 1, .4
-        Label:
-            text: 'Welcome'
-            size_hint: 1, .05
-        Label:
-            text: 'Welcome Desc'
+        padding: dp(20)
+        size: root.width, root.height
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, .4
+            Label:
+                text: 'Welcome'
+                size_hint: 1, .05
+            Label:
+                text: 'Welcome Desc'
+                size_hint: 1, .2
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, .6
+            TextInput:
+                id: user_input
+                hint_text: 'Username'
+                size_hint: .32, None
+                height: dp(32)
+                pos_hint: {'center_x': .5}
+            Label:
+                id: user_msg
+                size_hint_y: None
+                height: dp(30)
+            TextInput:
+                id: pass_input
+                hint_text: 'Password'
+                size_hint: .32, None
+                height: dp(32)
+                # width: dp(300)
+                pos_hint: {'center_x': .5}
+            Label:
+                id: pass_msg
+                size_hint_y: None
+                height: dp(30)
+            Button:
+                text: 'Login'
+                size_hint: .15, None
+                height: dp(35)
+                pos_hint: {'center_x': .5}
+                on_press: root.btn_login_function()
+            Label:
+                
+        BoxLayout:
+            orientation: 'vertical'
             size_hint: 1, .2
+            Label:
+                text: 'Signup Desc'
+                size_hint: 1, .5
+            Button:
+                text: 'Signup'
+                size_hint: .1, None
+                height: dp(35)
+                pos_hint: {'center_x': .5}
+                on_press: app.root.current = 'signup'
+
+<SignupScreen>:
+    name: 'signup'
     BoxLayout:
         orientation: 'vertical'
-        size_hint: 1, .6
-        TextInput:
-            id: user_input
-            hint_text: 'Username'
-            size_hint: .32, None
-            height: dp(32)
-            pos_hint: {'center_x': .5}
-        Label:
-            id: user_msg
-            size_hint_y: None
-            height: dp(30)
-        TextInput:
-            id: pass_input
-            hint_text: 'Password'
-            size_hint: .32, None
-            height: dp(32)
-            # width: dp(300)
-            pos_hint: {'center_x': .5}
-        Label:
-            id: pass_msg
-            size_hint_y: None
-            height: dp(30)
+        size: root.width, root.height
         Button:
-            text: 'Login'
-            size_hint: .15, None
-            height: dp(35)
-            pos_hint: {'center_x': .5}
-            on_press: root.btn_login_function()
-        Label:
-            
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint: 1, .2
-        Label:
-            text: 'Signup Desc'
-            size_hint: 1, .5
+            text: 'A'
+            on_press: app.root.current = 'login'
         Button:
-            text: 'Signup'
-            size_hint: .1, None
-            height: dp(35)
-            pos_hint: {'center_x': .5}
+            text: 'B'

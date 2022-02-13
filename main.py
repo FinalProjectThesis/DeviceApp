@@ -1,19 +1,17 @@
+import kivy
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, Clock
 from kivy.uix.widget import Widget
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.anchorlayout import AnchorLayout
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.stacklayout import StackLayout
-from kivy.uix.button import Button
+from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 
-class main_app(App):
+class WindowManager(ScreenManager):
     pass
-class login_screen(BoxLayout):
+
+class LoginScreen(Screen):
     username = StringProperty('')
     password = StringProperty('')
 
@@ -23,8 +21,16 @@ class login_screen(BoxLayout):
 
         # test
         print('Username: ' + self.username + '\nPassword: ' + self.password)
+        # return temp_app
 
-class signup_screen(BoxLayout):
+    def btn_goto_signup(self):
+        pass
+
+class SignupScreen(Screen):
     pass
 
-main_app().run()
+class MainApp(App):
+    def build(self):
+        return Builder.load_file('main_app.kv')
+
+MainApp().run()
