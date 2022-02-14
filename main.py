@@ -1,16 +1,12 @@
-import urllib3
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, Clock
 from kivy.uix.widget import Widget
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.anchorlayout import AnchorLayout
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.stacklayout import StackLayout
-from kivy.uix.button import Button
+from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
+
 
 #for the HTTP 
 from kivy.network.urlrequest import UrlRequest
@@ -25,19 +21,13 @@ import asyncio
 url = 'https://uslsthesisapi.herokuapp.com'
 token = 0
 
-class main_app(App):
+class WindowManager(ScreenManager):
     pass
-class login_screen(BoxLayout):
+class LoginScreen(Screen):
     username = StringProperty('')
     password = StringProperty('')
 
-    
-    
-    
     def btn_login_function(self):
-
-        
-
         self.username = self.ids.user_input.text
         self.password = self.ids.pass_input.text
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
@@ -61,13 +51,17 @@ class login_screen(BoxLayout):
                 
                 print("Result is " + str(Loginrequest.result))
 
+        # test
             # requests through KIVY's own thing
             params =json.dumps({"username":Username,"password":Password})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
             Loginrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= loginrequestbody, req_body=params,req_headers=headers)
 
-class signup_screen(BoxLayout):
+class SignupScreen(Screen):
     pass
+class MainApp(App):
+    def build(self):
+        return Builder.load_file('main_app.kv')
 
-main_app().run()
+MainApp().run()
