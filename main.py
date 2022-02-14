@@ -7,15 +7,9 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 
-
 #for the HTTP 
 from kivy.network.urlrequest import UrlRequest
-import urllib
-import requests
 import json
-
-#Asyncio
-import asyncio
 
 #the URL 
 url = 'https://uslsthesisapi.herokuapp.com'
