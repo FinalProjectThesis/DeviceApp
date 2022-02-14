@@ -58,12 +58,14 @@ class login_screen(BoxLayout):
             # On Success Message of below's request 
             def loginrequestbody(self,*args):
                 print(params)
+                
                 print("Result is " + str(Loginrequest.result))
 
             # requests through KIVY's own thing
-            params =({"username":Username,"password":Password})
-            print(params)
-            Loginrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= loginrequestbody, req_body=str(params))
+            params =json.dumps({"username":Username,"password":Password})
+            print (params)
+            headers= {'Content-type':'application/json','Accept':'text/plain'}
+            Loginrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= loginrequestbody, req_body=params,req_headers=headers)
 
 class signup_screen(BoxLayout):
     pass
