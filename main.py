@@ -46,16 +46,22 @@ class LoginScreen(Screen):
             print("Username : " + Username + "\n" + "Password : " + Password)
             
             # On Success Message of below's request 
-            def loginrequestbody(self,*args):
+            def successrequest(self,*args):
+                print ("Success request ") # GOTO next screen
                 print(params)
                 print("Result is " + str(Loginrequest.result))
+            # On Fail Message of below's request 
+            def failedrequest(self,*args):
+                print ("Failed Request") # show error message 
+                print (params)
+                print ("Result is "+ str(Loginrequest.result))
 
         # test
             # requests through KIVY's own thing
             params =json.dumps({"username":Username,"password":Password})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Loginrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= loginrequestbody, req_body=params,req_headers=headers)
+            Loginrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
 
 class SignupScreen(Screen):
     username = StringProperty('')
@@ -92,17 +98,25 @@ class SignupScreen(Screen):
             First_name = str(self.first_name)
             Last_name = str(self.last_name)
             
+            # On Success Message of below's request 
+            def successrequest(self,*args):
+                print("Register Success")
+                print(params)
+                print("Result is " + str(Registerrequest.result))
+            # On Failed message of below's request             
+            def failedrequest(self,*args):
+                print ("Failed Request") # show error message 
+                print (params)
+                print ("Result is "+ str(Registerrequest.result))
+            
             params =json.dumps({"username":Username,"password":Password, "first_name": First_name, "last_name": Last_name})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Loginrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/register', on_success= loginrequestbody, req_body=params,req_headers=headers)
+            Registerrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/register', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
 
             
-            # On Success Message of below's request 
-            def loginrequestbody(self,*args):
-                print("Register Success")
-                print(params)
-                print("Result is " + str(Loginrequest.result))
+            
+
 
 class MainApp(App):
     def build(self):
