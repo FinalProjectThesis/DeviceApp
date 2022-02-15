@@ -19,8 +19,13 @@ class LoginScreen(Screen):
     password = StringProperty('')
 
     def btn_login_function(self):
-        self.username = self.ids.user_input.text
-        self.password = self.ids.pass_input.text
+        # self.username = self.ids.user_input.text
+        # self.password = self.ids.pass_input.text
+
+        # Temp data or easy access out of login
+        self.username = 'Carmen'
+        self.password = '123'
+
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
             print ("both fields are empty") # for debugging
             if len(str(self.username)) == 0:
