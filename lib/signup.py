@@ -13,12 +13,21 @@ Builder.load_file('lib/signup.kv')
 
 class SignupScreen(Screen):
     username = StringProperty('')
-    password = StringProperty('')
-    confirm_password = StringProperty('')
     first_name = StringProperty('')
     last_name = StringProperty('')
+    password = StringProperty('')
+    confirm_password = StringProperty('')
 
     def btn_register_function(self):
+        self.username = self.ids.user_input.text
+        self.first_name = self.ids.first_input.text
+        self.last_name = self.ids.last_input.text
+        self.password = self.ids.pass_input.text
+        self.confirm_password = self.ids.confirmpass_input.text
+
+        # Testing Inputs
+        # params = {'Username' : self.username, 'FirstName' : self.first_name, 'LastName' : self.last_name, 'Password' : self.password, 'ConfirmPass' : self.confirm_password}
+        # print('Parameters Inputted:\n' + str(params))
 
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
             print ("both fields are empty") # for debugging

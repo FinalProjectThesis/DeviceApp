@@ -1,10 +1,52 @@
+#: import utils kivy.utils
 <SignupScreen>:
     name: 'signup'
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex('#2D3436')
+        Rectangle:
+            pos: self.pos
+            size: self.size
     BoxLayout:
+        id: signup_main
+        name: 'signup_main'
         orientation: 'vertical'
-        size: root.width, root.height
+        Label:
+            text: 'Sign Up'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                TextInput:
+                    id: user_input
+                    hint_text: 'Username'
+                    multiline: False
+                    write_tab: False
+                TextInput:
+                    id: first_input
+                    hint_text: 'First name'
+                    multiline: False
+                    write_tab: False
+                TextInput:
+                    id: last_input
+                    hint_text: 'Last name'
+                    multiline: False
+                    write_tab: False
+            BoxLayout:
+                orientation: 'vertical'
+                TextInput:
+                    id: pass_input
+                    hint_text: 'Password'
+                    multiline: False
+                    write_tab: False
+                TextInput:
+                    id: confirmpass_input
+                    hint_text: 'Confirm Password'
+                    multiline: False
+                    write_tab: False
         Button:
-            text: 'A'
-            on_press: root.manager.current = 'login'
-        Button:
-            text: 'B'
+            text: 'Sign Up'
+            on_press: root.btn_register_function()
+
+        
+        
