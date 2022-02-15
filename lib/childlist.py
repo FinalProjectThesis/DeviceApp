@@ -11,7 +11,7 @@ Builder.load_file('lib/childlist.kv')
 class ChildListScreen(Screen):
     pass
 
-class StackTest(BoxLayout):
+class ChildList(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 

@@ -4,11 +4,22 @@
         orientation: 'vertical'
         Label:
             text: 'Chid List'
+            font_size: dp(50)
         ScrollView:
-            StackTest:
+            ChildList:
                 size_hint: None, 1
                 width: self.minimum_width
+        AnchorLayout:
+            anchor_x: 'right'
+            anchor_y: 'bottom'
+            padding: dp(15)
+            Button:
+                size_hint: None, None
+                height: dp(40)
+                width: dp(100)
+                text: 'Logout'
 
-
-<StackTest>:
+<ChildList>:
     name: 'stack'
+    padding: dp(20)
+    spacing: dp(15)
