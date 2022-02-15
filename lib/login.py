@@ -22,7 +22,7 @@ class LoginScreen(Screen):
         # self.username = self.ids.user_input.text
         # self.password = self.ids.pass_input.text
 
-        # Temp data or easy access out of login
+        # Temp data or easy access out of login, remove for final/actual testing
         self.username = 'Carmen'
         self.password = '123'
 
