@@ -18,6 +18,10 @@ class LoginScreen(Screen):
     username = StringProperty('')
     password = StringProperty('')
 
+    def clear_TextInput(self):
+        self.ids.user_input.text = ''
+        self.ids.pass_input.text = ''
+
     def btn_login_function(self):
         # self.username = self.ids.user_input.text
         # self.password = self.ids.pass_input.text
@@ -56,11 +60,7 @@ class LoginScreen(Screen):
             def goto_Childlist():
                 self.manager.current = 'childlist'
                 self.manager.token = str(Loginrequest.result) # store token in screen manager
-                clear_TextInput()
-
-            def clear_TextInput():
-                self.ids.user_input.text = ''
-                self.ids.pass_input.text = ''
+                self.clear_TextInput()
 
             # requests through KIVY's own thing
             params = json.dumps({"username":Username,"password":Password})

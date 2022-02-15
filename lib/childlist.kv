@@ -1,3 +1,4 @@
+#:import Factory kivy.factory.Factory
 <ChildListScreen>:
     name: 'childlist'
     BoxLayout:
@@ -18,8 +19,27 @@
                 height: dp(40)
                 width: dp(100)
                 text: 'Logout'
+                on_press: Factory.LogoutPop().open()
+        Button:
+            text: 'test'
+            on_press: root.logout_function()
 
 <ChildList>:
-    name: 'stack'
+    name: 'dynamic_child'
     padding: dp(20)
     spacing: dp(15)
+
+<LogoutPop@Popup>:
+    id: logout_pop
+    auto_dismiss: False
+    title: 'Are you sure you want to Logout?'
+    size_hint: None, None
+    size: dp(300), dp(100)
+    BoxLayout:
+        Button:
+            text: 'Logout'
+            on_press: app.root.token = ''
+            on_release: app.root.current = 'login'; root.dismiss()
+        Button:
+            text: 'No'
+            on_release: root.dismiss()
