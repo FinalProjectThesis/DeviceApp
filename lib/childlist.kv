@@ -1,9 +1,14 @@
 <ChildListScreen>:
     name: 'childlist'
-    Button:
-        text: 'ChildList'
-        on_press: root.test()
-    Button:
-        text: 'go back'
-        on_press: root.manager.current = 'login'
-    
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Chid List'
+        ScrollView:
+            StackTest:
+                size_hint: None, 1
+                width: self.minimum_width
+
+
+<StackTest>:
+    name: 'stack'
