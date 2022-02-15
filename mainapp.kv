@@ -5,7 +5,7 @@ WindowManager:
 #: import utils kivy.utils
 <LoginScreen>:
     name: 'login'
-    size: root.width, root.height
+    # size: root.width, root.height
     canvas.before:
         Color:
             rgb: utils.get_color_from_hex('#2D3436')
@@ -72,15 +72,6 @@ WindowManager:
                 size_hint: .1, None
                 height: dp(35)
                 pos_hint: {'center_x': .5}
-                on_press: app.root.current = 'signup'
+                on_press: root.manager.current = 'signup'
+                # on_press: root.test()
 
-<SignupScreen>:
-    name: 'signup'
-    BoxLayout:
-        orientation: 'vertical'
-        size: root.width, root.height
-        Button:
-            text: 'A'
-            on_press: app.root.current = 'login'
-        Button:
-            text: 'B'
