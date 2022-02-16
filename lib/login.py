@@ -33,13 +33,15 @@ class LoginScreen(Screen):
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
             print ("both fields are empty") # for debugging
             if len(str(self.username)) == 0:
-                print("please enter a username") # print this at the error label
+                self.ids.user_msg.text = 'Please Enter a Username' # print this at the error label
             else:
                 print("username is full") # erase error label text 
+                self.ids.user_msg.text = ''
             if len(str(self.password)) == 0:
-                print("please enter a password") # print this at the error label
+                self.ids.pass_msg.text = 'Please Enter Your Password' # print this at the error label
             else:
-                print ("password is full") # erase error label text 
+                print ("password is full") # erase error label text
+                self.ids.pass_msg.text = '' 
         else:  # if all checks pass 
             Username = str(self.username)
             Password = str(self.password)
@@ -47,9 +49,15 @@ class LoginScreen(Screen):
             
             # On Success Message of below's request 
             def successrequest(self,*args):
-                print ("Success request") # GOTO next screen
-                print("Result is " + str(Loginrequest.result))
-                goto_Childlist()
+                print ("Success request") 
+                result = str(Loginrequest.result)
+                if result =='No such User':
+                    print ("No such User!")
+                    self.ids.user_msg.text = 'No User with that username exists'
+                if result =='Failed':
+                    print("Failed Auth, Wrong Password")
+                else:
+                    goto_Childlist() # GOTO next screen
 
             # On Fail Message of below's request 
             def failedrequest(self,*args):
