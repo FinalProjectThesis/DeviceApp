@@ -20,11 +20,20 @@
                 width: dp(100)
                 text: 'Logout'
                 on_press: Factory.LogoutPop().open()
+        Button:
+            text: 'user'
+            on_press: root.define_username()
+        Button:
+            text: 'pass'
+            on_press: root.define_password()
 
 <ChildList>:
     name: 'dynamic_child'
     padding: dp(20)
     spacing: dp(15)
+    Button:
+        text: 'kill me pls'
+        on_press: root.testclick()
 
 <LogoutPop@Popup>:
     id: logout_pop
