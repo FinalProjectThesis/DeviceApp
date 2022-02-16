@@ -1,6 +1,3 @@
-from cgitb import text
-from logging import root
-from kivy.app import App
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, ObjectProperty,Clock
@@ -59,7 +56,11 @@ class LoginScreen(Screen):
             # Move to next screen
             def goto_Childlist():
                 self.manager.current = 'childlist'
-                self.manager.token = str(Loginrequest.result) # store token in screen manager
+                # store needed parameters in screenmanager
+                self.manager.token = str(Loginrequest.result)
+                self.manager.parent_username = Username
+                self.manager.parent_password = Password
+                # clear
                 self.clear_TextInput()
 
             # requests through KIVY's own thing
