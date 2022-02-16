@@ -30,29 +30,45 @@ class LoginScreen(Screen):
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
             print ("both fields are empty") # for debugging
             if len(str(self.username)) == 0:
-                print("please enter a username") # print this at the error label
+                self.ids.user_msg.text = 'Please Enter a Username' # print this at the error label
             else:
                 print("username is full") # erase error label text 
+                self.ids.user_msg.text = ''
             if len(str(self.password)) == 0:
-                print("please enter a password") # print this at the error label
+                self.ids.pass_msg.text = 'Please Enter Your Password' # print this at the error label
             else:
-                print ("password is full") # erase error label text 
+                print ("password is full") # erase error label text
+                self.ids.pass_msg.text = '' 
         else:  # if all checks pass 
             Username = str(self.username)
             Password = str(self.password)
             print("Username : " + Username + "\n" + "Password : " + Password)
-            
             # On Success Message of below's request 
             def successrequest(self,*args):
-                print ("Success request") # GOTO next screen
-                print("Result is " + str(Loginrequest.result))
-                goto_Childlist()
+                print ("Success request") 
+                result =  str(Loginrequest.result)
+                if result =='No such User':
+                    print ("No such User!")
+                    display_nosuchuser()
+                elif result =='Failed':
+                    print("Failed Auth, Wrong Password")
+                    display_failedauthentication()
+                else:
+                    goto_Childlist() # GOTO next screen
+            # Display No such User 
+            def display_nosuchuser():
+                self.ids.user_msg.text = 'No such User!'
 
+            # Display Failed Authentication
+            def display_failedauthentication():
+                self.ids.pass_msg.text = 'Wrong password'
+                self.ids.user_msg.text = ''
+                
             # On Fail Message of below's request 
             def failedrequest(self,*args):
                 print ("Failed Request") # show error message
                 print ("Result is "+ str(Loginrequest.result))
-
+            
             # Move to next screen
             def goto_Childlist():
                 self.manager.current = 'childlist'
@@ -66,4 +82,4 @@ class LoginScreen(Screen):
             params = json.dumps({"username":Username,"password":Password})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Loginrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
+            Loginrequest =  UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)

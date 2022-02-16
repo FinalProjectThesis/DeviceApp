@@ -16,7 +16,6 @@
             orientation: 'vertical'
             size_hint: 1, .4
             Label:
-                
                 text: 'Welcome'
                 size_hint: 1, .05
             Label:
@@ -35,6 +34,7 @@
                 pos_hint: {'center_x': .5}
             Label:
                 id: user_msg
+                text: 'user_msg'
                 size_hint_y: None
                 height: dp(30)
             TextInput:
@@ -47,6 +47,7 @@
                 pos_hint: {'center_x': .5}
             Label:
                 id: pass_msg
+                text:'pass_msg'
                 size_hint_y: None
                 height: dp(30)
             Button:
