@@ -59,7 +59,6 @@ class LoginScreen(Screen):
                 # store needed parameters in screenmanager
                 self.manager.token = str(Loginrequest.result)
                 self.manager.parent_username = Username
-                self.manager.parent_password = Password
                 # clear
                 self.clear_TextInput()
 
