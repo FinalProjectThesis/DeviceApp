@@ -1,12 +1,7 @@
 from imp import reload
-from queue import PriorityQueue
-import time
-from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang.builder import Builder
 from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.popup import Popup
 from kivy.metrics import dp
 from kivy.properties import StringProperty
 
@@ -77,7 +72,7 @@ class ChildListScreen(Screen):
                 else:
                     print('adding box')
                     self.ids['btn'+str(i+1)] = b
-                    self.ids['btn'+str(i+1)].bind(on_press = lambda x: self.add_size())
+                    self.ids['btn'+str(i+1)].bind(on_press = lambda x: print('going to next screen'))
                     self.ids.scroll_child.add_widget(b)
         print('exiting')
         return super().on_enter(*args)
