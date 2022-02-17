@@ -1,7 +1,6 @@
 #: import utils kivy.utils
 <LoginScreen>:
     name: 'login'
-    # size: root.width, root.height
     canvas.before:
         Color:
             rgb: utils.get_color_from_hex('#2D3436')
@@ -31,10 +30,11 @@
                 write_tab: False
                 size_hint: .32, None
                 height: dp(32)
-                pos_hint: {'center_x': .5}
+                pos_hint: {'center_x': .5}        
             Label:
                 id: user_msg
                 text: 'user_msg'
+                color: [1, 0, 0, 1]
                 size_hint_y: None
                 height: dp(30)
             TextInput:
@@ -48,6 +48,7 @@
             Label:
                 id: pass_msg
                 text:'pass_msg'
+                color: [1, 0, 0, 1]
                 size_hint_y: None
                 height: dp(30)
             Button:
