@@ -24,7 +24,7 @@ class ChildListScreen(Screen):
     parent_username = ''
     token = ''
     childLength = 0
-    childData = []
+    childData = {}
     
     def on_pre_enter(self, *args):
         print('communicating..')
@@ -64,7 +64,7 @@ class ChildListScreen(Screen):
             for i in range(0, self.childLength):
                 size = dp(100)
                 b = Button(
-                    text = str(i+1),
+                    text = str(self.childData[i]['student_name']),
                     size_hint = (None, 1), 
                     width = size)
                 if self.loadBox == False:
