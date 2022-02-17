@@ -5,8 +5,6 @@ from kivy.uix.button import Button
 from kivy.metrics import dp
 from kivy.properties import StringProperty
 
-from lib.login import LoginScreen
-
 #for the HTTP 
 from kivy.network.urlrequest import UrlRequest
 import json
