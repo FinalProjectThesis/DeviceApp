@@ -7,6 +7,7 @@ from kivy.properties import StringProperty, BooleanProperty, ObjectProperty
 from lib.login import LoginScreen
 from lib.signup import SignupScreen
 from lib.childlist import ChildListScreen
+from lib.menu import MenuScreen
 
 class WindowManager(ScreenManager):
     token = StringProperty('')
@@ -16,6 +17,7 @@ sm = ScreenManager()
 sm.add_widget(LoginScreen(name = 'login'))
 sm.add_widget(SignupScreen(name = 'signup'))
 sm.add_widget(ChildListScreen(name = 'childlist'))
+sm.add_widget(MenuScreen(name = 'menu'))
 
 class MainApp(App):
     pass

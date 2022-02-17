@@ -70,8 +70,12 @@ class ChildListScreen(Screen):
                 else:
                     print('adding box')
                     self.ids['btn'+str(i+1)] = b
-                    self.ids['btn'+str(i+1)].bind(on_press = lambda x: print('going to next screen'))
+                    self.ids['btn'+str(i+1)].bind(on_press = lambda x: goto_Menu())
                     self.ids.scroll_child.add_widget(b)
+        
+        def goto_Menu():
+            self.manager.current = 'menu'
+
         print('exiting')
         return super().on_enter(*args)
 
