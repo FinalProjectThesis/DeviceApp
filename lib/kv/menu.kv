@@ -1,4 +1,23 @@
 <MenuScreen>:
     name: 'menu'
-    Button:
-        text: 'Menu Screen'
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text: 'Top Bar'
+            size_hint: 1, .2
+        StackLayout:
+            id: main_bar
+            padding: dp(20)
+            spacing: dp(5)
+            Button:
+                text: 'Addition'
+                size_hint: .5, .5
+            Button:
+                text: 'Subtraction'
+                size_hint: .5, .5
+            Button:
+                text: 'Multiplication'
+                size_hint: .5, .5
+            Button:
+                text: 'Divison'
+                size_hint: .5, .5
