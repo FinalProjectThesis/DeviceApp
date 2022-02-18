@@ -9,7 +9,7 @@ from kivy.properties import StringProperty
 from kivy.network.urlrequest import UrlRequest
 import json
 
-Builder.load_file('lib/signup.kv')
+Builder.load_file('lib/kv/signup.kv')
 
 class SignupScreen(Screen):
     username = StringProperty('')
@@ -45,7 +45,7 @@ class SignupScreen(Screen):
                 print("please enter your first name")
             else:
                 print("firstname is full") # erase first name error label text
-            if  len(str(self.last_name)) ==0:
+            if  len(str(self.last_name)) == 0:
                 print("please enter your last name ") # print this at the last name  error label
             else:
                 print("lastname is full") # erase last name error label text
@@ -60,13 +60,23 @@ class SignupScreen(Screen):
                 print("Register Success")
                 print(params)
                 print("Result is " + str(Registerrequest.result))
+
             # On Failed message of below's request             
             def failedrequest(self,*args):
                 print ("Failed Request") # show error message 
                 print (params)
                 print ("Result is "+ str(Registerrequest.result))
+
             
             params =json.dumps({"username":Username,"password":Password, "first_name": First_name, "last_name": Last_name})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
             Registerrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/register', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
+
+    def on_pre_leave(self, *args):
+        self.ids.user_input.text = ''
+        self.ids.first_input.text = ''
+        self.ids.last_input.text = ''
+        self.ids.pass_input.text = ''
+        self.ids.confirmpass_input.text = ''
+        return super().on_pre_leave(*args)

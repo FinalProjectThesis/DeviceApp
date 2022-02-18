@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 
-Builder.load_file('lib/menu.kv')
+Builder.load_file('lib/kv/menu.kv')
 
 class MenuScreen(Screen):
     pass

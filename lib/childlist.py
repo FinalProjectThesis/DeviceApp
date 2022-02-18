@@ -10,7 +10,7 @@ from kivy.network.urlrequest import UrlRequest
 import json
 
 
-Builder.load_file('lib/childlist.kv')
+Builder.load_file('lib/kv/childlist.kv')
 
 class ChildListScreen(Screen):
     loadBox = True
@@ -18,6 +18,7 @@ class ChildListScreen(Screen):
     token = ''
     childLength = 0
     childData = {}
+    indxSize = 0
     
     def on_pre_enter(self, *args):
         print('communicating..')
@@ -66,7 +67,7 @@ class ChildListScreen(Screen):
                     if i+1 == self.indxSize:
                         self.loadBox = True
                         self.indxSize += 1
-                        self.load_Box()
+                        self.on_enter()
                 else:
                     print('adding box')
                     self.ids['btn'+str(i+1)] = b
@@ -79,6 +80,11 @@ class ChildListScreen(Screen):
         print('exiting')
         return super().on_enter(*args)
 
+    def on_pre_leave(self, *args):
+        self.childData.clear()
+        self.ids.scroll_child.clear_widgets()
+        return super().on_pre_leave(*args)
+    
     # test data
     # def testdata(self):
     #     print(  '\np_user: ' + self.parent_username +

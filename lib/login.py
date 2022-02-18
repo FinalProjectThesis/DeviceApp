@@ -10,14 +10,10 @@ from kivy.graphics.context_instructions import Color
 from kivy.network.urlrequest import UrlRequest
 import json
 
-Builder.load_file('lib/login.kv')
+Builder.load_file('lib/kv/login.kv')
 class LoginScreen(Screen):
     username = StringProperty('')
     password = StringProperty('')
-
-    def clear_TextInput(self):
-        self.ids.user_input.text = ''
-        self.ids.pass_input.text = ''
 
     def btn_login_function(self):
         # self.username = self.ids.user_input.text
@@ -74,12 +70,16 @@ class LoginScreen(Screen):
                 # store needed parameters in screenmanager
                 self.manager.token = str(Loginrequest.result)
                 self.manager.parent_username = Username
-                # clear
-                self.clear_TextInput()
+                # leave
                 self.manager.current = 'childlist'
 
             # requests through KIVY's own thing
             params = json.dumps({"username":Username,"password":Password})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Loginrequest =  UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
+            Loginrequest =  UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
+    
+    def on_pre_leave(self, *args):
+        self.ids.user_input.text = ''
+        self.ids.pass_input.text = ''
+        return super().on_pre_leave(*args)
