@@ -79,7 +79,7 @@ class LoginScreen(Screen):
             headers= {'Content-type':'application/json','Accept':'text/plain'}
             Loginrequest =  UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
     
-    def on_pre_leave(self, *args):
+    def on_leave(self, *args):
         self.ids.user_input.text = ''
         self.ids.pass_input.text = ''
         return super().on_pre_leave(*args)

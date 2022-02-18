@@ -73,7 +73,7 @@ class SignupScreen(Screen):
             headers= {'Content-type':'application/json','Accept':'text/plain'}
             Registerrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/register', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
 
-    def on_pre_leave(self, *args):
+    def on_leave(self, *args):
         self.ids.user_input.text = ''
         self.ids.first_input.text = ''
         self.ids.last_input.text = ''

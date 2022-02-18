@@ -80,7 +80,7 @@ class ChildListScreen(Screen):
         print('exiting')
         return super().on_enter(*args)
 
-    def on_pre_leave(self, *args):
+    def on_leave(self, *args):
         self.childData.clear()
         self.ids.scroll_child.clear_widgets()
         return super().on_pre_leave(*args)
