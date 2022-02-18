@@ -2,9 +2,12 @@
     name: 'menu'
     BoxLayout:
         orientation: 'vertical'
-        Button:
-            text: 'Top Bar'
+        RelativeLayout:
             size_hint: 1, .2
+            Button:
+                text: 'Top Bar'
+                # size_hint: 1, .2
+                pos_y: 'top'
         BoxLayout:
             orientation: 'vertical'
             padding: dp(10)
@@ -19,12 +22,16 @@
                 Button:
                     text: 'Addition'
                     size_hint: .5, .5
+                    on_press: root.manager.current = 'addition'
                 Button:
                     text: 'Subtraction'
                     size_hint: .5, .5
+                    on_press: root.manager.current = 'subtraction'
                 Button:
                     text: 'Multiplication'
                     size_hint: .5, .5
+                    on_press: root.manager.current = 'login'
                 Button:
                     text: 'Divison'
                     size_hint: .5, .5
+                    on_press: root.manager.current = 'division'
