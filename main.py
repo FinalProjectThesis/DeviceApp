@@ -1,7 +1,7 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
-# from kivy.lang import Builder
-from kivy.properties import StringProperty, BooleanProperty, ObjectProperty
+from kivy.lang import Builder
+from kivy.properties import StringProperty
 
 # screen imports
 from lib.login import LoginScreen
@@ -20,6 +20,7 @@ sm.add_widget(ChildListScreen(name = 'childlist'))
 sm.add_widget(MenuScreen(name = 'menu'))
 
 class MainApp(App):
-    pass
+    def build(self):
+        return Builder.load_file('lib/kv/mainapp.kv')
         
 MainApp().run()
