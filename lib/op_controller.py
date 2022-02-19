@@ -21,12 +21,12 @@ class SubtractionScreen(Screen):
         self.ids.sub_label.text = DifficultyScreen.difficulty
         return super().on_pre_enter(*args)
 
-class DivisionScreen(Screen):
+class MultiplicationScreen(Screen):
     def on_pre_enter(self, *args):
         self.ids.multi_label.text = DifficultyScreen.difficulty
         return super().on_pre_enter(*args)
-
-class MultiplicationScreen(Screen):
+        
+class DivisionScreen(Screen):
     def on_pre_enter(self, *args):
         self.ids.div_label.text = DifficultyScreen.difficulty
         return super().on_pre_enter(*args)
