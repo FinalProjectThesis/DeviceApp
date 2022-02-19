@@ -30,7 +30,9 @@ class MainApp(App):
     def build(self):
         print("Playing Song")
         sound = SoundLoader.load('test.wav')
+        sound.loop = True
         sound.play()
+    
         return Builder.load_file('lib/kv/mainapp.kv')
         
         
