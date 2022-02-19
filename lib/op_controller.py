@@ -6,10 +6,14 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 
+from lib.menu import DifficultyScreen
+
+Builder.load_file('lib/kv/op_controller.kv')
+
 
 class AdditionScreen(Screen):
     def on_pre_enter(self, *args):
-        # load questions?
+        self.ids.add_label.text = DifficultyScreen.difficulty
         return super().on_pre_enter(*args)
 
 class SubtractionScreen(Screen):

@@ -1,20 +1,39 @@
 <AdditionScreen>:
     name: 'addition'
-    Button:
-        text: 'Addition'
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: add_label
+        Button:
+            text: 'Addition Page'
+            on_press: root.manager.current = 'menu'
 
 <SubtractionScreen>:
     name: 'subtraction'
-    Button:
-        text: 'Subtraction Page'
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: sub_label
+        Button:
+            text: 'Subtraction Page'
+            on_press: root.manager.current = 'menu'
 
 <MultiplicationScreen>:
     name: 'multiplication'
-    Button:
-        text: 'Multiplication Page'
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: multi_label
+        Button:
+            text: 'Multiplication Page'
+            on_press: root.manager.current = 'menu'
 
 <DivisionScreen>:
     name: 'division'
-    Button:
-        text: 'Division Page'
-
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: div_label
+        Button:
+            text: 'Division Page'
+            on_press: root.manager.current = 'menu'
