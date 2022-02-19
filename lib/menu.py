@@ -36,31 +36,31 @@ class DifficultyScreen(Screen):
         DifficultyScreen.difficulty = 'easy'
         if self.operation == 'addition':
             self.manager.current = 'addition'
-        if self.operation == 'subtraction':
+        elif self.operation == 'subtraction':
             self.manager.current = 'subtraction'
-        if self.operation == 'multiplication':
+        elif self.operation == 'multiplication':
             self.manager.current = 'multiplication'
-        if self.operation == 'division':
+        elif self.operation == 'division':
             self.manager.current = 'division'
 
     def on_medium(self):
         DifficultyScreen.difficulty = 'medium'
         if self.operation == 'addition':
             self.manager.current = 'addition'
-        if self.operation == 'subtraction':
+        elif self.operation == 'subtraction':
             self.manager.current = 'subtraction'
-        if self.operation == 'multiplication':
+        elif self.operation == 'multiplication':
             self.manager.current = 'multiplication'
-        if self.operation == 'division':
+        elif self.operation == 'division':
             self.manager.current = 'division'
     
     def on_hard(self):
         DifficultyScreen.difficulty = 'hard'
         if self.operation == 'addition':
             self.manager.current = 'addition'
-        if self.operation == 'subtraction':
+        elif self.operation == 'subtraction':
             self.manager.current = 'subtraction'
-        if self.operation == 'multiplication':
+        elif self.operation == 'multiplication':
             self.manager.current = 'multiplication'
-        if self.operation == 'division':
+        elif self.operation == 'division':
             self.manager.current = 'division'

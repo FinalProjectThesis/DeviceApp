@@ -4,9 +4,16 @@
         orientation: 'vertical'
         Label:
             id: add_label
+        TextInput:
+            id: add_ans_input
+            hint_text: 'Enter answer'
         Button:
-            text: 'Addition Page'
+            text: 'submit'
+            on_press: root.validate_ans()
+        Button:
+            text: 'back'
             on_press: root.manager.current = 'menu'
+        
 
 <SubtractionScreen>:
     name: 'subtraction'
