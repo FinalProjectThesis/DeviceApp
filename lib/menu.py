@@ -10,3 +10,6 @@ Builder.load_file('lib/kv/menu.kv')
 
 class MenuScreen(Screen):
     pass
+
+class DifficultyScreen(Screen):
+    pass

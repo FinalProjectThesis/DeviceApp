@@ -22,16 +22,43 @@
                 Button:
                     text: 'Addition'
                     size_hint: .5, .5
-                    on_press: root.manager.current = 'addition'
+                    on_press: root.manager.current = 'difficulty'
                 Button:
                     text: 'Subtraction'
                     size_hint: .5, .5
-                    on_press: root.manager.current = 'subtraction'
+                    on_press: root.manager.current = 'difficulty'
                 Button:
                     text: 'Multiplication'
                     size_hint: .5, .5
-                    on_press: root.manager.current = 'login'
+                    on_press: root.manager.current = 'difficulty'
                 Button:
                     text: 'Divison'
                     size_hint: .5, .5
-                    on_press: root.manager.current = 'division'
+                    on_press: root.manager.current = 'difficulty'
+
+<DifficultyScreen>:
+    name: 'difficulty'
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex('#2D3436')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        Label:
+            id: op_label
+            text: root.operation.text + ' was Chosen'
+        Label:
+            text: 'Choose your difficulty'
+            font_size: dp(20)
+        Button:
+            text: 'Easy'
+            background_color: (0, 1, 0, 1)
+        Button:
+            text: 'Medium'
+            background_color: (1, 1, 0, 1)
+        Button:
+            text: 'Hard'
+            background_color: (1, 0, 0, 1)
