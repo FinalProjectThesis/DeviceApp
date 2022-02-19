@@ -17,10 +17,16 @@ class AdditionScreen(Screen):
         return super().on_pre_enter(*args)
 
 class SubtractionScreen(Screen):
-    pass
+    def on_pre_enter(self, *args):
+        self.ids.sub_label.text = DifficultyScreen.difficulty
+        return super().on_pre_enter(*args)
 
 class DivisionScreen(Screen):
-    pass
+    def on_pre_enter(self, *args):
+        self.ids.multi_label.text = DifficultyScreen.difficulty
+        return super().on_pre_enter(*args)
 
 class MultiplicationScreen(Screen):
-    pass
+    def on_pre_enter(self, *args):
+        self.ids.div_label.text = DifficultyScreen.difficulty
+        return super().on_pre_enter(*args)
