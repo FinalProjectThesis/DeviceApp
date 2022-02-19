@@ -2,14 +2,13 @@ from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.properties import StringProperty
-
 # screen imports
 from lib.login import LoginScreen
 from lib.signup import SignupScreen
 from lib.childlist import ChildListScreen
 from lib.menu import MenuScreen, DifficultyScreen
 from lib.op_controller import AdditionScreen, SubtractionScreen, MultiplicationScreen, DivisionScreen
-
+from kivy.core.audio import SoundLoader
 class WindowManager(ScreenManager):
     token = StringProperty('')
     parent_username = StringProperty('')
@@ -29,6 +28,10 @@ sm.add_widget(SubtractionScreen(name = 'subtraction'))
 
 class MainApp(App):
     def build(self):
+        print("Playing Song")
+        sound = SoundLoader.load('test.wav')
+        sound.play()
         return Builder.load_file('lib/kv/mainapp.kv')
+        
         
 MainApp().run()
