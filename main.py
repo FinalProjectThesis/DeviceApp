@@ -7,7 +7,7 @@ from lib.login import LoginScreen
 from lib.signup import SignupScreen
 from lib.childlist import ChildListScreen
 from lib.menu import MenuScreen, DifficultyScreen
-from lib.op_controller import AdditionScreen, SubtractionScreen, MultiplicationScreen, DivisionScreen, ResultScreen
+from lib.op_controller import AdditionScreen, SubtractionScreen, MultiplicationScreen, DivisionScreen, ResultScreen, CorrectScreen, WrongScreen
 from kivy.core.audio import SoundLoader
 class WindowManager(ScreenManager):
     token = StringProperty('')
@@ -21,6 +21,8 @@ sm.add_widget(ChildListScreen(name = 'childlist'))
 sm.add_widget(MenuScreen(name = 'menu'))
 sm.add_widget(DifficultyScreen(name = 'difficulty'))
 sm.add_widget(ResultScreen(name = 'result'))
+sm.add_widget(CorrectScreen(name = 'correct'))
+sm.add_widget(WrongScreen(name = 'wrong'))
 # Operations
 sm.add_widget(AdditionScreen(name = 'addition'))
 sm.add_widget(DivisionScreen(name = 'division'))
