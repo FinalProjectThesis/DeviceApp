@@ -58,8 +58,8 @@ class AdditionScreen(Screen):
         print(str(self.counter))
     
     def load_hard(self):
-        val1 = random.randint(100, 1000)
-        val2 = random.randint(100, 1000)
+        val1 = random.randint(50, 1000)
+        val2 = random.randint(50, 1000)
         AdditionScreen.Sum = val1 + val2
         # generate labels
         self.ids.qcount_label.text = str('Q #' + str(self.counter))
