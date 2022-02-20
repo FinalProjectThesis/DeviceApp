@@ -9,6 +9,8 @@ from kivy.graphics.context_instructions import Color
 
 from lib.menu import DifficultyScreen
 
+# To add sound
+from kivy.core.audio import SoundLoader
 Builder.load_file('lib/kv/op_controller.kv')
 
 
@@ -67,6 +69,9 @@ class AdditionScreen(Screen):
         print(str(self.counter))
 
     def validate_ans(self):
+
+        
+
         final_input = self.ids.thousands_input.text + self.ids.hundreds_input.text + self.ids.tens_input.text + self.ids.ones_input.text
         if len(final_input) == 0:
             final_input = 0
@@ -76,9 +81,15 @@ class AdditionScreen(Screen):
             if self.Sum == int(final_input):
                 AdditionScreen.score += 1
                 # move to correct screen
+                # play correct_answer on correct screen ( I'll add them into functions ;-;)
+                sound = SoundLoader.load("assets/music/correct_answer.wav")
+                sound.play()
                 self.manager.current = 'correct'
             else:
                 # move to wrong screen
+                #play wrong_answer on wrong screen
+                sound = SoundLoader.load("assets/music/wrong_answer.wav")
+                sound.play()
                 self.manager.current = 'wrong'
             
         elif DifficultyScreen.difficulty == 'medium':

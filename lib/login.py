@@ -5,7 +5,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
-
+from kivy.core.audio import SoundLoader 
 #for the HTTP 
 from kivy.network.urlrequest import UrlRequest
 import json
@@ -16,8 +16,12 @@ class LoginScreen(Screen):
     password = StringProperty('')
 
     def btn_login_function(self):
-        # self.username = self.ids.user_input.text
-        # self.password = self.ids.pass_input.text
+    
+        # play music
+        sound = SoundLoader.load("assets/music/button_click.wav")
+        sound.play()
+        self.username = self.ids.user_input.text
+        self.password = self.ids.pass_input.text
 
         # Temp data or easy access out of login, remove for final/actual testing
         self.username = 'Carmen'
