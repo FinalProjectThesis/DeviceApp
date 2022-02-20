@@ -2,6 +2,10 @@ from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.properties import StringProperty
+# from kivy.uix.vkeyboard import VKeyboard
+from kivy.config import Config
+Config.set('kivy', 'keyboard_mode', 'systemanddock')
+
 # screen imports
 from lib.login import LoginScreen
 from lib.signup import SignupScreen
