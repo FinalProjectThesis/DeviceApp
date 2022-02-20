@@ -1,18 +1,63 @@
 <AdditionScreen>:
     name: 'addition'
     BoxLayout:
+        padding: dp(15)
         orientation: 'vertical'
-        Label:
-            id: add_label
-        TextInput:
-            id: add_ans_input
-            hint_text: 'Enter answer'
+        RelativeLayout:
+            size_hint: 1, .1
+            Button:
+                text: 'Exit'
+                background_color: (1, 0, 0, 1)
+                size_hint: None, .5
+                width: dp(90)
+                pos_hint: {'right': 1, 'top': 1}
+                on_press: root.manager.current = 'menu'
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, .4 
+            Label:
+                size_hint: 1, .05
+                id: qcount_label
+                font_size: dp(15)
+            Label:
+                size_hint: 1, .95
+                id: add_label
+                font_size: dp(50)
+        BoxLayout:
+            size_hint: 1, .4 
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint: 1, .05
+                Label:
+                    text: 'Thousands'
+                Label:
+                    text: 'Hundreds'
+                Label:
+                    text: 'Tens'
+                Label:
+                    text: 'Ones'
+            BoxLayout:
+                size_hint: 1, .95
+                spacing: dp(15)
+                padding: dp(20)
+                TextInput:
+                    id: thousands_input
+                    hint_text: 'Thousands'
+                TextInput:
+                    id: hundreds_input
+                    hint_text: 'Hundreds'
+                TextInput:
+                    id: tens_input
+                    hint_text: 'Tens'
+                TextInput:
+                    id: ones_input
+                    hint_text: 'Ones'
         Button:
+            size_hint: None, .1
+            width: dp(500)
+            pos_hint: {'center_x': .5}
             text: 'submit'
             on_press: root.validate_ans()
-        Button:
-            text: 'back'
-            on_press: root.manager.current = 'menu'
         
 
 <SubtractionScreen>:
@@ -43,4 +88,14 @@
             id: div_label
         Button:
             text: 'Division Page'
+            on_press: root.manager.current = 'menu'
+
+<ResultScreen>:
+    name: 'result'
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: result_label
+        Button:
+            text: 'Results'
             on_press: root.manager.current = 'menu'
