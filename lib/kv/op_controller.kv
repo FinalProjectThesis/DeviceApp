@@ -11,7 +11,7 @@
                 size_hint: None, .5
                 width: dp(90)
                 pos_hint: {'right': 1, 'top': 1}
-                on_press: root.manager.current = 'menu'
+                on_press: root.on_exit()
         BoxLayout:
             orientation: 'vertical'
             size_hint: 1, .4 
@@ -43,15 +43,23 @@
                 TextInput:
                     id: thousands_input
                     hint_text: 'Thousands'
+                    font_size: dp(80)
+                    padding: dp(40)
                 TextInput:
                     id: hundreds_input
                     hint_text: 'Hundreds'
+                    font_size: dp(80)
+                    padding: dp(40)
                 TextInput:
                     id: tens_input
                     hint_text: 'Tens'
+                    font_size: dp(80)
+                    padding: dp(40)
                 TextInput:
                     id: ones_input
                     hint_text: 'Ones'
+                    font_size: dp(80)
+                    padding: dp(40)
         Button:
             size_hint: None, .1
             width: dp(500)
@@ -99,3 +107,38 @@
         Button:
             text: 'Results'
             on_press: root.manager.current = 'menu'
+
+<CorrectScreen>:
+    name: 'correct'
+    canvas.before:
+        Color:
+            rgb: (0, 1, 0)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: correct_label
+            text: 'Correct!'
+            font_size: dp(80)
+        Button:
+            text: 'Next Question'
+            on_press: root.manager.current = 'addition'
+
+<WrongScreen>:
+    name: 'wrong'
+    canvas.before:
+        Color:
+            rgb: (1, 0, 0)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: wrong_label
+            font_size: dp(60)
+        Button:
+            text: 'Next Question'
+            on_press: root.manager.current = 'addition'
