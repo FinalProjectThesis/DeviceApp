@@ -18,20 +18,26 @@
             height: self.texture_size[1]
         Widget:
             size_hint: 1, None
-            height: dp(55)
-        MDTextFieldRound:
+            height: dp(10)
+        MDTextField:
             id: user_input
             hint_text: 'Username'
+            helper_text: "Please Enter your Username"
+            helper_text_mode: "on_focus"
             icon_right: 'account'
+            write_tab: False
             size_hint_x: None
             width: dp(270)
             font_size: 16
             pos_hint: {'center_x': .5}
-        MDTextFieldRound:
+        MDTextField:
             id: pass_input
             hint_text: 'Password'
+            helper_text: "Please Enter your Password"
+            helper_text_mode: "on_focus"
             icon_right: 'eye-off'
             password: True
+            write_tab: False
             size_hint_x: None
             width: dp(270)
             font_size: 16
@@ -42,7 +48,7 @@
             size_hint: None, None
             width: dp(60) 
             pos_hint: {'center_x': .5}
-            on_press: root.btn_login_function()
+            on_press: root.on_login()
         Widget:
             size_hint_y: None
             height: dp(30)
