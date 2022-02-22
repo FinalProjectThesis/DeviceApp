@@ -5,9 +5,10 @@
         RelativeLayout:
             size_hint: 1, .2
             Button:
-                text: 'Top Bar'
+                text: 'Top Bar (Go back) '
                 # size_hint: 1, .2
                 pos_y: 'top'
+                on_press: root.manager.current = 'childlist'
         BoxLayout:
             orientation: 'vertical'
             padding: dp(10)
