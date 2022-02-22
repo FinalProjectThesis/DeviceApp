@@ -9,7 +9,6 @@ from kivy.properties import StringProperty
 from kivy.network.urlrequest import UrlRequest
 import json
 
-
 Builder.load_file('lib/kv/childlist.kv')
 
 class ChildListScreen(Screen):
@@ -19,7 +18,7 @@ class ChildListScreen(Screen):
     childLength = 0
     childData = {}
     indxSize = 0
-    
+
     def on_pre_enter(self, *args):
         print('communicating..')
         self.parent_username = self.manager.parent_username

@@ -11,8 +11,8 @@ from lib.menu import DifficultyScreen
 
 # To add sound
 from kivy.core.audio import SoundLoader
-Builder.load_file('lib/kv/op_controller.kv')
 
+Builder.load_file('lib/kv/op_controller.kv')
 
 class AdditionScreen(Screen):
     score = 0

@@ -1,74 +1,59 @@
 #: import utils kivy.utils
 <LoginScreen>:
     name: 'login'
-    canvas.before:
-        Color:
-            rgb: utils.get_color_from_hex('#2D3436')
-        Rectangle:
-            pos: self.pos
-            size: self.size
-    BoxLayout:
+    MDCard:
         orientation: 'vertical'
-        padding: dp(20)
-        size: root.width, root.height
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: 1, .4
-            Label:
-                text: 'Welcome'
-                size_hint: 1, .05
-            Label:
-                text: 'Welcome Desc'
-                size_hint: 1, .2
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: 1, .6
-            TextInput:
-                id: user_input
-                hint_text: 'Username'
-                multiline: False
-                write_tab: False
-                size_hint: .32, None
-                height: dp(32)
-                pos_hint: {'center_x': .5}        
-            Label:
-                id: user_msg
-                text: 'user_msg'
-                color: [1, 0, 0, 1]
-                size_hint_y: None
-                height: dp(30)
-            TextInput:
-                id: pass_input
-                hint_text: 'Password'
-                multiline: False
-                write_tab: False
-                size_hint: .32, None
-                height: dp(32)
-                pos_hint: {'center_x': .5}
-            Label:
-                id: pass_msg
-                text:'pass_msg'
-                color: [1, 0, 0, 1]
-                size_hint_y: None
-                height: dp(30)
-            Button:
-                text: 'Login'
-                size_hint: .15, None
-                height: dp(35)
-                pos_hint: {'center_x': .5}
-                on_press: root.btn_login_function()
-            Label:
-                
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: 1, .2
-            Label:
-                text: 'Signup Desc'
-                size_hint: 1, .5
-            Button:
-                text: 'Signup'
-                size_hint: .1, None
-                height: dp(35)
-                pos_hint: {'center_x': .5}
-                on_press: root.manager.current = 'signup'
-
+        size_hint: None, None
+        width: dp(400)
+        height: dp(500)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: dp(10)
+        padding: dp(25)
+        spacing: dp(25)
+        MDLabel:
+            text: 'WELCOME'
+            font_size: dp(35)
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1]
+        Widget:
+            size_hint: 1, None
+            height: dp(55)
+        MDTextFieldRound:
+            id: user_input
+            hint_text: 'Username'
+            icon_right: 'account'
+            size_hint_x: None
+            width: dp(270)
+            font_size: 16
+            pos_hint: {'center_x': .5}
+        MDTextFieldRound:
+            id: pass_input
+            hint_text: 'Password'
+            icon_right: 'eye-off'
+            password: True
+            size_hint_x: None
+            width: dp(270)
+            font_size: 16
+            pos_hint: {'center_x': .5}
+        MDRoundFlatButton:
+            text: 'Login'
+            font_size: 12
+            size_hint: None, None
+            width: dp(60) 
+            pos_hint: {'center_x': .5}
+            on_press: root.btn_login_function()
+        Widget:
+            size_hint_y: None
+            height: dp(30)
+        MDLabel:
+            text: "Don't have an account yet?"
+            font_size: dp(14)
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1]
+        MDRoundFlatButton:
+            text: 'Sign Up'
+            font_size: 12
+            pos_hint: {'center_x': .5}
+            on_press: root.manager.current = 'signup'
