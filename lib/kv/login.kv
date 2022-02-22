@@ -11,20 +11,24 @@
         padding: dp(25)
         spacing: dp(25)
         MDLabel:
-            text: 'WELCOME'
+            text: 'Welcome'
             font_size: dp(35)
             halign: 'center'
             size_hint: 1, None
             height: self.texture_size[1]
-        Widget:
+        MDLabel:
+            text: 'Login your parent Username and Password'
+            font_size: dp(14)
+            halign: 'center'
             size_hint: 1, None
-            height: dp(10)
+            height: self.texture_size[1]
         MDTextField:
             id: user_input
             hint_text: 'Username'
             helper_text: "Please Enter your Username"
             helper_text_mode: "on_focus"
             icon_right: 'account'
+            icon_right_color: 1, 1, 1, 1
             write_tab: False
             size_hint_x: None
             width: dp(270)
@@ -36,6 +40,7 @@
             helper_text: "Please Enter your Password"
             helper_text_mode: "on_focus"
             icon_right: 'eye-off'
+            icon_right_color: 1, 1, 1, 1
             password: True
             write_tab: False
             size_hint_x: None
