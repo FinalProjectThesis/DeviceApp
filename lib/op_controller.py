@@ -141,6 +141,12 @@ class DivisionScreen(Screen):
 class ResultScreen(Screen):
     def on_pre_enter(self, *args):
         self.ids.result_label.text = 'Scores is ' + str(AdditionScreen.score) + '/10'
+        Average_score = AdditionScreen.score * .6
+        if (AdditionScreen.score >= Average_score):
+            above_average_sound = SoundLoader.load("assets/music/positive_results.wav")
+            above_average_sound.play()
+        #else: 
+            #below_average_sound = Soundloader.load("assets/music/negative_results.wav")
         return super().on_pre_enter(*args)
 
 class CorrectScreen(Screen):
