@@ -6,9 +6,13 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 from kivy.core.audio import SoundLoader 
+from dotenv import load_dotenv
+import os
+load_dotenv()
 #for the HTTP 
 from kivy.network.urlrequest import UrlRequest
 import json
+LOGINURL = os.getenv('LOGINURL')
 
 Builder.load_file('lib/kv/login.kv')
 
@@ -17,16 +21,16 @@ class LoginScreen(Screen):
     password = StringProperty('')
 
     def on_login(self):
-        self.username = self.ids.user_input.text
-        self.password = self.ids.pass_input.text
+        # self.username = self.ids.user_input.text
+        # self.password = self.ids.pass_input.text
 
         # play music
         sound = SoundLoader.load("assets/music/button_click.wav")
         sound.play()
 
         # Temp data or easy access out of login, remove for final/actual testing
-        # self.username = 'Carmen'
-        # self.password = '123'
+        self.username = 'Carmen'
+        self.password = '123'
 
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
             print ("both fields are empty") # for debugging
@@ -103,7 +107,7 @@ class LoginScreen(Screen):
             params = json.dumps({"username":Username,"password":Password})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Loginrequest =  UrlRequest('https://uslsthesisapi.herokuapp.com/login', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
+            Loginrequest =  UrlRequest(LOGINURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
     
 
     def reset_username(self):
