@@ -17,16 +17,16 @@ class LoginScreen(Screen):
     password = StringProperty('')
 
     def on_login(self):
-        # self.username = self.ids.user_input.text
-        # self.password = self.ids.pass_input.text
+        self.username = self.ids.user_input.text
+        self.password = self.ids.pass_input.text
 
         # play music
         sound = SoundLoader.load("assets/music/button_click.wav")
         sound.play()
 
         # Temp data or easy access out of login, remove for final/actual testing
-        self.username = 'Carmen'
-        self.password = '123'
+        # self.username = 'Carmen'
+        # self.password = '123'
 
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
             print ("both fields are empty") # for debugging
@@ -34,8 +34,8 @@ class LoginScreen(Screen):
                 # print this at the error label
                 print('Please Enter a Username')
                 self.ids.user_input.focus = True
-                self.ids.user_input.error = True
                 self.ids.user_input.helper_text_mode = 'on_error'
+                self.ids.user_input.error = True
                 self.ids.user_input.helper_text = 'Please Enter a Username'
                 self.ids.user_input.focus = True
             else:
@@ -45,8 +45,8 @@ class LoginScreen(Screen):
                 # self.ids.pass_msg.text = 'Please Enter Your Password' # print this at the error label
                 print('Please Enter a Password')
                 self.ids.pass_input.focus = True
-                self.ids.pass_input.error = True
                 self.ids.pass_input.helper_text_mode = 'on_error'
+                self.ids.pass_input.error = True
                 self.ids.pass_input.helper_text = 'Please Enter a Password'
                 self.ids.pass_input.focus = True
             else:
@@ -76,8 +76,8 @@ class LoginScreen(Screen):
             
             def display_nosuchuser():
                 self.ids.user_input.focus = True
-                self.ids.user_input.error = True
                 self.ids.user_input.helper_text_mode = 'on_error'
+                self.ids.user_input.error = True
                 self.ids.user_input.helper_text = 'No such User!'
                 self.ids.user_input.focus = False
                 # reset pass_input just in case
@@ -85,8 +85,8 @@ class LoginScreen(Screen):
 
             def display_failedauthentication():
                 self.ids.pass_input.focus = True
-                self.ids.pass_input.error = True
                 self.ids.pass_input.helper_text_mode = 'on_error'
+                self.ids.pass_input.error = True
                 self.ids.pass_input.helper_text = 'Wrong password'
                 self.ids.pass_input.focus = False
                 # reset user_input just in case
@@ -108,17 +108,17 @@ class LoginScreen(Screen):
 
     def reset_username(self):
         self.ids.user_input.focus = True
-        self.ids.user_input.helper_text_mode = 'on_focus'
         self.ids.user_input.error = False
+        self.ids.user_input.helper_text_mode = 'on_focus'
         self.ids.user_input.helper_text = 'Please Enter your Username'
         self.ids.user_input.focus = False
 
     def reset_password(self):
-        self.ids.user_input.focus = True
-        self.ids.pass_input.helper_text_mode = 'on_focus'
+        self.ids.pass_input.focus = True
         self.ids.pass_input.error = False
+        self.ids.pass_input.helper_text_mode = 'on_focus'
         self.ids.pass_input.helper_text = 'Please Enter your Password'
-        self.ids.user_input.focus = False
+        self.ids.pass_input.focus = False
 
     def on_pre_leave(self, *args):
         self.ids.user_input.text = ''
