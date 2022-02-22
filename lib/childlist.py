@@ -4,10 +4,13 @@ from kivy.lang.builder import Builder
 from kivy.uix.button import Button
 from kivy.metrics import dp
 from kivy.properties import StringProperty
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
 #for the HTTP 
 from kivy.network.urlrequest import UrlRequest
 import json
+LISTURL = os.getenv('LISTURL')
 
 Builder.load_file('lib/kv/childlist.kv')
 
@@ -44,7 +47,7 @@ class ChildListScreen(Screen):
         params = json.dumps({"parent_username" : self.parent_username})
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
         print(params)
-        childRequest = UrlRequest('https://uslsthesisapi.herokuapp.com/childlist', on_success= successrequest, on_failure=failedrequest, req_body=params, req_headers=headers)
+        childRequest = UrlRequest(LISTURL, on_success= successrequest, on_failure=failedrequest, req_body=params, req_headers=headers)
 
         return super().on_enter(*args)
     

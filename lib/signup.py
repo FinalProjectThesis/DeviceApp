@@ -4,10 +4,12 @@ from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang.builder import Builder
 from kivy.properties import StringProperty
-
+from dotenv import load_dotenv
+import os
 #for the HTTP 
 from kivy.network.urlrequest import UrlRequest
 import json
+REGURL = os.getenv('REGURL')
 
 Builder.load_file('lib/kv/signup.kv')
 
@@ -100,7 +102,7 @@ class SignupScreen(Screen):
             params =json.dumps({"username":Username,"password":Password, "first_name": First_name, "last_name": Last_name})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Registerrequest = UrlRequest('https://uslsthesisapi.herokuapp.com/register', on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
+            Registerrequest = UrlRequest(REGURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
 
     def reset_username(self):
         self.ids.user_input.error = False
