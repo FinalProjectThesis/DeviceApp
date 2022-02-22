@@ -9,7 +9,7 @@ from kivy.core.audio import SoundLoader
 from dotenv import load_dotenv
 import os
 load_dotenv()
-#for the HTTP 
+# for the HTTP 
 from kivy.network.urlrequest import UrlRequest
 import json
 LOGINURL = os.getenv('LOGINURL')

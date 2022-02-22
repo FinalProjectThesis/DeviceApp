@@ -42,22 +42,18 @@
                 padding: dp(20)
                 TextInput:
                     id: thousands_input
-                    hint_text: 'Thousands'
                     font_size: dp(80)
                     padding: dp(40)
                 TextInput:
                     id: hundreds_input
-                    hint_text: 'Hundreds'
                     font_size: dp(80)
                     padding: dp(40)
                 TextInput:
                     id: tens_input
-                    hint_text: 'Tens'
                     font_size: dp(80)
                     padding: dp(40)
                 TextInput:
                     id: ones_input
-                    hint_text: 'Ones'
                     font_size: dp(80)
                     padding: dp(40)
         Button:
@@ -104,9 +100,9 @@
         orientation: 'vertical'
         Label:
             id: result_label
-        Button:
-            text: 'Results'
-            on_press: root.manager.current = 'menu'
+        MDFlatButton:
+            text: 'Submit Answers'
+            on_press: root.onsubmit()
 
 <CorrectScreen>:
     name: 'correct'

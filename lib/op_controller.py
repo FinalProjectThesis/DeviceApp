@@ -6,8 +6,15 @@ from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
+# # for the HTTP 
+from kivy.network.urlrequest import UrlRequest
+import json
+from dotenv import load_dotenv
+import os
+load_dotenv()
+ADDSCOREURL = os.getenv('ADDSCOREURL')
 
-from lib.menu import DifficultyScreen
+from lib.menu import DifficultyScreen, MenuScreen
 
 # To add sound
 from kivy.core.audio import SoundLoader
@@ -18,6 +25,7 @@ class AdditionScreen(Screen):
     score = 0
     Sum = 0
     counter = 1
+    quiz_length = 15
 
     def on_pre_enter(self, *args):
         # self.ids.add_label.text = DifficultyScreen.difficulty
@@ -25,7 +33,7 @@ class AdditionScreen(Screen):
         self.reset_inputs()
 
         # evaluate
-        if self.counter > 10:
+        if self.counter > self.quiz_length:
             print('counter is '+ str(self.counter))
             self.manager.current = 'result'
             AdditionScreen.score = 0
@@ -69,9 +77,6 @@ class AdditionScreen(Screen):
         print(str(self.counter))
 
     def validate_ans(self):
-
-        
-
         final_input = self.ids.thousands_input.text + self.ids.hundreds_input.text + self.ids.tens_input.text + self.ids.ones_input.text
         if len(final_input) == 0:
             final_input = 0
@@ -80,18 +85,17 @@ class AdditionScreen(Screen):
             self.counter += 1
             if self.Sum == int(final_input):
                 AdditionScreen.score += 1
-                # move to correct screen
                 # play correct_answer on correct screen ( I'll add them into functions ;-;)
                 sound = SoundLoader.load("assets/music/correct_answer.wav")
                 sound.play()
+                # move to correct screen
                 self.manager.current = 'correct'
             else:
                 # move to wrong screen
                 #play wrong_answer on wrong screen
                 sound = SoundLoader.load("assets/music/wrong_answer.wav")
                 sound.play()
-                self.manager.current = 'wrong'
-            
+                self.manager.current = 'wrong'  
         elif DifficultyScreen.difficulty == 'medium':
             self.counter += 1
             if self.Sum == int(final_input):
@@ -142,6 +146,34 @@ class ResultScreen(Screen):
     def on_pre_enter(self, *args):
         self.ids.result_label.text = 'Scores is ' + str(AdditionScreen.score) + '/10'
         return super().on_pre_enter(*args)
+    
+    def on_submit(self):
+        student_id = ''
+        student_name = ''
+        date = 0
+        time = 0
+        operation = MenuScreen.operation
+        difficulty = DifficultyScreen.difficulty
+        rawscore = AdditionScreen.score
+        totalscore = AdditionScreen.quiz_length
+
+        def successrequest(self,*args):
+            print ("Success request") 
+            result =  str(Loginrequest.result)
+            # back to menu
+            self.manager.current = 'menu'
+
+        # On Fail Message of below's request 
+        def failedrequest(self,*args):
+            print ("Failed Request") # show error message
+            print ("Result is "+ str(Loginrequest.result))
+        
+
+        params = json.dumps({})
+        print (params)
+        headers= {'Content-type':'application/json','Accept':'text/plain'}
+        Loginrequest =  UrlRequest(ADDSCOREURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
+
 
 class CorrectScreen(Screen):
     pass
