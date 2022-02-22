@@ -43,6 +43,9 @@ class MainApp(MDApp):
         sm.add_widget(SubtractionScreen(name = 'subtraction'))
         
         return Builder.load_file('lib/kv/mainapp.kv')
+    
+    def on_start(self):
+        self.fps_monitor_start()    # to check speed on rasp
 
    
 MainApp().run()

@@ -1,54 +1,91 @@
 #: import utils kivy.utils
 <SignupScreen>:
     name: 'signup'
-    canvas.before:
-        Color:
-            rgb: utils.get_color_from_hex('#2D3436')
-        Rectangle:
-            pos: self.pos
-            size: self.size
-    BoxLayout:
-        id: signup_main
-        name: 'signup_main'
+    MDCard:
         orientation: 'vertical'
-        Label:
+        size_hint: None, None
+        width: dp(680)
+        height: dp(500)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: dp(10)
+        padding: dp(25)
+        spacing: dp(25)
+        MDLabel:
             text: 'Sign Up'
+            font_size: dp(35)
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1]
+        MDLabel:
+            text: 'Input all parameters accordingly'
+            font_size: dp(14)
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1]
         BoxLayout:
-            orientation: 'horizontal'
             BoxLayout:
                 orientation: 'vertical'
-                TextInput:
+                MDTextField:
                     id: user_input
                     hint_text: 'Username'
-                    multiline: False
+                    helper_text: 'Please input a Username'
+                    helper_text_mode: "on_error"
                     write_tab: False
-                TextInput:
-                    id: first_input
-                    hint_text: 'First name'
-                    multiline: False
-                    write_tab: False
-                TextInput:
-                    id: last_input
-                    hint_text: 'Last name'
-                    multiline: False
-                    write_tab: False
-            BoxLayout:
-                orientation: 'vertical'
-                TextInput:
+                    required: True
+                    size_hint_x: None
+                    width: dp(270)
+                    font_size: 16
+                MDTextField:
                     id: pass_input
                     hint_text: 'Password'
-                    multiline: False
+                    helper_text: 'Please input a Password'
+                    helper_text_mode: "on_error"
                     write_tab: False
-                TextInput:
+                    required: True
+                    size_hint_x: None
+                    width: dp(270)
+                    font_size: 16
+                MDTextField:
                     id: confirmpass_input
                     hint_text: 'Confirm Password'
-                    multiline: False
+                    helper_text_mode: "on_error"
                     write_tab: False
-        Button:
+                    size_hint_x: None
+                    width: dp(270)
+                    font_size: 16
+            BoxLayout:
+                orientation: 'vertical'
+                MDTextField:
+                    id: first_input
+                    hint_text: 'First name'
+                    helper_text_mode: "on_error"
+                    write_tab: False
+                    size_hint_x: None
+                    width: dp(270)
+                    font_size: 16
+                MDTextField:
+                    id: last_input
+                    hint_text: 'Last name'
+                    helper_text_mode: "on_error"
+                    write_tab: False
+                    size_hint_x: None
+                    width: dp(270)
+                    font_size: 16
+        Widget:
+            size_hint: 1, None
+            height: dp(5)
+        MDRoundFlatButton:
             text: 'Sign Up'
-            on_press: root.btn_register_function()
-        Button:
-            text: 'Go Back'
-            on_press: app.root.current = 'login'
-        
-        
+            font_size: 12
+            size_hint: None, None
+            width: dp(60) 
+            pos_hint: {'center_x': .5}
+        Widget:
+            size_hint: 1, None
+            height: dp(20)
+        MDRaisedButton:
+            spacing: dp(20)
+            text: 'Back'
+            md_bg_color: .8, 0, 0, 1
+            pos_hint: {'right': 1}
+            on_press: root.manager.current = 'login'
