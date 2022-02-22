@@ -25,7 +25,7 @@ class MainApp(MDApp):
         # sound.loop = True
         # sound.play()
         self.theme_cls.theme_style = 'Dark'
-        self.theme_cls.primary_palette = 'BlueGray'
+        self.theme_cls.primary_palette = 'Teal'
 
         sm = ScreenManager()
         sm.add_widget(LoginScreen(name = 'login'))
