@@ -28,20 +28,16 @@
                 MDTextField:
                     id: user_input
                     hint_text: 'Username'
-                    helper_text: 'Please input a Username'
                     helper_text_mode: "on_error"
                     write_tab: False
-                    required: True
                     size_hint_x: None
                     width: dp(270)
                     font_size: 16
                 MDTextField:
                     id: pass_input
                     hint_text: 'Password'
-                    helper_text: 'Please input a Password'
                     helper_text_mode: "on_error"
                     write_tab: False
-                    required: True
                     size_hint_x: None
                     width: dp(270)
                     font_size: 16
@@ -71,6 +67,9 @@
                     size_hint_x: None
                     width: dp(270)
                     font_size: 16
+                Widget:
+                    size_hint_y: None
+                    height: dp(52)
         Widget:
             size_hint: 1, None
             height: dp(5)
@@ -80,6 +79,7 @@
             size_hint: None, None
             width: dp(60) 
             pos_hint: {'center_x': .5}
+            on_press: root.on_register()
         Widget:
             size_hint: 1, None
             height: dp(20)
