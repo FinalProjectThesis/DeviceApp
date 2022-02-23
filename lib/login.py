@@ -35,6 +35,10 @@ class LoginScreen(Screen):
             self.ids.login_button.text = "Login"
             self.ids.login_button.disabled = False
         
+
+        #def saveUserInfo():
+
+
         
         # play music
         sound = SoundLoader.load("assets/music/button_click.wav")
@@ -69,6 +73,10 @@ class LoginScreen(Screen):
                 print ("password is full") # erase error label text
                 self.reset_password()
         else:  # if all checks pass
+            if (self.ids.remember_me_checkbox.active == True):
+                savedinfo = json.dumps({"username":str(self.username),"password":str(self.password)})
+                with open('SavedLogin.json','w') as outfile:
+                    json.dump(savedinfo,outfile)
             isloading() 
             Username = str(self.username)
             Password = str(self.password)
