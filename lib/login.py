@@ -24,6 +24,18 @@ class LoginScreen(Screen):
         # self.username = self.ids.user_input.text
         # self.password = self.ids.pass_input.text
 
+        #shows when it's loading
+        def isloading():
+            self.ids.loading_spinner.active = True
+            self.ids.login_button.text = "Loading.."
+            self.ids.login_button.disabled = True
+
+        def isnotloading():
+            self.ids.loading_spinner.active = False
+            self.ids.login_button.text = "Login"
+            self.ids.login_button.disabled = False
+        
+        isloading()
         # play music
         sound = SoundLoader.load("assets/music/button_click.wav")
         sound.play()
@@ -71,13 +83,15 @@ class LoginScreen(Screen):
                     print("Failed Auth, Wrong Password")
                     display_failedauthentication()
                 else:
+                    isnotloading()
                     goto_Childlist() # GOTO next screen
     
             # On Fail Message of below's request 
             def failedrequest(self,*args):
                 print ("Failed Request") # show error message
                 print ("Result is "+ str(Loginrequest.result))
-            
+                isnotloading()
+
             def display_nosuchuser():
                 self.ids.user_input.focus = True
                 self.ids.user_input.helper_text_mode = 'on_error'
@@ -95,7 +109,9 @@ class LoginScreen(Screen):
                 self.ids.pass_input.focus = False
                 # reset user_input just in case
                 self.reset_username()
-            
+            # will display while the program is loading the URL request
+            #def whileloading():
+                #self.ids.
             def goto_Childlist():
                 # store needed parameters in screenmanager
                 self.manager.token = str(Loginrequest.result)
@@ -103,11 +119,13 @@ class LoginScreen(Screen):
                 # leave
                 self.manager.current = 'childlist'
 
+             
+
             # request
             params = json.dumps({"username":Username,"password":Password})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Loginrequest =  UrlRequest(LOGINURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
+            Loginrequest =  UrlRequest(LOGINURL, on_success= successrequest,on_failure=failedrequest,req_body=params,req_headers=headers)\
     
 
     def reset_username(self):
