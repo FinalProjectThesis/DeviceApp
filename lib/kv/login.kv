@@ -47,6 +47,12 @@
             width: dp(270)
             font_size: 16
             pos_hint: {'center_x': .5}
+        MDCheckbox:
+            id: remember_me_checkbox
+            size_hint: None, None
+            size: dp(48), dp(48)
+            pos_hint: {'center_x': .5, 'center_y': .4}
+            active: False
         MDRoundFlatButton:
             id: login_button
             text: 'Login'
