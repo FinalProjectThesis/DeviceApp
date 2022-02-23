@@ -1,50 +1,111 @@
+#:import hex kivy.utils.get_color_from_hex
 <MenuScreen>:
     name: 'menu'
     BoxLayout:
         orientation: 'vertical'
-        RelativeLayout:
-            size_hint: 1, .2
-            Button:
-                text: 'Top Bar (Go back) '
-                # size_hint: 1, .2
-                pos_y: 'top'
-                on_press: root.manager.current = 'childlist'
+        # RelativeLayout:
+        #     size_hint: 1, .2
+        #     Button:
+        #         text: 'Top Bar (Go back) '
+        #         # size_hint: 1, .2
+        #         pos_y: 'top'
+        #         on_press: root.manager.current = 'childlist'
+        MDToolbar:
+            title: 'Top Bar'
         BoxLayout:
             orientation: 'vertical'
-            padding: dp(10)
-            Label:
-                text: 'Learn'
+            size_hint: 1, .8
+            padding: dp(20)
+            spacing: dp(15)
+            MDLabel:
+                text: 'Choose your Operation to Learn!'
                 font_size: dp(20)
-                size_hint: 1, .1
-            StackLayout:
-                id: main_bar
-                padding: dp(20)
-                spacing: dp(5)
+                halign: 'center'
+                size_hint: 1, None
+                height: self.texture_size[1]
+            GridLayout:
+                spacing: dp(10)
+                rows: 2
+                cols: 2
                 Button:
-                    text: 'Addition'
-                    size_hint: .5, .5
-                    on_press: root.on_addition(); root.manager.current = 'difficulty'
+                    background_normal: ''
+                    background_color: 244/255, 67/255, 54/255
+                    # on_press: root.on_press()
+                    Image:
+                        source: 'assets/images/addition.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                    
                 Button:
-                    text: 'Subtraction'
-                    size_hint: .5, .5
-                    on_press: root.on_subtraction(); root.manager.current = 'difficulty'
+                    background_normal: ''
+                    background_color: 33/255, 150/255, 243/255
+                    # on_press: root.on_press()
+                    Image:
+                        source: 'assets/images/subtraction.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
                 Button:
-                    text: 'Multiplication'
-                    size_hint: .5, .5
-                    on_press: root.on_multiplication(); root.manager.current = 'difficulty'
+                    background_normal: ''
+                    background_color: 0, 86/255, 1
+                    # on_press: root.on_press()
+                    Image:
+                        source: 'assets/images/multiplication.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
                 Button:
-                    text: 'Divison'
-                    size_hint: .5, .5
-                    on_press: root.on_division(); root.manager.current = 'difficulty'
+                    background_normal: ''
+                    background_color: 94/255, 58/255, 206/255
+                    # on_press: root.on_press()
+                    Image:
+                        source: 'assets/images/subtraction.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+        
+
+    # MDBoxLayout:
+    #     orientation: 'vertical'
+    #     MDRelativeLayout:
+    #         size_hint: 1, .2
+    #         Button:
+    #             text: 'Top Bar (Go back) '
+    #             # size_hint: 1, .2
+    #             pos_y: 'top'
+    #             on_press: root.manager.current = 'childlist'
+    #     MDBoxLayout:
+    #         orientation: 'vertical'
+    #         padding: dp(10)
+    #         MDLabel:
+    #             text: 'Learn'
+    #             font_size: dp(20)
+    #             size_hint: 1, None
+    #             height: self.texture_size[1]
+    #         StackLayout:
+    #             padding: dp(20)
+    #             spacing: dp(5)
+    #             MDRectangleFlatButton:
+    #                 text: 'Addition'
+    #                 # icon: 'assets/images/addition_icon.png'
+    #                 size_hint: None, None
+    #                 width: dp(500)
+    #                 on_press: root.on_addition(); root.manager.current = 'difficulty'
+    #             MDIconButton:
+    #                 text: 'Subtraction'
+    #                 # icon: 'assets/images/subtraction_icon.png'
+    #                 # size_hint: .5, .5
+    #                 on_press: root.on_subtraction(); root.manager.current = 'difficulty'
+    #             MDIconButton:
+    #                 text: 'Multiplication'
+    #                 # icon: 'assets/images/multiplication_icon.png'
+    #                 # size_hint: .5, .5
+    #                 on_press: root.on_multiplication(); root.manager.current = 'difficulty'
+    #             MDIconButton:
+    #                 text: 'Divison'
+    #                 # icon: 'assets/images/division_icon.png'
+    #                 # size_hint: .5, .5
+    #                 on_press: root.on_division(); root.manager.current = 'difficulty'
 
 <DifficultyScreen>:
     name: 'difficulty'
-    canvas.before:
-        Color:
-            rgb: utils.get_color_from_hex('#2D3436')
-        Rectangle:
-            pos: self.pos
-            size: self.size
     BoxLayout:
         orientation: 'vertical'
         padding: dp(20)
