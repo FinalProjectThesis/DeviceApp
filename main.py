@@ -8,6 +8,9 @@ from kivy.properties import StringProperty
 from kivy.config import Config
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
+# for making it read from the json file on startup ( to parse json )
+import json 
+
 # screen imports
 from lib.login import LoginScreen
 from lib.signup import SignupScreen
@@ -21,6 +24,14 @@ class WindowManager(ScreenManager):
 
 class MainApp(MDApp):
     def build(self):
+        with open('SavedLogin.json') as json_file:
+            data = json.load(json_file)
+            json_object = json.loads(data)
+            if json_object["checkvalue"] == "True":
+                print ("proceed to childlist")
+                print ("extracted value " + json_object["username"])
+            else:
+                print("empty, proceed to login")
         # print("Playing Song")
         # sound = SoundLoader.load('assets/music/general_bg_music.wav')
         # sound.loop = True

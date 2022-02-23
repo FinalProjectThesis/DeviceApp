@@ -71,9 +71,13 @@ class LoginScreen(Screen):
                 self.reset_password()
         else:  # if all checks pass
             if (self.ids.remember_me_checkbox.active == True):
-                savedinfo = json.dumps({"username":str(self.username),"password":str(self.password)})
+                savedinfo = json.dumps({"checkvalue":"True","username":str(self.username),"password":str(self.password)})
                 with open('SavedLogin.json','w') as outfile:
                     json.dump(savedinfo,outfile)
+            else:
+                emptyinfo = json.dumps({"checkvalue":"False"})
+                with open('SavedLogin.json','w') as outfile:
+                    json.dump(emptyinfo,outfile)
             isloading() 
             Username = str(self.username)
             Password = str(self.password)
