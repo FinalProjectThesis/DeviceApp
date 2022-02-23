@@ -54,6 +54,9 @@
                     font_size: 16
             BoxLayout:
                 orientation: 'vertical'
+                Widget:
+                    size_hint: 1, None
+                    height: dp(5)
                 MDTextField:
                     id: first_input
                     hint_text: 'First name'
@@ -73,15 +76,13 @@
                 Widget:
                     size_hint_y: None
                     height: dp(52)
-        Widget:
-            size_hint: 1, None
-            height: dp(5)
+        
         MDSpinner:
             id: loading_spinner
             size_hint:None, None
             size: dp(26),dp(26)
             pos_hint: {'center_x':.5}
-            active: False
+            active: True
         MDRoundFlatButton:
             id: signup_button
             text: 'Sign Up'
