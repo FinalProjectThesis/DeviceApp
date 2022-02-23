@@ -48,12 +48,19 @@
             font_size: 16
             pos_hint: {'center_x': .5}
         MDRoundFlatButton:
+            id: login_button
             text: 'Login'
             font_size: 12
             size_hint: None, None
             width: dp(60) 
             pos_hint: {'center_x': .5}
             on_press: root.on_login()
+        MDSpinner:
+            id: loading_spinner
+            size_hint:None, None
+            size: dp(26),dp(26)
+            pos_hint: {'center_x':.5}
+            active: False
         Widget:
             size_hint_y: None
             height: dp(30)
