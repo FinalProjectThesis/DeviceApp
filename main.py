@@ -3,8 +3,8 @@ from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.properties import StringProperty
-# from kivy.uix.vkeyboard import VKeyboard
-
+from kivy.clock import Clock
+from kivy.uix.vkeyboard import VKeyboard
 from kivy.config import Config
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
@@ -17,7 +17,7 @@ from lib.signup import SignupScreen
 from lib.childlist import ChildListScreen
 from lib.menu import MenuScreen, DifficultyScreen
 from lib.op_controller import AdditionScreen, SubtractionScreen, MultiplicationScreen, DivisionScreen, ResultScreen, CorrectScreen, WrongScreen
-from kivy.clock import Clock
+
 class WindowManager(ScreenManager):
     token = StringProperty('')
     parent_username = StringProperty('')
@@ -25,9 +25,10 @@ class WindowManager(ScreenManager):
 
 class LoadingScreen(Screen):
     def on_enter(self, *args):
-        Clock.schedule_once(lambda dt: self.execute(),2)
+        Clock.schedule_once(self.execute,2)
         return super().on_pre_enter(*args)
-    def execute(self):
+
+    def execute(self, dt):
         with open('SavedLogin.json') as json_file:
             data = json.load(json_file)
             json_object = json.loads(data)
@@ -38,9 +39,9 @@ class LoadingScreen(Screen):
             else:
                 print("empty, proceed to login")
                 self.manager.current = 'login'
+
 class MainApp(MDApp):
     def build(self):
-        # file reading 
         # print("Playing Song")
         # sound = SoundLoader.load('assets/music/general_bg_music.wav')
         # sound.loop = True
@@ -51,10 +52,6 @@ class MainApp(MDApp):
         return Builder.load_file('lib/kv/mainapp.kv')
     
     def on_start(self):
-        self.fps_monitor_start()
-        # to check speed on rasp
-        
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        self.fps_monitor_start()    # to check speed on rasp
             
 MainApp().run()

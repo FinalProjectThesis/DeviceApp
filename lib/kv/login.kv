@@ -47,18 +47,19 @@
             width: dp(270)
             font_size: 16
             pos_hint: {'center_x': .5}
-        MDCheckbox:
-            id: remember_me_checkbox
-            size_hint: None, None
-            size: dp(48), dp(48)
-            pos_hint: {'center_x': .5, 'center_y': .4}
-            active: False
-        #MDLabel:
-        #    text: "Remember me Checkbox"
-        #    font_size: dp(14)
-        #    halign: 'center'
-        #    size_hint: 1, None
-        #    height: self.texture_size[1]    
+        RelativeLayout:
+            MDCheckbox:
+                id: remember_me_checkbox
+                size_hint: None, None
+                size: dp(38), dp(38)
+                pos: dp(85), dp(-18)
+                active: False
+            MDLabel:
+                text: 'Remember me'
+                font_size: dp(16)
+                halign: 'center'
+                size_hint: 1, 1
+                height: self.texture_size[1]  
         MDRoundFlatButton:
             id: login_button
             text: 'Login'
@@ -69,8 +70,8 @@
             on_press: root.on_login()
         MDSpinner:
             id: loading_spinner
-            size_hint:None, None
-            size: dp(26),dp(26)
+            size_hint: None, None
+            size: dp(24), dp(10)
             pos_hint: {'center_x':.5}
             active: False
         MDLabel:
