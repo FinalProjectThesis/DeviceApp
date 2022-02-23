@@ -27,14 +27,17 @@ class LoadingScreen(Screen):
 
 class MainApp(MDApp):
     def build(self):
+        # file reading 
         with open('SavedLogin.json') as json_file:
             data = json.load(json_file)
             json_object = json.loads(data)
             if json_object["checkvalue"] == "True":
                 print ("proceed to childlist")
                 print ("extracted value " + json_object["username"])
+                #self.manager.current = 'login' # just a placeholder for now. 
             else:
                 print("empty, proceed to login")
+                #self.manager.current = 'login'
         # print("Playing Song")
         # sound = SoundLoader.load('assets/music/general_bg_music.wav')
         # sound.loop = True
