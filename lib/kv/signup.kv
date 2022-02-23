@@ -79,7 +79,7 @@
         
         MDSpinner:
             id: loading_spinner
-            size_hint:None, None
+            size_hint: None, None
             size: dp(26),dp(26)
             pos_hint: {'center_x':.5}
             active: False
@@ -91,9 +91,6 @@
             width: dp(60) 
             pos_hint: {'center_x': .5}
             on_press: root.on_register()
-        Widget:
-            size_hint: 1, None
-            height: dp(20)
         MDRaisedButton:
             spacing: dp(20)
             text: 'Back'

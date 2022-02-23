@@ -21,6 +21,11 @@ class SignupScreen(Screen):
     confirm_password = StringProperty('')
 
     def on_register(self):
+        self.username = self.ids.user_input.text
+        self.first_name = self.ids.first_input.text
+        self.last_name = self.ids.last_input.text
+        self.password = self.ids.pass_input.text
+        self.confirm_password = self.ids.confirmpass_input.text
 
         def isloading():
             self.ids.loading_spinner.active = True
@@ -31,13 +36,6 @@ class SignupScreen(Screen):
             self.ids.loading_spinner.active = False
             self.ids.signup_button.text = "Sign Up"
             self.ids.signup_button.disabled = False
-
-
-        self.username = self.ids.user_input.text
-        self.first_name = self.ids.first_input.text
-        self.last_name = self.ids.last_input.text
-        self.password = self.ids.pass_input.text
-        self.confirm_password = self.ids.confirmpass_input.text
 
         # Testing Inputs
         # params = {'Username' : self.username, 'FirstName' : self.first_name, 'LastName' : self.last_name, 'Password' : self.password, 'ConfirmPass' : self.confirm_password}
@@ -99,15 +97,25 @@ class SignupScreen(Screen):
             # On Success Message of below's request 
             def successrequest(self,*args):
                 print("Register Success")
-                print(params)
                 print("Result is " + str(Registerrequest.result))
-                to_login()
+                if Registerrequest.result == 'SameUsername':
+                    on_sameUser()
+                else:
+                    to_login()
                 
             # On Failed message of below's request             
             def failedrequest(self,*args):
                 print ("Failed Request") # show error message 
                 print (params)
                 print ("Result is "+ str(Registerrequest.result))
+                isnotloading()
+
+            def on_sameUser():
+                self.reset_all()
+                self.ids.user_input.error = True
+                self.ids.user_input.helper_text = 'This Username already exists'
+                self.ids.user_input.focus = True
+                self.ids.user_input.focus = False
                 isnotloading()
 
             def to_login():
