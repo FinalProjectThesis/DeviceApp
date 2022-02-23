@@ -1,9 +1,10 @@
 # from kivy.app import App
 from kivymd.app import MDApp
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager
 from kivy.lang import Builder
 from kivy.properties import StringProperty
 # from kivy.uix.vkeyboard import VKeyboard
+
 from kivy.config import Config
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
@@ -26,26 +27,10 @@ class MainApp(MDApp):
         # sound.play()
         self.theme_cls.theme_style = 'Dark'
         self.theme_cls.primary_palette = 'Teal'
-
-        sm = ScreenManager()
-        sm.add_widget(LoginScreen(name = 'login'))
-        sm.add_widget(SignupScreen(name = 'signup'))
-        sm.add_widget(ChildListScreen(name = 'childlist'))
-        sm.add_widget(MenuScreen(name = 'menu'))
-        sm.add_widget(DifficultyScreen(name = 'difficulty'))
-        sm.add_widget(ResultScreen(name = 'result'))
-        sm.add_widget(CorrectScreen(name = 'correct'))
-        sm.add_widget(WrongScreen(name = 'wrong'))
-        # Operations
-        sm.add_widget(AdditionScreen(name = 'addition'))
-        sm.add_widget(DivisionScreen(name = 'division'))
-        sm.add_widget(MultiplicationScreen(name = 'multiplication'))
-        sm.add_widget(SubtractionScreen(name = 'subtraction'))
         
         return Builder.load_file('lib/kv/mainapp.kv')
     
     def on_start(self):
         self.fps_monitor_start()    # to check speed on rasp
-
    
 MainApp().run()
