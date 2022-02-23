@@ -35,7 +35,7 @@ class LoginScreen(Screen):
             self.ids.login_button.text = "Login"
             self.ids.login_button.disabled = False
         
-        isloading()
+        
         # play music
         sound = SoundLoader.load("assets/music/button_click.wav")
         sound.play()
@@ -68,7 +68,8 @@ class LoginScreen(Screen):
             else:
                 print ("password is full") # erase error label text
                 self.reset_password()
-        else:  # if all checks pass 
+        else:  # if all checks pass
+            isloading() 
             Username = str(self.username)
             Password = str(self.password)
             print("Username : " + Username + "\n" + "Password : " + Password)

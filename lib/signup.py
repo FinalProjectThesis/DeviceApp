@@ -21,6 +21,18 @@ class SignupScreen(Screen):
     confirm_password = StringProperty('')
 
     def on_register(self):
+
+        def isloading():
+            self.ids.loading_spinner.active = True
+            self.ids.signup_button.text = "Loading.."
+            self.ids.signup_button.disabled = True
+        
+        def isnotloading():
+            self.ids.loading_spinner.active = False
+            self.ids.signup_button.text = "Sign Up"
+            self.ids.signup_button.disabled = False
+
+
         self.username = self.ids.user_input.text
         self.first_name = self.ids.first_input.text
         self.last_name = self.ids.last_input.text
@@ -77,7 +89,8 @@ class SignupScreen(Screen):
             else:
                 print("lastname is full") # erase last name error label text
                 self.reset_lastname()
-        else:  # if all checks pass 
+        else:  # if all checks pass
+            isloading() 
             Username = str(self.username)
             Password = str(self.password)
             First_name = str(self.first_name)
@@ -95,8 +108,10 @@ class SignupScreen(Screen):
                 print ("Failed Request") # show error message 
                 print (params)
                 print ("Result is "+ str(Registerrequest.result))
-            
+                isnotloading()
+
             def to_login():
+                isnotloading()
                 self.manager.current = 'login'
             
             params =json.dumps({"username":Username,"password":Password, "first_name": First_name, "last_name": Last_name})
