@@ -1,6 +1,6 @@
 # from kivy.app import App
 from kivymd.app import MDApp
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.properties import StringProperty
 # from kivy.uix.vkeyboard import VKeyboard
@@ -21,6 +21,9 @@ class WindowManager(ScreenManager):
     token = StringProperty('')
     parent_username = StringProperty('')
     student_id = StringProperty('')
+
+class LoadingScreen(Screen):
+    pass
 
 class MainApp(MDApp):
     def build(self):

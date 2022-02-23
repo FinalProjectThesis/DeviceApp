@@ -1,4 +1,5 @@
 WindowManager:
+    LoadingScreen:
     LoginScreen:
     SignupScreen:
     ChildListScreen:
@@ -11,3 +12,29 @@ WindowManager:
     DivisionScreen:
     MultiplicationScreen:
     SubtractionScreen:
+
+<LoadingScreen>:
+    MDCard:
+        orientation: 'vertical'
+        size_hint: None, None
+        width: dp(720)
+        height: dp(540)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: dp(10)
+        padding: dp(25)
+        spacing: dp(25)
+        MDLabel:
+            text: 'Loading Please Wait..'
+            font_size: dp(35)
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1] + dp(50)
+        MDSpinner:
+            id: loading_spinner
+            size_hint: None, None
+            size: dp(60),dp(60)
+            pos_hint: {'center_x':.5}
+            active: True
+        Widget:
+            size_hint: 1, None
+            height: dp(180)
