@@ -8,8 +8,8 @@
         height: dp(500)
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         elevation: dp(10)
-        padding: dp(25)
-        spacing: dp(25)
+        padding: dp(15)
+        spacing: dp(20)
         MDLabel:
             text: 'Welcome'
             font_size: dp(35)
@@ -52,36 +52,35 @@
                 id: remember_me_checkbox
                 size_hint: None, None
                 size: dp(38), dp(38)
-                pos: dp(85), dp(-18)
+                pos: dp(95), dp(2)
                 active: False
             MDLabel:
                 text: 'Remember me'
                 font_size: dp(16)
                 halign: 'center'
                 size_hint: 1, 1
-                height: self.texture_size[1]  
-        MDRoundFlatButton:
-            id: login_button
-            text: 'Login'
-            font_size: 12
-            size_hint: None, None
-            width: dp(60) 
-            pos_hint: {'center_x': .5}
-            on_press: root.on_login()
+                height: self.texture_size[1]
+        RelativeLayout:
+            MDRoundFlatButton:
+                id: login_button
+                text: 'Login'
+                font_size: 12
+                # pos_hint: {'center_x': .34, 'center_y': 0}
+                pos_hint: {'center_x': 0.34, 'center_y': 1}
+                on_press: root.on_login()
+            MDRoundFlatButton:
+                id: guest_mode
+                text: 'Enter as Guest'
+                font_size: 12
+                # pos_hint: {'center_x': .64, 'center_y': .04}
+                pos_hint: {'center_x': .64, 'center_y': 1}
+                on_press: root.on_login()
         MDSpinner:
             id: loading_spinner
             size_hint: None, None
-            size: dp(24), dp(10)
+            size: dp(24), dp(12)
             pos_hint: {'center_x':.5}
             active: False
-        MDRoundFlatButton:
-            id: guest_mode
-            text: 'Enter as Guest'
-            font_size: 12
-            size_hint: None, None
-            width: dp(60) 
-            pos_hint: {'center_x': .5}
-            on_press: root.on_login()
         MDLabel:
             text: "Don't have an account yet?"
             font_size: dp(14)
