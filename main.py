@@ -46,12 +46,12 @@ class MainApp(MDApp):
         # sound = SoundLoader.load('assets/music/general_bg_music.wav')
         # sound.loop = True
         # sound.play()
-        self.theme_cls.theme_style = 'Dark'
+        self.theme_cls.theme_style = 'Light'
         self.theme_cls.primary_palette = 'Teal'
         
         return Builder.load_file('lib/kv/mainapp.kv')
     
-    def on_start(self):
-        self.fps_monitor_start()    # to check speed on rasp
+    # def on_start(self):
+    #     self.fps_monitor_start()    # to check speed on rasp
             
 MainApp().run()

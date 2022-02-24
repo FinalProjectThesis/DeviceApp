@@ -12,6 +12,8 @@
         #         on_press: root.manager.current = 'childlist'
         MDToolbar:
             title: 'Top Bar'
+            left_action_items: [['account-circle']]
+            right_action_items: [['logout']]
         BoxLayout:
             orientation: 'vertical'
             size_hint: 1, .8
@@ -30,7 +32,7 @@
                 Button:
                     background_normal: ''
                     background_color: 244/255, 67/255, 54/255
-                    # on_press: root.on_press()
+                    on_press: root.on_addition(); root.manager.current = 'difficulty'
                     Image:
                         source: 'assets/images/addition.png'
                         center_x: self.parent.center_x
@@ -39,7 +41,7 @@
                 Button:
                     background_normal: ''
                     background_color: 33/255, 150/255, 243/255
-                    # on_press: root.on_press()
+                    on_press: root.on_subtraction(); root.manager.current = 'difficulty'
                     Image:
                         source: 'assets/images/subtraction.png'
                         center_x: self.parent.center_x
@@ -47,91 +49,99 @@
                 Button:
                     background_normal: ''
                     background_color: 0, 86/255, 1
-                    # on_press: root.on_press()
+                    on_press: root.on_multiplication(); root.manager.current = 'difficulty'
                     Image:
                         source: 'assets/images/multiplication.png'
                         center_x: self.parent.center_x
                         center_y: self.parent.center_y
                 Button:
                     background_normal: ''
-                    background_color: 94/255, 58/255, 206/255
-                    # on_press: root.on_press()
+                    background_color: 255/255, 103/255, 43/255
+                    on_press: root.on_division(); root.manager.current = 'difficulty'
                     Image:
-                        source: 'assets/images/subtraction.png'
+                        source: 'assets/images/division.png'
                         center_x: self.parent.center_x
                         center_y: self.parent.center_y
         
-
-    # MDBoxLayout:
-    #     orientation: 'vertical'
-    #     MDRelativeLayout:
-    #         size_hint: 1, .2
-    #         Button:
-    #             text: 'Top Bar (Go back) '
-    #             # size_hint: 1, .2
-    #             pos_y: 'top'
-    #             on_press: root.manager.current = 'childlist'
-    #     MDBoxLayout:
-    #         orientation: 'vertical'
-    #         padding: dp(10)
-    #         MDLabel:
-    #             text: 'Learn'
-    #             font_size: dp(20)
-    #             size_hint: 1, None
-    #             height: self.texture_size[1]
-    #         StackLayout:
-    #             padding: dp(20)
-    #             spacing: dp(5)
-    #             MDRectangleFlatButton:
-    #                 text: 'Addition'
-    #                 # icon: 'assets/images/addition_icon.png'
-    #                 size_hint: None, None
-    #                 width: dp(500)
-    #                 on_press: root.on_addition(); root.manager.current = 'difficulty'
-    #             MDIconButton:
-    #                 text: 'Subtraction'
-    #                 # icon: 'assets/images/subtraction_icon.png'
-    #                 # size_hint: .5, .5
-    #                 on_press: root.on_subtraction(); root.manager.current = 'difficulty'
-    #             MDIconButton:
-    #                 text: 'Multiplication'
-    #                 # icon: 'assets/images/multiplication_icon.png'
-    #                 # size_hint: .5, .5
-    #                 on_press: root.on_multiplication(); root.manager.current = 'difficulty'
-    #             MDIconButton:
-    #                 text: 'Divison'
-    #                 # icon: 'assets/images/division_icon.png'
-    #                 # size_hint: .5, .5
-    #                 on_press: root.on_division(); root.manager.current = 'difficulty'
-
 <DifficultyScreen>:
     name: 'difficulty'
-    BoxLayout:
+    MDCard:
         orientation: 'vertical'
-        padding: dp(20)
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: 1, .3
-            Label:
-                id: op_label
-                font_size: dp(20)
-                size_hint: 1, .4
-            Label:
-                text: 'Choose your difficulty'
-                font_size: dp(25)
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: 1, .7
-            spacing: dp(15)
-            Button:
-                text: 'Easy'
-                background_color: (0, 1, 0, 1)
-                on_press: root.on_easy()
-            Button:
-                text: 'Medium'
-                background_color: (1, 1, 0, 1)
-                on_press: root.on_medium()
-            Button:
-                text: 'Hard'
-                background_color: (1, 0, 0, 1)
-                on_press: root.on_hard()
+        size_hint: None, None
+        width: dp(680)
+        height: dp(500)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: dp(10)
+        padding: dp(25)
+        spacing: dp(25)
+        MDLabel:
+            id: op_label
+            font_size: dp(20)
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1]
+        MDLabel:
+            text: 'Choose your difficulty!'
+            font_size: dp(25)
+            set_size: 500, 100
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1]
+        MDRaisedButton:
+            text: "EASY"
+            font_size: dp(40)
+            width: root.width*0.55
+            pos_hint: {'center_x': .5}
+            on_press: root.on_easy()
+        MDRaisedButton:
+            text: 'MEDIUM'
+            md_bg_color: 230/255, 178/255, 15/255, 1
+            font_size: dp(40)
+            width: root.width*0.55
+            pos_hint: {'center_x': .5}
+            on_press: root.on_medium()
+        MDRaisedButton:
+            text: 'HARD'
+            md_bg_color: 237/255, 41/255, 57/255, 1
+            font_size: dp(40)
+            width: root.width*0.55
+            pos_hint: {'center_x': .5}
+            on_press: root.on_hard()
+        Widget:
+            size_hint: 1, None
+            height: dp(5)
+        MDIconButton:
+            icon: 'backspace'
+            theme_text_color: 'Custom'
+            text_color: [1, 0, 0, 1]
+            pos_hint: {'right': 1}
+            on_press: root.manager.current = 'menu'
+    # BoxLayout:
+    #     orientation: 'vertical'
+    #     padding: dp(20)
+    #     BoxLayout:
+    #         orientation: 'vertical'
+    #         size_hint: 1, .3
+    #         Label:
+    #             id: op_label
+    #             font_size: dp(20)
+    #             size_hint: 1, .4
+    #         Label:
+    #             text: 'Choose your difficulty'
+    #             font_size: dp(25)
+    #     BoxLayout:
+    #         orientation: 'vertical'
+    #         size_hint: 1, .7
+    #         spacing: dp(15)
+    #         Button:
+    #             text: 'Easy'
+    #             background_color: (0, 1, 0, 1)
+    #             on_press: root.on_easy()
+    #         Button:
+    #             text: 'Medium'
+    #             background_color: (1, 1, 0, 1)
+    #             on_press: root.on_medium()
+    #         Button:
+    #             text: 'Hard'
+    #             background_color: (1, 0, 0, 1)
+    #             on_press: root.on_hard()
