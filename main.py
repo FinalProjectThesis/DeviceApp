@@ -33,9 +33,11 @@ class LoadingScreen(Screen):
             data = json.load(json_file)
             json_object = json.loads(data)
             if json_object["checkvalue"] == "True":
+                self.manager.parent_username = json_object["username"]
+                self.manager.token = json_object["token"] 
                 print ("proceed to childlist")
                 print ("extracted value " + json_object["username"])
-                self.manager.current = 'login' # just a placeholder for now. 
+                self.manager.current = 'childlist' # just a placeholder for now. 
             else:
                 print("empty, proceed to login")
                 self.manager.current = 'login'
