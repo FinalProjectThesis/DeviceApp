@@ -33,8 +33,15 @@ class LoginScreen(Screen):
             self.ids.login_button.disabled = False
         
 
-        #def saveUserInfo():
-
+        def saveUserInfo():
+            if (self.ids.remember_me_checkbox.active == True):
+                savedinfo = json.dumps({"checkvalue":"True","username":str(self.username),"password":str(self.password),"token":str(Loginrequest.result)})
+                with open('SavedLogin.json','w') as outfile:
+                    json.dump(savedinfo,outfile)
+            else:
+                emptyinfo = json.dumps({"checkvalue":"False"})
+                with open('SavedLogin.json','w') as outfile:
+                    json.dump(emptyinfo,outfile)
 
         
         # play music
@@ -70,20 +77,13 @@ class LoginScreen(Screen):
                 print ("password is full") # erase error label text
                 self.reset_password()
         else:  # if all checks pass
-            if (self.ids.remember_me_checkbox.active == True):
-                savedinfo = json.dumps({"checkvalue":"True","username":str(self.username),"password":str(self.password)})
-                with open('SavedLogin.json','w') as outfile:
-                    json.dump(savedinfo,outfile)
-            else:
-                emptyinfo = json.dumps({"checkvalue":"False"})
-                with open('SavedLogin.json','w') as outfile:
-                    json.dump(emptyinfo,outfile)
             isloading() 
             Username = str(self.username)
             Password = str(self.password)
             print("Username : " + Username + "\n" + "Password : " + Password)
             # On Success Message of below's request 
             def successrequest(self,*args):
+
                 print ("Success request") 
                 result =  str(Loginrequest.result)
                 if result =='No such User':
@@ -93,6 +93,7 @@ class LoginScreen(Screen):
                     print("Failed Auth, Wrong Password")
                     display_failedauthentication()
                 else:
+                    saveUserInfo()
                     isnotloading()
                     goto_Childlist() # GOTO next screen
     

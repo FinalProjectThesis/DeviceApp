@@ -74,6 +74,14 @@
             size: dp(24), dp(10)
             pos_hint: {'center_x':.5}
             active: False
+        MDRoundFlatButton:
+            id: guest_mode
+            text: 'Enter as Guest'
+            font_size: 12
+            size_hint: None, None
+            width: dp(60) 
+            pos_hint: {'center_x': .5}
+            on_press: root.on_login()
         MDLabel:
             text: "Don't have an account yet?"
             font_size: dp(14)

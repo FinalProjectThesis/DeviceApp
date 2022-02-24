@@ -31,6 +31,9 @@ class ChildListScreen(Screen):
         def successrequest(self,*args):
             print ("Success request")
             print("Result is " + str(childRequest.result))
+            saveinfo = json.dumps(childRequest.result)
+            with open('ChildlistInfo.json','w') as outfile:
+                json.dump(saveinfo,outfile)
             ChildListScreen.childData = childRequest.result
             ChildListScreen.childLength = len(childRequest.result)
             #load the box
@@ -48,9 +51,7 @@ class ChildListScreen(Screen):
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
         print(params)
         childRequest = UrlRequest(LISTURL, on_success= successrequest, on_failure=failedrequest, req_body=params, req_headers=headers)
-
         return super().on_enter(*args)
-    
     def on_enter(self, *args):
         if not self.childData:
             print('No data entered yet')
