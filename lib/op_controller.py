@@ -6,6 +6,8 @@ from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
+# to get date and time
+from datetime import datetime, date
 # # for the HTTP 
 from kivy.network.urlrequest import UrlRequest
 import json
@@ -154,31 +156,52 @@ class ResultScreen(Screen):
         return super().on_pre_enter(*args)
     
     def on_submit(self):
+        # to get the current date and time 
+        current_time = datetime.now()
+        current_date = datetime.today()
+
         student_id = ''
         student_name = ''
-        date = 0
-        time = 0
+        date = current_time.strftime("%H:%M")
+        time = current_date.strftime("%M:%D:%Y")
         operation = MenuScreen.operation
         difficulty = DifficultyScreen.difficulty
-        rawscore = AdditionScreen.score
-        totalscore = AdditionScreen.quiz_length
+        rawscore = str(AdditionScreen.score)
+        totalscore = str(AdditionScreen.quiz_length)
 
         def successrequest(self,*args):
             print ("Success request") 
-            result =  str(Loginrequest.result)
+            result =  str(Scorerequest.result)
             # back to menu
             self.manager.current = 'menu'
 
         # On Fail Message of below's request 
         def failedrequest(self,*args):
             print ("Failed Request") # show error message
-            print ("Result is "+ str(Loginrequest.result))
+            print ("Result is "+ str(Scorerequest.result))
+            # to read the files inside of the json file 
+            with open('Scores.json','r') as file:
+                    data = json.load(file)
+            # to add params into Scores.json's contents
+            data.append(params)
+            # to dump the params along with the new scores back into the Json file 
+            with open('Scores.json',"w") as file:
+                json.dump(data,file)
+            
+                    
+        params = json.dumps({"student_id":student_id,
+        "student_name":student_name,
+        "date":date,
+        "time": time,
+        "operation":operation,
+        "difficulty":difficulty,
+        "rawscore":rawscore,
+        "totalscore":totalscore})
         
+        print ("inside object params: " + params)
 
-        params = json.dumps({})
-        print (params)
         headers= {'Content-type':'application/json','Accept':'text/plain'}
-        Loginrequest =  UrlRequest(ADDSCOREURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
+        Scorerequest =  UrlRequest(ADDSCOREURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
 
 
 class CorrectScreen(Screen):
