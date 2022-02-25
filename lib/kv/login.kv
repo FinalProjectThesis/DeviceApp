@@ -5,20 +5,14 @@
         orientation: 'vertical'
         size_hint: None, None
         width: dp(400)
-        height: dp(500)
+        height: dp(460)
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         elevation: dp(10)
-        padding: dp(15)
-        spacing: dp(20)
+        padding: dp(25)
+        spacing: dp(10)
         MDLabel:
-            text: 'Welcome'
-            font_size: dp(35)
-            halign: 'center'
-            size_hint: 1, None
-            height: self.texture_size[1]
-        MDLabel:
-            text: "Login your Guardian's Username and Password"
-            font_size: dp(14)
+            text: 'Login'
+            font_size: dp(32)
             halign: 'center'
             size_hint: 1, None
             height: self.texture_size[1]
@@ -48,37 +42,43 @@
             font_size: 16
             pos_hint: {'center_x': .5}
         RelativeLayout:
+            size_hint: 1, None
+            height: dp(50)
             MDCheckbox:
                 id: remember_me_checkbox
                 size_hint: None, None
-                size: dp(38), dp(38)
-                pos: dp(95), dp(2)
+                size: dp(34), dp(34)
+                pos: dp(95), dp(24)
                 active: False
             MDLabel:
                 text: 'Remember me'
-                font_size: dp(16)
+                font_size: dp(14)
                 halign: 'center'
-                size_hint: 1, 1
+                pos: dp(0), dp(32)
+                size_hint: 1, None
                 height: self.texture_size[1]
         RelativeLayout:
+            size_hint: 1, None
+            height: dp(40)
             MDRoundFlatButton:
                 id: login_button
                 text: 'Login'
                 font_size: 12
-                # pos_hint: {'center_x': .34, 'center_y': 0}
                 pos_hint: {'center_x': 0.34, 'center_y': 1}
                 on_press: root.on_login()
             MDRoundFlatButton:
                 id: guest_mode
                 text: 'Enter as Guest'
                 font_size: 12
-                # pos_hint: {'center_x': .64, 'center_y': .04}
-                pos_hint: {'center_x': .64, 'center_y': 1}
+                pos_hint: {'center_x': .66, 'center_y': 1}
                 on_press: root.on_login()
+        Widget:
+            size_hint: 1, None
+            height: dp(25)
         MDSpinner:
             id: loading_spinner
             size_hint: None, None
-            size: dp(24), dp(12)
+            size: dp(24), dp(24)
             pos_hint: {'center_x':.5}
             active: False
         MDLabel:
