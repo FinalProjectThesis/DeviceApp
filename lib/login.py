@@ -159,6 +159,7 @@ class LoginScreen(Screen):
     def on_pre_leave(self, *args):
         self.ids.user_input.text = ''
         self.ids.pass_input.text = ''
+        self.ids.remember_me_checkbox.active = False
         self.reset_password()
         self.reset_username()
         return super().on_pre_leave(*args)

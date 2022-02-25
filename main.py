@@ -37,7 +37,7 @@ class LoadingScreen(Screen):
                 self.manager.token = json_object["token"] 
                 print ("proceed to childlist")
                 print ("extracted value " + json_object["username"])
-                self.manager.current = 'childlist' # just a placeholder for now. 
+                self.manager.current = 'childlist'
             else:
                 print("empty, proceed to login")
                 self.manager.current = 'login'
