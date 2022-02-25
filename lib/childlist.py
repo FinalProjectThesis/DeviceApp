@@ -20,6 +20,7 @@ class ChildListScreen(Screen):
     token = ''
     childLength = 0
     childData = {}
+    child = ''
     indxSize = 0
 
     def on_pre_enter(self, *args):
@@ -64,7 +65,9 @@ class ChildListScreen(Screen):
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
         print(params)
         childRequest = UrlRequest(LISTURL, on_success= successrequest, on_failure=failedrequest, req_body=params, req_headers=headers)
+        
         return super().on_enter(*args)
+
     def on_enter(self, *args):
         if not self.childData:
             print('No data entered yet')
@@ -89,9 +92,15 @@ class ChildListScreen(Screen):
                     self.ids['btn'+str(i+1)] = b
                     self.ids['btn'+str(i+1)].bind(on_press = lambda x: goto_Menu())
                     self.ids.scroll_child.add_widget(b)
+
+                    
         
         def goto_Menu():
-            self.manager.current = 'menu'
+            for i in range(0, self.childLength):
+                if self.ids['btn'+str(i+1)].state == 'down':
+                    print(self.childData[i]['student_name'])
+                    ChildListScreen.child = str(self.childData[i]['student_name'])
+                    self.manager.current = 'menu'
 
         print('exiting')
         return super().on_enter(*args)

@@ -3,17 +3,11 @@
     name: 'menu'
     BoxLayout:
         orientation: 'vertical'
-        # RelativeLayout:
-        #     size_hint: 1, .2
-        #     Button:
-        #         text: 'Top Bar (Go back) '
-        #         # size_hint: 1, .2
-        #         pos_y: 'top'
-        #         on_press: root.manager.current = 'childlist'
         MDToolbar:
+            id: menu_toolbar
             title: 'Top Bar'
             left_action_items: [['account-circle']]
-            right_action_items: [['logout']]
+            right_action_items: [['logout', lambda x: root.on_exit()]]
         BoxLayout:
             orientation: 'vertical'
             size_hint: 1, .8

@@ -6,10 +6,16 @@ from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 from kivy.core.audio import SoundLoader
 
+from lib.childlist import ChildListScreen
+
 Builder.load_file('lib/kv/menu.kv')
 
 class MenuScreen(Screen):
     operation = StringProperty('')
+
+    def on_pre_enter(self, *args):
+        self.ids.menu_toolbar.title = ChildListScreen.child
+        return super().on_pre_enter(*args)
 
     def on_addition(self):
         MenuScreen.operation = 'addition'
@@ -22,6 +28,9 @@ class MenuScreen(Screen):
     
     def on_division(self):
         MenuScreen.operation = 'division'
+    
+    def on_exit(self):
+        self.manager.current = 'childlist'
     
 class DifficultyScreen(Screen):
     difficulty = StringProperty('')
