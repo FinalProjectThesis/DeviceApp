@@ -138,6 +138,9 @@ class LoginScreen(Screen):
             headers= {'Content-type':'application/json','Accept':'text/plain'}
             Loginrequest =  UrlRequest(LOGINURL, on_success= successrequest,on_failure=failedrequest,req_body=params,req_headers=headers)\
     
+    #def on_guest_enter(self):
+    #    self.manager.connectionstatus = 'Disconnected'
+
 
     def reset_username(self):
         self.ids.user_input.focus = True

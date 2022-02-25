@@ -31,11 +31,24 @@ class ChildListScreen(Screen):
         def successrequest(self,*args):
             print ("Success request")
             print("Result is " + str(childRequest.result))
-            saveinfo = json.dumps(childRequest.result)
+            offlinesavedinfo = json.dumps(childRequest.result)
+
             with open('ChildlistInfo.json','w') as outfile:
-                json.dump(saveinfo,outfile)
+                json.dump(offlinesavedinfo,outfile)
+
+            # TEST OPENING OF SAVED FILES *WORKS*
+            #if self.manager.connectionstatus == 'connected':
+
             ChildListScreen.childData = childRequest.result
             ChildListScreen.childLength = len(childRequest.result)
+
+            #elif self.manager.connectionstatus =='disconnected':
+
+            #with open('ChildlistInfo.json') as json_file:
+            #    offlinechildlist = json.load(json_file)           #loads the file
+            #    loadedfile = json.loads(offlinechildlist)         #parses it so python can use it 
+            #    ChildListScreen.childData = loadedfile         
+            #    ChildListScreen.childLength = len(loadedfile)
             #load the box
             load_Box()
 
