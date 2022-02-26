@@ -32,10 +32,13 @@ class ChildListScreen(Screen):
         with open('SavedLogin.json') as json_file:
             data = json.load(json_file)
             json_object = json.loads(data)
+
         if json_object["checkvalue"] == "True":
             print('Loading saved list')
+            ChildListScreen.parent_username = json_object["username"]
+            self.token = json_object["token"]
         else:
-            self.parent_username = LoginScreen.username
+            ChildListScreen.parent_username = LoginScreen.username
             self.token = LoginScreen.token
         
         # On Success Message of below's request 
@@ -71,7 +74,7 @@ class ChildListScreen(Screen):
         def load_Box():
             self.on_enter()
         
-        params = json.dumps({"parent_username" : self.parent_username})
+        params = json.dumps({"parent_username" : ChildListScreen.parent_username})
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
         print(params)
         childRequest = UrlRequest(LISTURL, on_success= successrequest, on_failure=failedrequest, req_body=params, req_headers=headers)
@@ -91,14 +94,14 @@ class ChildListScreen(Screen):
                     size_hint = (None, 1), 
                     width = size)
                 if self.loadBox == False:
-                    print('Passed here')
+                    # print('Passed here')
                     self.remove_widget(self.ids['btn'+str(i+1)])
                     if i+1 == self.indxSize:
                         self.loadBox = True
                         self.indxSize += 1
                         self.on_enter()
                 else:
-                    print('adding box')
+                    # print('adding box')
                     self.ids['btn'+str(i+1)] = b
                     self.ids['btn'+str(i+1)].bind(on_press = lambda x: goto_Menu())
                     self.ids.scroll_child.add_widget(b)
@@ -132,6 +135,6 @@ class ChildListScreen(Screen):
 class LogoutPop(Popup):
     def on_logout(self):
         emptyinfo = json.dumps({"checkvalue":"False"})
-
+        ChildListScreen.parent_username = ''
         with open('SavedLogin.json','w') as outfile:
             json.dump(emptyinfo,outfile)
