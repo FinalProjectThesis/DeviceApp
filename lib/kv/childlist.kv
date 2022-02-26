@@ -27,7 +27,7 @@
                 text: 'Logout'
                 on_press: Factory.LogoutPop().open()
 
-<LogoutPop@Popup>:
+<LogoutPop>:
     id: logout_pop
     auto_dismiss: False
     title: 'Are you sure you want to Logout?'
@@ -37,7 +37,7 @@
         Button:
             text: 'Logout'
             on_press: app.root.token = ''
-            on_release: app.root.current = 'login'; root.dismiss()
+            on_release: app.root.current = 'login'; root.on_logout(); root.dismiss()
         Button:
             text: 'No'
             on_release: root.dismiss()

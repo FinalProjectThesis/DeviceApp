@@ -2,6 +2,7 @@ from imp import reload
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang.builder import Builder
 from kivy.uix.button import Button
+from kivy.uix.popup import Popup
 from kivy.metrics import dp
 from kivy.properties import StringProperty
 from dotenv import load_dotenv
@@ -118,6 +119,8 @@ class ChildListScreen(Screen):
         self.ids.scroll_child.clear_widgets()
         return super().on_pre_leave(*args)
     
+    
+    
     # test data
     # def testdata(self):
     #     print(  '\np_user: ' + self.parent_username +
@@ -125,3 +128,10 @@ class ChildListScreen(Screen):
     #             '\n child_length: ' + str(self.child_length) +
     #             '\n data: ' + str(self.child_data)
     #         )
+
+class LogoutPop(Popup):
+    def on_logout(self):
+        emptyinfo = json.dumps({"checkvalue":"False"})
+
+        with open('SavedLogin.json','w') as outfile:
+            json.dump(emptyinfo,outfile)
