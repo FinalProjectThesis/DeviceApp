@@ -13,6 +13,7 @@ from kivy.network.urlrequest import UrlRequest
 import json
 from dotenv import load_dotenv
 import os
+from lib.childlist import ChildListScreen
 load_dotenv()
 ADDSCOREURL = os.getenv('ADDSCOREURL')
 
@@ -160,8 +161,8 @@ class ResultScreen(Screen):
         current_time = datetime.now()
         current_date = datetime.today()
 
-        student_id = ''
-        student_name = ''
+        child_id = ChildListScreen.child_id
+        child_name = ChildListScreen.child
         date = current_time.strftime("%H:%M")
         time = current_date.strftime("%M:%D:%Y")
         operation = MenuScreen.operation
@@ -170,8 +171,10 @@ class ResultScreen(Screen):
         totalscore = str(AdditionScreen.quiz_length)
 
         def successrequest(self,*args):
-            print ("Success request") 
+            print ("Submitted Scores") 
             result =  str(Scorerequest.result)
+            print(result)
+
             # back to menu
             self.manager.current = 'menu'
 
@@ -189,8 +192,8 @@ class ResultScreen(Screen):
                 json.dump(data,file)
             
                     
-        params = json.dumps({"student_id":student_id,
-        "student_name":student_name,
+        params = json.dumps({"student_id":child_id,
+        "student_name":child_name,
         "date":date,
         "time": time,
         "operation":operation,
