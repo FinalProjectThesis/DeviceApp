@@ -14,8 +14,9 @@ LOGINURL = os.getenv('LOGINURL')
 Builder.load_file('lib/kv/login.kv')
 
 class LoginScreen(Screen):
-    username = StringProperty('')
-    password = StringProperty('')
+    username = ''
+    password = ''
+    token = ''
 
     def on_login(self):
         # self.username = self.ids.user_input.text
@@ -32,7 +33,6 @@ class LoginScreen(Screen):
             self.ids.login_button.text = "Login"
             self.ids.login_button.disabled = False
         
-
         def saveUserInfo():
             if (self.ids.remember_me_checkbox.active == True):
                 savedinfo = json.dumps({"checkvalue":"True","username":str(self.username),"password":str(self.password),"token":str(Loginrequest.result)})
@@ -49,7 +49,7 @@ class LoginScreen(Screen):
         sound.play()
 
         # Temp data or easy access out of login, remove for final/actual testing
-        self.username = 'Carmen'
+        LoginScreen.username = 'Carmen'
         self.password = '123'
 
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
@@ -81,6 +81,7 @@ class LoginScreen(Screen):
             Username = str(self.username)
             Password = str(self.password)
             print("Username : " + Username + "\n" + "Password : " + Password)
+            
             # On Success Message of below's request 
             def successrequest(self,*args):
 
@@ -124,9 +125,8 @@ class LoginScreen(Screen):
             #def whileloading():
                 #self.ids.
             def goto_Childlist():
-                # store needed parameters in screenmanager
-                self.manager.token = str(Loginrequest.result)
-                self.manager.parent_username = Username
+                LoginScreen.token = str(Loginrequest.result)
+                # self.manager.parent_username = Username
                 # leave
                 self.manager.current = 'childlist'
 

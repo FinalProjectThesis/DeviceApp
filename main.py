@@ -19,9 +19,7 @@ from lib.menu import MenuScreen, DifficultyScreen
 from lib.op_controller import AdditionScreen, SubtractionScreen, MultiplicationScreen, DivisionScreen, ResultScreen, CorrectScreen, WrongScreen
 
 class WindowManager(ScreenManager):
-    token = StringProperty('')
-    parent_username = StringProperty('')
-    student_id = StringProperty('')
+    pass
 
 class LoadingScreen(Screen):
     def on_enter(self, *args):
@@ -33,8 +31,8 @@ class LoadingScreen(Screen):
             data = json.load(json_file)
             json_object = json.loads(data)
             if json_object["checkvalue"] == "True":
-                self.manager.parent_username = json_object["username"]
-                self.manager.token = json_object["token"] 
+                ChildListScreen.parent_username = json_object["username"]
+                ChildListScreen.token = json_object["token"] 
                 print ("proceed to childlist")
                 print ("extracted value " + json_object["username"])
                 self.manager.current = 'childlist'

@@ -6,6 +6,8 @@ from kivy.metrics import dp
 from kivy.properties import StringProperty
 from dotenv import load_dotenv
 import os
+
+from lib.login import LoginScreen
 load_dotenv()
 #for the HTTP 
 from kivy.network.urlrequest import UrlRequest
@@ -18,15 +20,22 @@ class ChildListScreen(Screen):
     loadBox = True
     parent_username = ''
     token = ''
-    childLength = 0
-    childData = {}
+    child_length = 0
+    child_data = {}
+    child_id = ''
     child = ''
     indxSize = 0
 
     def on_pre_enter(self, *args):
         print('communicating..')
-        self.parent_username = self.manager.parent_username
-        self.token = self.manager.token
+        with open('SavedLogin.json') as json_file:
+            data = json.load(json_file)
+            json_object = json.loads(data)
+        if json_object["checkvalue"] == "True":
+            print('Loading saved list')
+        else:
+            self.parent_username = LoginScreen.username
+            self.token = LoginScreen.token
         
         # On Success Message of below's request 
         def successrequest(self,*args):
@@ -40,16 +49,16 @@ class ChildListScreen(Screen):
             # TEST OPENING OF SAVED FILES *WORKS*
             #if self.manager.connectionstatus == 'connected':
 
-            ChildListScreen.childData = childRequest.result
-            ChildListScreen.childLength = len(childRequest.result)
+            ChildListScreen.child_data = childRequest.result
+            ChildListScreen.child_length = len(childRequest.result)
 
             #elif self.manager.connectionstatus =='disconnected':
 
             #with open('ChildlistInfo.json') as json_file:
             #    offlinechildlist = json.load(json_file)           #loads the file
             #    loadedfile = json.loads(offlinechildlist)         #parses it so python can use it 
-            #    ChildListScreen.childData = loadedfile         
-            #    ChildListScreen.childLength = len(loadedfile)
+            #    ChildListScreen.child_data = loadedfile         
+            #    ChildListScreen.child_length = len(loadedfile)
             #load the box
             load_Box()
 
@@ -69,15 +78,15 @@ class ChildListScreen(Screen):
         return super().on_enter(*args)
 
     def on_enter(self, *args):
-        if not self.childData:
+        if not self.child_data:
             print('No data entered yet')
         else:
             print('loading box')
-            print(str(self.childLength))
-            for i in range(0, self.childLength):
+            print(str(self.child_length))
+            for i in range(0, self.child_length):
                 size = dp(100)
                 b = Button(
-                    text = str(self.childData[i]['student_name']),
+                    text = str(self.child_data[i]['student_name']),
                     size_hint = (None, 1), 
                     width = size)
                 if self.loadBox == False:
@@ -93,20 +102,19 @@ class ChildListScreen(Screen):
                     self.ids['btn'+str(i+1)].bind(on_press = lambda x: goto_Menu())
                     self.ids.scroll_child.add_widget(b)
 
-                    
-        
         def goto_Menu():
-            for i in range(0, self.childLength):
+            for i in range(0, self.child_length):
                 if self.ids['btn'+str(i+1)].state == 'down':
-                    print(self.childData[i]['student_name'])
-                    ChildListScreen.child = str(self.childData[i]['student_name'])
+                    print('Entered as: ' + str(self.child_data[i]['student_name']) + '\nID: ' + str(self.child_data[i]['id']))
+                    ChildListScreen.child = str(self.child_data[i]['student_name'])
+                    ChildListScreen.child_id = str(self.child_data[i]['id'])
                     self.manager.current = 'menu'
 
         print('exiting')
         return super().on_enter(*args)
 
     def on_leave(self, *args):
-        self.childData.clear()
+        self.child_data.clear()
         self.ids.scroll_child.clear_widgets()
         return super().on_pre_leave(*args)
     
@@ -114,6 +122,6 @@ class ChildListScreen(Screen):
     # def testdata(self):
     #     print(  '\np_user: ' + self.parent_username +
     #             '\n token: ' + self.token +
-    #             '\n childLength: ' + str(self.childLength) +
-    #             '\n data: ' + str(self.childData)
+    #             '\n child_length: ' + str(self.child_length) +
+    #             '\n data: ' + str(self.child_data)
     #         )
