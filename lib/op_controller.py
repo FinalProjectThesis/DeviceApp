@@ -6,6 +6,9 @@ from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
+
+from lib.childlist import ChildListScreen
+
 # to get date and time
 from datetime import datetime, date
 # # for the HTTP 
@@ -160,8 +163,8 @@ class ResultScreen(Screen):
         current_time = datetime.now()
         current_date = datetime.today()
 
-        student_id = ''
-        student_name = ''
+        student_id = ChildListScreen.child_id
+        student_name = ChildListScreen.child
         date = current_time.strftime("%H:%M")
         time = current_date.strftime("%M:%D:%Y")
         operation = MenuScreen.operation
@@ -179,14 +182,6 @@ class ResultScreen(Screen):
         def failedrequest(self,*args):
             print ("Failed Request") # show error message
             print ("Result is "+ str(Scorerequest.result))
-            # to read the files inside of the json file 
-            with open('Scores.json','r') as file:
-                    data = json.load(file)
-            # to add params into Scores.json's contents
-            data.append(params)
-            # to dump the params along with the new scores back into the Json file 
-            with open('Scores.json',"w") as file:
-                json.dump(data,file)
             
                     
         params = json.dumps({"student_id":student_id,
@@ -198,7 +193,49 @@ class ResultScreen(Screen):
         "rawscore":rawscore,
         "totalscore":totalscore})
         
-        print ("inside object params: " + params)
+        #data that is to be inserted(is a list) if there is no score inside the file
+        no_data_params = ([{"student_id":student_id,
+        "student_name":student_name,
+        "date":date,
+        "time": time,
+        "operation":operation,
+        "difficulty":difficulty,
+        "rawscore":rawscore,
+        "totalscore":totalscore}])
+
+        #data that is to be inserted(is a list) if there is/are existing score(s) inside the file
+        existing_data_params = ({"student_id":student_id,
+        "student_name":student_name,
+        "date":date,
+        "time": time,
+        "operation":operation,
+        "difficulty":difficulty,
+        "rawscore":rawscore,
+        "totalscore":totalscore})    
+        
+        #if there is a timeout, run this code!!
+        def ontimeout():
+            with open("StoredScores.json")as file:
+                data = json.load(file)
+            if str(data) =='{}':
+                print ("Empty List, will now dump params")
+                with open('StoredScores.json','w') as outfile:
+                    json.dump(no_data_params,outfile,indent = 4)
+            else: # if there's already a file inside 
+            # Read JSON file
+                with open('StoredScores.json') as fp:
+                    listObj = json.load(fp)
+            # Verify existing list
+            print(listObj)
+            print(type(listObj))
+            listObj.append(existing_data_params)
+            # Verify updated list
+            print(listObj)
+            with open('StoredScores.json', 'w') as json_file:
+                json.dump(listObj, json_file,indent = 4)
+            print('Successfully appended to the JSON file')
+        
+    
 
         headers= {'Content-type':'application/json','Accept':'text/plain'}
         Scorerequest =  UrlRequest(ADDSCOREURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
