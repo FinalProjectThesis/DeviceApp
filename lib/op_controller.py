@@ -8,6 +8,7 @@ from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 
 from lib.childlist import ChildListScreen
+from lib.login import LoginScreen
 
 # to get date and time
 from datetime import datetime, date
@@ -16,7 +17,7 @@ from kivy.network.urlrequest import UrlRequest
 import json
 from dotenv import load_dotenv
 import os
-from lib.childlist import ChildListScreen
+
 load_dotenv()
 ADDSCOREURL = os.getenv('ADDSCOREURL')
 
@@ -42,7 +43,6 @@ class AdditionScreen(Screen):
         if self.counter > self.quiz_length:
             print('counter is '+ str(self.counter))
             self.manager.current = 'result'
-            AdditionScreen.score = 0
             self.counter = 1
         else:
             # conditions will load the answers
@@ -92,15 +92,14 @@ class AdditionScreen(Screen):
             if self.Sum == int(final_input):
                 AdditionScreen.score += 1
                 # play correct_answer on correct screen ( I'll add them into functions ;-;)
-                sound = SoundLoader.load("assets/music/correct_answer.wav")
-                sound.play()
+                # sound = SoundLoader.load("assets/music/correct_answer.wav")
+                # sound.play()
                 # move to correct screen
                 self.manager.current = 'correct'
             else:
                 # move to wrong screen
-                #play wrong_answer on wrong screen
-                sound = SoundLoader.load("assets/music/wrong_answer.wav")
-                sound.play()
+                # sound = SoundLoader.load("assets/music/wrong_answer.wav")
+                # sound.play()
                 self.manager.current = 'wrong'  
         elif DifficultyScreen.difficulty == 'medium':
             self.counter += 1
@@ -149,8 +148,10 @@ class DivisionScreen(Screen):
         return super().on_pre_enter(*args)
 
 class ResultScreen(Screen):
+    rawscore = 0
+    totalscore = 0
     def on_pre_enter(self, *args):
-        self.ids.result_label.text = 'Scores is ' + str(AdditionScreen.score) + '/10'
+        self.ids.result_label.text = 'Scores is ' + str(AdditionScreen.score) + '/' + str(AdditionScreen.quiz_length)
         Average_score = AdditionScreen.score * .6
         if (AdditionScreen.score >= Average_score):
             above_average_sound = SoundLoader.load("assets/music/positive_results.wav")
@@ -159,6 +160,10 @@ class ResultScreen(Screen):
             #below_average_sound = Soundloader.load("assets/music/negative_results.wav")
         return super().on_pre_enter(*args)
     
+    def on_leave(self, *args):
+        AdditionScreen.score = 0
+        return super().on_leave(*args)
+    
     def on_submit(self):
         # to get the current date and time 
         current_time = datetime.now()
@@ -166,25 +171,31 @@ class ResultScreen(Screen):
 
         child_id = ChildListScreen.child_id
         child_name = ChildListScreen.child
-        date = current_time.strftime("%H:%M")
-        time = current_date.strftime("%M:%D:%Y")
+        date = current_date.strftime("%D")
+        time = current_time.strftime("%H:%M")
         operation = MenuScreen.operation
         difficulty = DifficultyScreen.difficulty
         rawscore = str(AdditionScreen.score)
         totalscore = str(AdditionScreen.quiz_length)
 
+        print(rawscore + ' ' + totalscore)
+
         def successrequest(self,*args):
             print ("Submitted Scores") 
             result =  str(Scorerequest.result)
             print(result)
+            print(params)
 
             # back to menu
-            self.manager.current = 'menu'
+            goto_menu()
 
         # On Fail Message of below's request 
         def failedrequest(self,*args):
             print ("Failed Request") # show error message
             print ("Result is "+ str(Scorerequest.result))
+        
+        def goto_menu():
+            self.manager.current = 'menu'
             
                     
         params = json.dumps({"student_id":child_id,
@@ -196,7 +207,7 @@ class ResultScreen(Screen):
         "rawscore":rawscore,
         "totalscore":totalscore})
         
-        #data that is to be inserted(is a list) if there is no score inside the file
+        # data that is to be inserted(is a list) if there is no score inside the file
         no_data_params = ([{"student_id":child_id,
         "student_name":child_name,
         "date":date,
@@ -206,7 +217,7 @@ class ResultScreen(Screen):
         "rawscore":rawscore,
         "totalscore":totalscore}])
 
-        #data that is to be inserted(is a list) if there is/are existing score(s) inside the file
+        # data that is to be inserted(is a list) if there is/are existing score(s) inside the file
         existing_data_params = ({"student_id":child_id,
         "student_name":child_name,
         "date":date,
@@ -217,7 +228,7 @@ class ResultScreen(Screen):
         "totalscore":totalscore})    
         
         #if there is a timeout, run this code!!
-        def ontimeout():
+        def on_timeout():
             with open("StoredScores.json")as file:
                 data = json.load(file)
             if str(data) =='{}':
@@ -238,9 +249,8 @@ class ResultScreen(Screen):
                 json.dump(listObj, json_file,indent = 4)
             print('Successfully appended to the JSON file')
         
-        headers= {'Content-type':'application/json','Accept':'text/plain'}
-        Scorerequest =  UrlRequest(ADDSCOREURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)\
-
+        headers = {'Content-type':'application/json','Accept':'text/plain', 'token':LoginScreen.token}
+        Scorerequest =  UrlRequest(ADDSCOREURL + '/' + str(ChildListScreen.child_id) , on_success = successrequest, on_failure = failedrequest, req_body = params, req_headers = headers)
 
 class CorrectScreen(Screen):
     pass

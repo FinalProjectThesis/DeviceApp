@@ -37,6 +37,7 @@ class ChildListScreen(Screen):
             print('Loading saved list')
             ChildListScreen.parent_username = json_object["username"]
             self.token = json_object["token"]
+            LoginScreen.token = self.token
         else:
             ChildListScreen.parent_username = LoginScreen.username
             self.token = LoginScreen.token
