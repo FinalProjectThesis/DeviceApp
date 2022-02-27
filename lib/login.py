@@ -36,11 +36,11 @@ class LoginScreen(Screen):
         def saveUserInfo():
             if (self.ids.remember_me_checkbox.active == True):
                 savedinfo = json.dumps({"checkvalue":"True","username":str(self.username),"password":str(self.password),"token":str(Loginrequest.result)})
-                with open('SavedLogin.json','w') as outfile:
+                with open('lib/bin/SavedLogin.json','w') as outfile:
                     json.dump(savedinfo,outfile)
             else:
                 emptyinfo = json.dumps({"checkvalue":"False"})
-                with open('SavedLogin.json','w') as outfile:
+                with open('lib/bin/SavedLogin.json','w') as outfile:
                     json.dump(emptyinfo,outfile)
 
         

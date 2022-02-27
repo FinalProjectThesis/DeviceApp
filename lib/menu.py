@@ -14,7 +14,7 @@ class MenuScreen(Screen):
     operation = StringProperty('')
 
     def on_pre_enter(self, *args):
-        self.ids.menu_toolbar.title = ChildListScreen.child + ' ' + ChildListScreen.child_id
+        self.ids.menu_toolbar.title = ChildListScreen.child
         return super().on_pre_enter(*args)
 
     def on_addition(self):
