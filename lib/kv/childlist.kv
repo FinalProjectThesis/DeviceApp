@@ -4,40 +4,26 @@
     BoxLayout:
         orientation: 'vertical'
         Label:
+            size_hint: 1, .5
             id: test_label
-            text: 'Chid List'
+            text: "Who's Learning?"
             font_size: dp(50)
         ScrollView:
+            size_hint: 1, 1
             BoxLayout:
-                id: scroll_child
+                id: scroll_button
                 name: 'scroll_child'
                 size_hint: None, 1
                 width: self.minimum_width
-                padding: dp(20)
-                spacing: dp(15)
-
+                padding: dp(15)
+                spacing: dp(20)
         AnchorLayout:
+            size_hint: 1, .3
             anchor_x: 'right'
             anchor_y: 'bottom'
             padding: dp(15)
-            Button:
-                size_hint: None, None
-                height: dp(40)
-                width: dp(100)
+            MDRaisedButton:
+                spacing: dp(20)
                 text: 'Logout'
-                on_press: Factory.LogoutPop().open()
-
-<LogoutPop>:
-    id: logout_pop
-    auto_dismiss: False
-    title: 'Are you sure you want to Logout?'
-    size_hint: None, None
-    size: dp(300), dp(100)
-    BoxLayout:
-        Button:
-            text: 'Logout'
-            on_press: app.root.token = ''
-            on_release: app.root.current = 'login'; root.on_logout(); root.dismiss()
-        Button:
-            text: 'No'
-            on_release: root.dismiss()
+                md_bg_color: .8, 0, 0, 1
+                on_press: root.on_logout()

@@ -2,7 +2,11 @@ from imp import reload
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang.builder import Builder
 from kivy.uix.button import Button
+from kivymd.uix.button import MDFlatButton, MDIconButton, MDRaisedButton, MDFillRoundFlatButton
+from kivymd.uix.card import MDCard
+from kivymd.uix.label import MDLabel
 from kivy.uix.popup import Popup
+from kivymd.uix.dialog import MDDialog
 from kivy.metrics import dp
 from kivy.properties import StringProperty
 from dotenv import load_dotenv
@@ -18,6 +22,7 @@ LISTURL = os.getenv('LISTURL')
 Builder.load_file('lib/kv/childlist.kv')
 
 class ChildListScreen(Screen):
+    dialog = None
     loadBox = True
     parent_username = ''
     token = ''
@@ -87,25 +92,36 @@ class ChildListScreen(Screen):
             print('No data entered yet')
         else:
             print('loading box')
-            print(str(self.child_length))
             for i in range(0, self.child_length):
-                size = dp(100)
-                b = Button(
+                card = MDCard(
+                    spacing = dp(15),
+                    padding = dp(40),
+                    orientation = 'vertical',
+                    size_hint = (None, 1),
+                    width = dp(175),
+                )
+                self.ids['card'+str(i+1)] = card    # set id of each card
+                self.ids.scroll_button.add_widget(card)
+
+                icon_btn = MDIconButton(
+                    icon = 'account',
+                    user_font_size = dp(125),
+                    theme_text_color = 'Custom',
+                    text_color = '00BFA5',
+                    pos_hint = {'center_x': .5}
+                )
+                self.ids['btn'+str(i+1)] = icon_btn
+                self.ids['btn'+str(i+1)].bind(on_press = lambda x: goto_Menu())
+                self.ids['card'+str(i+1)].add_widget(icon_btn)
+
+                label = MDLabel(
                     text = str(self.child_data[i]['student_name']),
-                    size_hint = (None, 1), 
-                    width = size)
-                if self.loadBox == False:
-                    # print('Passed here')
-                    self.remove_widget(self.ids['btn'+str(i+1)])
-                    if i+1 == self.indxSize:
-                        self.loadBox = True
-                        self.indxSize += 1
-                        self.on_enter()
-                else:
-                    # print('adding box')
-                    self.ids['btn'+str(i+1)] = b
-                    self.ids['btn'+str(i+1)].bind(on_press = lambda x: goto_Menu())
-                    self.ids.scroll_child.add_widget(b)
+                    font_size = dp(20),
+                    halign = 'center',
+                    size_hint = (1, None),
+                    height = dp(20)
+                )
+                self.ids['card'+str(i+1)].add_widget(label)
 
         def goto_Menu():
             for i in range(0, self.child_length):
@@ -118,12 +134,40 @@ class ChildListScreen(Screen):
         print('exiting')
         return super().on_enter(*args)
 
+    def on_logout(self):
+        self.dialog = MDDialog(
+            title = "Do you really want to logout?",
+            text = 'This will exit and logout the account',
+            size_hint = (.6, None),
+            buttons = [
+                MDRaisedButton(
+                    text = "Logout",
+                    on_press = lambda x: logout(),
+                    md_bg_color = (.8, 0, 0, 1)
+                ),
+                MDFlatButton(
+                    text="Close",
+                    on_press = lambda x: self.dialog.dismiss()
+                ),
+            ],
+            
+        )
+        self.dialog.open()
+
+        def logout():
+            self.child_data.clear()
+            ChildListScreen.parent_username = ''
+            emptyinfo = json.dumps({"checkvalue":"False"})
+            with open('lib/bin/SavedLogin.json','w') as outfile:
+                json.dump(emptyinfo,outfile)
+
+            self.token = ''
+            self.dialog.dismiss()
+            self.manager.current = 'login'
+    
     def on_leave(self, *args):
-        self.child_data.clear()
-        self.ids.scroll_child.clear_widgets()
+        self.ids.scroll_button.clear_widgets()
         return super().on_pre_leave(*args)
-    
-    
     
     # test data
     # def testdata(self):
@@ -132,10 +176,3 @@ class ChildListScreen(Screen):
     #             '\n child_length: ' + str(self.child_length) +
     #             '\n data: ' + str(self.child_data)
     #         )
-
-class LogoutPop(Popup):
-    def on_logout(self):
-        emptyinfo = json.dumps({"checkvalue":"False"})
-        ChildListScreen.parent_username = ''
-        with open('lib/bin/SavedLogin.json','w') as outfile:
-            json.dump(emptyinfo,outfile)
