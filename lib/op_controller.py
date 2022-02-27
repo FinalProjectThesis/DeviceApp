@@ -229,15 +229,15 @@ class ResultScreen(Screen):
         
         #if there is a timeout, run this code!!
         def on_timeout():
-            with open("StoredScores.json")as file:
+            with open("lib/bin/StoredScores.json")as file:
                 data = json.load(file)
             if str(data) =='{}':
                 print ("Empty List, will now dump params")
-                with open('StoredScores.json','w') as outfile:
+                with open('lib/bin/StoredScores.json','w') as outfile:
                     json.dump(no_data_params,outfile,indent = 4)
             else: # if there's already a file inside 
             # Read JSON file
-                with open('StoredScores.json') as fp:
+                with open('lib/bin/StoredScores.json') as fp:
                     listObj = json.load(fp)
             # Verify existing list
             print(listObj)
@@ -245,7 +245,7 @@ class ResultScreen(Screen):
             listObj.append(existing_data_params)
             # Verify updated list
             print(listObj)
-            with open('StoredScores.json', 'w') as json_file:
+            with open('lib/bin/StoredScores.json', 'w') as json_file:
                 json.dump(listObj, json_file,indent = 4)
             print('Successfully appended to the JSON file')
         

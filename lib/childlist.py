@@ -29,7 +29,7 @@ class ChildListScreen(Screen):
 
     def on_pre_enter(self, *args):
         print('communicating..')
-        with open('SavedLogin.json') as json_file:
+        with open('lib/bin/SavedLogin.json') as json_file:
             data = json.load(json_file)
             json_object = json.loads(data)
 
@@ -48,7 +48,7 @@ class ChildListScreen(Screen):
             print("Result is " + str(childRequest.result))
             offlinesavedinfo = json.dumps(childRequest.result)
 
-            with open('ChildlistInfo.json','w') as outfile:
+            with open('lib/bin/ChildlistInfo.json','w') as outfile:
                 json.dump(offlinesavedinfo,outfile)
 
             # TEST OPENING OF SAVED FILES *WORKS*
@@ -59,7 +59,7 @@ class ChildListScreen(Screen):
 
             #elif self.manager.connectionstatus =='disconnected':
 
-            #with open('ChildlistInfo.json') as json_file:
+            #with open('lib/bin/ChildlistInfo.json') as json_file:
             #    offlinechildlist = json.load(json_file)           #loads the file
             #    loadedfile = json.loads(offlinechildlist)         #parses it so python can use it 
             #    ChildListScreen.child_data = loadedfile         
@@ -137,5 +137,5 @@ class LogoutPop(Popup):
     def on_logout(self):
         emptyinfo = json.dumps({"checkvalue":"False"})
         ChildListScreen.parent_username = ''
-        with open('SavedLogin.json','w') as outfile:
+        with open('lib/bin/SavedLogin.json','w') as outfile:
             json.dump(emptyinfo,outfile)

@@ -27,7 +27,7 @@ class LoadingScreen(Screen):
         return super().on_pre_enter(*args)
 
     def execute(self, dt):
-        with open('SavedLogin.json') as json_file:
+        with open('lib/bin/SavedLogin.json') as json_file:
             data = json.load(json_file)
             json_object = json.loads(data)
             if json_object["checkvalue"] == "True":
