@@ -1,11 +1,9 @@
 from imp import reload
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import Screen
 from kivy.lang.builder import Builder
-from kivy.uix.button import Button
-from kivymd.uix.button import MDFlatButton, MDIconButton, MDRaisedButton, MDFillRoundFlatButton
+from kivymd.uix.button import MDFlatButton, MDIconButton, MDRaisedButton
 from kivymd.uix.card import MDCard
 from kivymd.uix.label import MDLabel
-from kivy.uix.popup import Popup
 from kivymd.uix.dialog import MDDialog
 from kivy.metrics import dp
 from kivy.properties import StringProperty
