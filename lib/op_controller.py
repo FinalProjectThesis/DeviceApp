@@ -1,11 +1,9 @@
 import random
 from kivy.lang import Builder
 from kivy.metrics import dp
-from kivy.properties import StringProperty, BooleanProperty, ObjectProperty, NumericProperty, Clock
+from kivy.properties import StringProperty, BooleanProperty, ObjectProperty, NumericProperty
 from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
-from kivy.graphics.context_instructions import Color
 
 from lib.childlist import ChildListScreen
 from lib.login import LoginScreen
@@ -35,7 +33,6 @@ class AdditionScreen(Screen):
     quiz_length = 15
 
     def on_pre_enter(self, *args):
-        # self.ids.add_label.text = DifficultyScreen.difficulty
         # reset inputs
         self.reset_inputs()
 
@@ -79,7 +76,7 @@ class AdditionScreen(Screen):
         AdditionScreen.Sum = val1 + val2
         # generate labels
         self.ids.qcount_label.text = str('Q #' + str(self.counter))
-        self.ids.add_label.text = str(val1) + ' + ' + str(val2)
+        self.ids.add_label.text = str(val1) + ' + ' + str(val2) + '= ?'
         print(str(self.counter))
 
     def validate_ans(self):

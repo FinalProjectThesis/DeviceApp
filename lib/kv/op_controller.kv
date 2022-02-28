@@ -4,63 +4,91 @@
         padding: dp(15)
         orientation: 'vertical'
         RelativeLayout:
-            size_hint: 1, .1
-            Button:
-                text: 'Exit'
-                background_color: (1, 0, 0, 1)
-                size_hint: None, .5
-                width: dp(90)
+            size_hint: 1, .15
+            MDIconButton:
+                icon: 'backspace'
+                theme_text_color: 'Custom'
+                text_color: [1, 0, 0, 1]
                 pos_hint: {'right': 1, 'top': 1}
                 on_release: root.on_exit()
         BoxLayout:
             orientation: 'vertical'
-            size_hint: 1, .4 
+            size_hint: 1, .35 
             Label:
-                size_hint: 1, .05
                 id: qcount_label
+                size_hint: 1, None
                 font_size: dp(15)
+                height: self.texture_size[1]
             Label:
-                size_hint: 1, .95
                 id: add_label
+                size_hint: 1, .95
                 font_size: dp(50)
         BoxLayout:
-            size_hint: 1, .4 
-            orientation: 'vertical'
-            BoxLayout:
-                size_hint: 1, .05
-                Label:
+            size_hint: 1, .6
+            spacing: dp(15)
+            padding: dp(15)
+            MDCard:
+                orientation: 'vertical'
+                spacing: dp(10)
+                padding: dp(15)
+                size_hint: .25, 1
+                MDLabel:
                     text: 'Thousands'
-                Label:
-                    text: 'Hundreds'
-                Label:
-                    text: 'Tens'
-                Label:
-                    text: 'Ones'
-            BoxLayout:
-                size_hint: 1, .95
-                spacing: dp(15)
-                padding: dp(20)
+                    size_hint: 1, None
+                    height: self.texture_size[1]
+                    halign: 'center'
+                    pos_hint: {'top': 1}
                 TextInput:
                     id: thousands_input
-                    font_size: dp(80)
-                    padding: dp(40)
+                    font_size: dp(35)
+            MDCard:
+                orientation: 'vertical'
+                spacing: dp(10)
+                padding: dp(15)
+                size_hint: .25, 1
+                MDLabel:
+                    text: 'Hundreds'
+                    size_hint: 1, None
+                    height: self.texture_size[1]
+                    halign: 'center'
+                    pos_hint: {'top': 1}
                 TextInput:
                     id: hundreds_input
-                    font_size: dp(80)
-                    padding: dp(40)
+                    font_size: dp(35)
+            MDCard:
+                orientation: 'vertical'
+                spacing: dp(10)
+                padding: dp(15)
+                size_hint: .25, 1
+                MDLabel:
+                    text: 'Tens'
+                    size_hint: 1, None
+                    height: self.texture_size[1]
+                    halign: 'center'
+                    pos_hint: {'top': 1}
                 TextInput:
                     id: tens_input
-                    font_size: dp(80)
-                    padding: dp(40)
+                    font_size: dp(35)
+            MDCard:
+                orientation: 'vertical'
+                spacing: dp(10)
+                padding: dp(15)
+                size_hint: .25, 1
+                MDLabel:
+                    text: 'Ones'
+                    size_hint: 1, None
+                    height: self.texture_size[1]
+                    halign: 'center'
+                    pos_hint: {'top': 1}
                 TextInput:
                     id: ones_input
-                    font_size: dp(80)
-                    padding: dp(40)
+                    font_size: dp(35)
         Button:
-            size_hint: None, .1
-            width: dp(500)
+            text: 'SUBMIT'
+            background_normal: ''
+            background_color: 0, 128/255, 128/255
+            size_hint: 500/root.width, 60/root.height
             pos_hint: {'center_x': .5}
-            text: 'submit'
             on_release: root.validate_ans()
         
 
@@ -114,12 +142,19 @@
             size: self.size
     BoxLayout:
         orientation: 'vertical'
+        padding: dp(25)
+        spacing: dp(25)
         Label:
             id: correct_label
             text: 'Correct!'
             font_size: dp(80)
         Button:
             text: 'Next Question'
+            font_size: dp(58)
+            background_normal: ''
+            background_color: 244/255, 67/255, 54/255
+            size_hint: 560/root.width, 160/root.height
+            pos_hint: {'center_x': .5}
             on_release: root.manager.current = 'addition'
 
 <WrongScreen>:
