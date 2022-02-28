@@ -1,9 +1,10 @@
-from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, ObjectProperty
 from kivy.clock import Clock
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import Screen
+from kivymd.uix.button import MDFlatButton, MDRaisedButton
+from kivymd.uix.dialog import MDDialog
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 from kivy.core.audio import SoundLoader
@@ -13,6 +14,7 @@ from lib.childlist import ChildListScreen
 Builder.load_file('lib/kv/menu.kv')
 
 class MenuScreen(Screen):
+    dialog = None
     operation = StringProperty('')
 
     def on_pre_enter(self, *args):
@@ -46,7 +48,28 @@ class MenuScreen(Screen):
         MenuScreen.operation = 'division'
     
     def on_exit(self):
-        self.manager.current = 'childlist'
+        self.dialog = MDDialog(
+            title = "Do you really want to Exit?",
+            text = 'This will exit and take you to the profile screen',
+            size_hint = (.6, None),
+            buttons = [
+                MDRaisedButton(
+                    text = "Back to Profile",
+                    on_release = lambda x: exit(),
+                    md_bg_color = (.8, 0, 0, 1)
+                ),
+                MDFlatButton(
+                    text="Close",
+                    on_release = lambda x: self.dialog.dismiss()
+                ),
+            ],
+            
+        )
+        self.dialog.open()
+
+        def exit():
+            self.dialog.dismiss()
+            self.manager.current = 'childlist'
     
     def on_profile(self):
         self.manager.current = 'profile'
