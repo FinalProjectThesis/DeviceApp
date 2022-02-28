@@ -21,7 +21,6 @@ Builder.load_file('lib/kv/childlist.kv')
 
 class ChildListScreen(Screen):
     dialog = None
-    loadBox = True
     parent_username = ''
     token = ''
     child_length = 0
@@ -109,7 +108,7 @@ class ChildListScreen(Screen):
                     pos_hint = {'center_x': .5}
                 )
                 self.ids['btn'+str(i+1)] = icon_btn
-                self.ids['btn'+str(i+1)].bind(on_press = lambda x: goto_Menu())
+                self.ids['btn'+str(i+1)].bind(on_release = lambda x: goto_Menu())
                 self.ids['card'+str(i+1)].add_widget(icon_btn)
 
                 label = MDLabel(
@@ -140,12 +139,12 @@ class ChildListScreen(Screen):
             buttons = [
                 MDRaisedButton(
                     text = "Logout",
-                    on_press = lambda x: logout(),
+                    on_release = lambda x: logout(),
                     md_bg_color = (.8, 0, 0, 1)
                 ),
                 MDFlatButton(
                     text="Close",
-                    on_press = lambda x: self.dialog.dismiss()
+                    on_release = lambda x: self.dialog.dismiss()
                 ),
             ],
             
@@ -153,7 +152,6 @@ class ChildListScreen(Screen):
         self.dialog.open()
 
         def logout():
-            self.child_data.clear()
             ChildListScreen.parent_username = ''
             emptyinfo = json.dumps({"checkvalue":"False"})
             with open('lib/bin/SavedLogin.json','w') as outfile:
@@ -164,6 +162,7 @@ class ChildListScreen(Screen):
             self.manager.current = 'login'
     
     def on_leave(self, *args):
+        self.child_data.clear()
         self.ids.scroll_button.clear_widgets()
         return super().on_pre_leave(*args)
     
