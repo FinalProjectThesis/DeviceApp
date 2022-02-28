@@ -65,13 +65,13 @@
                 text: 'Login'
                 font_size: 12
                 pos_hint: {'center_x': 0.34, 'center_y': 1}
-                on_press: root.on_login()
+                on_release: root.on_login()
             MDRoundFlatButton:
                 id: guest_mode
                 text: 'Enter as Guest'
                 font_size: 12
                 pos_hint: {'center_x': .66, 'center_y': 1}
-                on_press: root.on_login()
+                on_release: root.on_login()
         Widget:
             size_hint: 1, None
             height: dp(25)
@@ -91,4 +91,4 @@
             text: 'Sign Up'
             font_size: 12
             pos_hint: {'center_x': .5}
-            on_press: root.manager.current = 'signup'
+            on_release: root.manager.current = 'signup'

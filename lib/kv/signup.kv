@@ -90,10 +90,10 @@
             size_hint: None, None
             width: dp(60) 
             pos_hint: {'center_x': .5}
-            on_press: root.on_register()
+            on_release: root.on_register()
         MDRaisedButton:
             spacing: dp(20)
             text: 'Back'
             md_bg_color: .8, 0, 0, 1
             pos_hint: {'right': 1}
-            on_press: root.manager.current = 'login'
+            on_release: root.manager.current = 'login'
