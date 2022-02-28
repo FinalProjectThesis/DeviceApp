@@ -15,7 +15,7 @@ import json
 from lib.login import LoginScreen
 from lib.signup import SignupScreen
 from lib.childlist import ChildListScreen
-from lib.menu import MenuScreen, DifficultyScreen
+from lib.menu import MenuScreen, DifficultyScreen, ProfileScreen
 from lib.op_controller import AdditionScreen, SubtractionScreen, MultiplicationScreen, DivisionScreen, ResultScreen, CorrectScreen, WrongScreen
 
 class WindowManager(ScreenManager):

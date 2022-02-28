@@ -6,7 +6,7 @@
         MDToolbar:
             id: menu_toolbar
             title: 'Top Bar'
-            left_action_items: [['account-circle']]
+            left_action_items: [['account-circle', lambda x: root.on_profile()]]
             right_action_items: [['logout', lambda x: root.on_exit()]]
         BoxLayout:
             orientation: 'vertical'
@@ -26,7 +26,7 @@
                 Button:
                     background_normal: ''
                     background_color: 244/255, 67/255, 54/255
-                    on_press: root.on_addition(); root.manager.current = 'difficulty'
+                    on_release: root.on_addition(); root.manager.current = 'difficulty'
                     Image:
                         source: 'assets/images/addition.png'
                         center_x: self.parent.center_x
@@ -35,7 +35,7 @@
                 Button:
                     background_normal: ''
                     background_color: 33/255, 150/255, 243/255
-                    on_press: root.on_subtraction(); root.manager.current = 'difficulty'
+                    on_release: root.on_subtraction(); root.manager.current = 'difficulty'
                     Image:
                         source: 'assets/images/subtraction.png'
                         center_x: self.parent.center_x
@@ -43,7 +43,7 @@
                 Button:
                     background_normal: ''
                     background_color: 0, 86/255, 1
-                    on_press: root.on_multiplication(); root.manager.current = 'difficulty'
+                    on_release: root.on_multiplication(); root.manager.current = 'difficulty'
                     Image:
                         source: 'assets/images/multiplication.png'
                         center_x: self.parent.center_x
@@ -51,7 +51,7 @@
                 Button:
                     background_normal: ''
                     background_color: 255/255, 103/255, 43/255
-                    on_press: root.on_division(); root.manager.current = 'difficulty'
+                    on_release: root.on_division(); root.manager.current = 'difficulty'
                     Image:
                         source: 'assets/images/division.png'
                         center_x: self.parent.center_x
@@ -86,21 +86,21 @@
             font_size: dp(40)
             width: root.width*0.55
             pos_hint: {'center_x': .5}
-            on_press: root.on_easy()
+            on_release: root.on_easy()
         MDRaisedButton:
             text: 'MEDIUM'
             md_bg_color: 230/255, 178/255, 15/255, 1
             font_size: dp(40)
             width: root.width*0.55
             pos_hint: {'center_x': .5}
-            on_press: root.on_medium()
+            on_release: root.on_medium()
         MDRaisedButton:
             text: 'HARD'
             md_bg_color: 237/255, 41/255, 57/255, 1
             font_size: dp(40)
             width: root.width*0.55
             pos_hint: {'center_x': .5}
-            on_press: root.on_hard()
+            on_release: root.on_hard()
         Widget:
             size_hint: 1, None
             height: dp(5)
@@ -109,4 +109,10 @@
             theme_text_color: 'Custom'
             text_color: [1, 0, 0, 1]
             pos_hint: {'right': 1}
-            on_press: root.manager.current = 'menu'
+            on_release: root.manager.current = 'menu'
+
+<ProfileScreen>:
+    name: 'profile'
+    Button:
+        text: 'profile screen'
+        on_release: root.manager.current = 'menu'

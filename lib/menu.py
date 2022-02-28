@@ -1,6 +1,8 @@
+from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.metrics import dp
-from kivy.properties import StringProperty, BooleanProperty, ObjectProperty,Clock
+from kivy.properties import StringProperty, BooleanProperty, ObjectProperty
+from kivy.clock import Clock
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
@@ -14,7 +16,21 @@ class MenuScreen(Screen):
     operation = StringProperty('')
 
     def on_pre_enter(self, *args):
+        # app = MDApp.get_running_app()
         self.ids.menu_toolbar.title = ChildListScreen.child
+
+        def set_icon_properties(i):
+            counter = 0
+            for icon in self.ids.menu_toolbar.ids.right_actions.children:
+                counter += 1
+                if counter == len(self.ids.menu_toolbar.ids.right_actions.children) - (len(self.ids.menu_toolbar.ids.right_actions.children) - 1):
+                    icon.text_color = (210/255, 4/255, 45/255, 1)
+            
+            for icon in self.ids.menu_toolbar.ids.left_actions.children:
+                icon.user_font_size = dp(28)
+
+        Clock.schedule_once(set_icon_properties)
+
         return super().on_pre_enter(*args)
 
     def on_addition(self):
@@ -31,6 +47,9 @@ class MenuScreen(Screen):
     
     def on_exit(self):
         self.manager.current = 'childlist'
+    
+    def on_profile(self):
+        self.manager.current = 'profile'
     
 class DifficultyScreen(Screen):
     difficulty = StringProperty('')
@@ -87,4 +106,5 @@ class DifficultyScreen(Screen):
         elif self.operation == 'division':
             self.manager.current = 'division'
 
-            
+class ProfileScreen(Screen):
+    pass            
