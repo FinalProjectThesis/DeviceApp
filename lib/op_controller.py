@@ -2,7 +2,8 @@ import random
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, ObjectProperty, NumericProperty
-from kivy.uix.widget import Widget
+from kivymd.uix.button import MDFlatButton, MDRaisedButton
+from kivymd.uix.dialog import MDDialog
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 from lib.childlist import ChildListScreen
@@ -29,6 +30,8 @@ Builder.load_file('lib/kv/op_controller.kv')
 class AdditionScreen(Screen):
     score = 0
     Sum = 0
+    first_val = 0
+    second_val = 0
     counter = 1
     quiz_length = 15
 
@@ -55,6 +58,9 @@ class AdditionScreen(Screen):
     def load_easy(self):
         val1 = random.randint(1, 10)
         val2 = random.randint(1, 10)
+        # store values to send
+        AdditionScreen.first_val = val1
+        AdditionScreen.second_val = val2
         AdditionScreen.Sum = val1 + val2
         # generate labels
         self.ids.qcount_label.text = str('Q #' + str(self.counter))
@@ -64,6 +70,9 @@ class AdditionScreen(Screen):
     def load_medium(self):
         val1 = random.randint(10, 100)
         val2 = random.randint(10, 100)
+        # store values to send
+        AdditionScreen.first_val = val1
+        AdditionScreen.second_val = val2
         AdditionScreen.Sum = val1 + val2
         # generate labels
         self.ids.qcount_label.text = str('Q #' + str(self.counter))
@@ -73,6 +82,9 @@ class AdditionScreen(Screen):
     def load_hard(self):
         val1 = random.randint(50, 1000)
         val2 = random.randint(50, 1000)
+        # store values to send
+        AdditionScreen.first_val = val1
+        AdditionScreen.second_val = val2
         AdditionScreen.Sum = val1 + val2
         # generate labels
         self.ids.qcount_label.text = str('Q #' + str(self.counter))
@@ -118,9 +130,29 @@ class AdditionScreen(Screen):
                 self.manager.current = 'wrong'
     
     def on_exit(self):
-        self.manager.current = 'menu'
-        self.score = 0
-        self.counter = 1
+        self.dialog = MDDialog(
+            title = "Go back to Menu?",
+            text = "This won't save your score and you will lose you progress",
+            size_hint = (.6, None),
+            buttons = [
+                MDRaisedButton(
+                    text = "Back to Profile",
+                    on_release = lambda x: exit(),
+                    md_bg_color = (.8, 0, 0, 1)
+                ),
+                MDFlatButton(
+                    text="Close",
+                    on_release = lambda x: self.dialog.dismiss()
+                ),
+            ],
+        )
+        self.dialog.open()
+
+        def exit():
+            self.dialog.dismiss()
+            self.manager.current = 'menu'
+            self.score = 0
+            self.counter = 1
     
     def reset_inputs(self):
         self.ids.thousands_input.text = ''
@@ -128,7 +160,6 @@ class AdditionScreen(Screen):
         self.ids.tens_input.text = ''
         self.ids.ones_input.text = ''
     
-
 class SubtractionScreen(Screen):
     def on_pre_enter(self, *args):
         self.ids.sub_label.text = DifficultyScreen.difficulty
@@ -175,8 +206,6 @@ class ResultScreen(Screen):
         rawscore = str(AdditionScreen.score)
         totalscore = str(AdditionScreen.quiz_length)
 
-        print(rawscore + ' ' + totalscore)
-
         def successrequest(self,*args):
             print ("Submitted Scores") 
             result =  str(Scorerequest.result)
@@ -193,16 +222,17 @@ class ResultScreen(Screen):
         
         def goto_menu():
             self.manager.current = 'menu'
-            
-                    
-        params = json.dumps({"student_id":child_id,
-        "student_name":child_name,
-        "date":date,
-        "time": time,
-        "operation":operation,
-        "difficulty":difficulty,
-        "rawscore":rawscore,
-        "totalscore":totalscore})
+                              
+        params = json.dumps({
+            "student_id":child_id,
+            "student_name":child_name,
+            "date":date,
+            "time": time,
+            "operation":operation,
+            "difficulty":difficulty,
+            "rawscore":rawscore,
+            "totalscore":totalscore
+        })
         
         # data that is to be inserted(is a list) if there is no score inside the file
         no_data_params = ([{"student_id":child_id,
@@ -253,8 +283,17 @@ class CorrectScreen(Screen):
     pass
 
 class WrongScreen(Screen):
+    Sum = 0
+    first_val = 0
+    second_val = 0
+    
     def on_pre_enter(self, *args):
-        self.ids.wrong_label.text = 'Wrong Answer, sum is = ' + str(AdditionScreen.Sum)
+        # set and call values
+        self.Sum = AdditionScreen.Sum
+        self.first_val = AdditionScreen.first_val
+        self.second_val = AdditionScreen.second_val
+
+        self.ids.wrong_label.text = 'Wrong Answer, sum is = ' + str(self.Sum)
         return super().on_pre_enter(*args)
     
     def on_next(self):

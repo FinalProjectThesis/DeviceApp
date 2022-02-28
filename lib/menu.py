@@ -63,7 +63,6 @@ class MenuScreen(Screen):
                     on_release = lambda x: self.dialog.dismiss()
                 ),
             ],
-            
         )
         self.dialog.open()
 

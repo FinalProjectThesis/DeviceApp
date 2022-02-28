@@ -91,7 +91,6 @@
             pos_hint: {'center_x': .5}
             on_release: root.validate_ans()
         
-
 <SubtractionScreen>:
     name: 'subtraction'
     BoxLayout:
@@ -144,16 +143,19 @@
         orientation: 'vertical'
         padding: dp(25)
         spacing: dp(25)
-        Label:
+        MDLabel:
             id: correct_label
             text: 'Correct!'
+            halign: 'center'
+            theme_text_color: 'Custom'
+            text_color: 0, 0, 0
             font_size: dp(80)
         Button:
             text: 'Next Question'
-            font_size: dp(58)
+            font_size: dp(56)
             background_normal: ''
             background_color: 244/255, 67/255, 54/255
-            size_hint: 560/root.width, 160/root.height
+            size_hint: 560/root.width, 140/root.height
             pos_hint: {'center_x': .5}
             on_release: root.manager.current = 'addition'
 
