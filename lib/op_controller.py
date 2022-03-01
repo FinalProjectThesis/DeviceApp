@@ -295,7 +295,7 @@ class WrongScreen(Screen):
         self.first_val = AdditionScreen.first_val
         self.second_val = AdditionScreen.second_val
 
-        self.ids.wrong_label.text = 'Wrong Answer, sum is = ' + str(self.Sum)
+        self.ids.wrong_label.text = f'Answer is Wrong!\nCorrect answer is [color=#00FF00]{self.Sum}[/color]'
         return super().on_pre_enter(*args)
     
     def on_next(self):
