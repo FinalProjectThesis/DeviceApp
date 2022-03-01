@@ -6,7 +6,6 @@ from kivymd.uix.card import MDCard
 from kivymd.uix.label import MDLabel
 from kivymd.uix.dialog import MDDialog
 from kivy.metrics import dp
-from kivy.properties import StringProperty
 from dotenv import load_dotenv
 import os
 
@@ -61,13 +60,12 @@ class ChildListScreen(Screen):
             load_Box()
             
         def load_offline(self,*args):
+            print('Offline Mode')
             with open('lib/bin/ChildlistInfo.json') as json_file:
                 offlinechildlist = json.load(json_file)           #loads the file
             loadedfile = json.loads(offlinechildlist)         #parses it so python can use it 
             ChildListScreen.child_data = loadedfile         
             ChildListScreen.child_length = len(loadedfile)
-            #load the box
-            load_Box()
 
         # On Fail Message of below's request 
         def failedrequest(self,*args):
