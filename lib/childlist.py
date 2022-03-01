@@ -54,7 +54,7 @@ class ChildListScreen(Screen):
                 json.dump(offlinesavedinfo,outfile)
             ChildListScreen.child_data = childRequest.result
             ChildListScreen.child_length = len(childRequest.result)
-            load_Box()
+            call_Box()
 
         def load_offline(self,*args):
             print('Offline Mode')
@@ -63,17 +63,15 @@ class ChildListScreen(Screen):
             loadedfile = json.loads(offlinechildlist)         #parses it so python can use it 
             ChildListScreen.child_data = loadedfile         
             ChildListScreen.child_length = len(loadedfile)
+            call_Box()
 
         # On Fail Message of below's request 
         def failedrequest(self,*args):
             print ("Failed Request") # show error message
             print ("Result is "+ str(childRequest.result))
 
-        def load_Box():
-            self.on_enter()
-            # To double check if the box has been generated or not
-            if self.box_status == False:
-                self.on_enter()
+        def call_Box():
+            self.generate_box()
         
         params = json.dumps({"parent_username" : ChildListScreen.parent_username})
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
@@ -82,7 +80,7 @@ class ChildListScreen(Screen):
         
         return super().on_enter(*args)
 
-    def on_enter(self, *args):
+    def generate_box(self, *args):
         if not self.child_data:
             self.box_status = False
             print('No data entered yet')
