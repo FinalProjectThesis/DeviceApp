@@ -2,6 +2,7 @@
 <ChildListScreen>:
     name: 'childlist'
     BoxLayout:
+        id: main_layout
         orientation: 'vertical'
         Label:
             size_hint: 1, .5
@@ -9,10 +10,10 @@
             text: "Who's Learning?"
             font_size: dp(50)
         ScrollView:
+            id: scroll_view
             size_hint_y: 1
             BoxLayout:
                 id: scroll_button
-                name: 'scroll_child'
                 size_hint: None, 1
                 width: self.minimum_width
                 padding: dp(15)

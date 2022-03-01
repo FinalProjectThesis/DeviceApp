@@ -123,9 +123,7 @@ class ChildListScreen(Screen):
                     ChildListScreen.child = str(self.child_data[i]['student_name'])
                     ChildListScreen.child_id = str(self.child_data[i]['id'])
                     self.manager.current = 'menu'
-
         print('done')
-        return super().on_enter(*args)
 
     def on_logout(self):
         self.dialog = MDDialog(
