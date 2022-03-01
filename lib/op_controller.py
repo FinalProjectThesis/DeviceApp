@@ -236,23 +236,23 @@ class ResultScreen(Screen):
         
         # data that is to be inserted(is a list) if there is no score inside the file
         no_data_params = ([{"student_id":child_id,
-        "student_name":child_name,
-        "date":date,
-        "time": time,
-        "operation":operation,
-        "difficulty":difficulty,
-        "rawscore":rawscore,
-        "totalscore":totalscore}])
+            "student_name":child_name,
+            "date":date,
+            "time": time,
+            "operation":operation,
+            "difficulty":difficulty,
+            "rawscore":rawscore,
+            "totalscore":totalscore}])
 
         # data that is to be inserted(is a list) if there is/are existing score(s) inside the file
         existing_data_params = ({"student_id":child_id,
-        "student_name":child_name,
-        "date":date,
-        "time": time,
-        "operation":operation,
-        "difficulty":difficulty,
-        "rawscore":rawscore,
-        "totalscore":totalscore})    
+            "student_name":child_name,
+            "date":date,
+            "time": time,
+            "operation":operation,
+            "difficulty":difficulty,
+            "rawscore":rawscore,
+            "totalscore":totalscore})    
         
         #if there is a timeout, run this code!!
         def on_timeout():
@@ -277,7 +277,7 @@ class ResultScreen(Screen):
             print('Successfully appended to the JSON file')
         
         headers = {'Content-type':'application/json','Accept':'text/plain', 'token':LoginScreen.token}
-        Scorerequest =  UrlRequest(ADDSCOREURL + '/' + str(ChildListScreen.child_id) , on_success = successrequest, on_failure = failedrequest, req_body = params, req_headers = headers)
+        Scorerequest =  UrlRequest(ADDSCOREURL + '/' + str(ChildListScreen.child_id) , on_success = successrequest,on_error=on_timeout,timeout = 5, on_failure = failedrequest, req_body = params, req_headers = headers)
 
 class CorrectScreen(Screen):
     pass
