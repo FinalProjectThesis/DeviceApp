@@ -58,14 +58,14 @@ class ChildListScreen(Screen):
 
             ChildListScreen.child_data = childRequest.result
             ChildListScreen.child_length = len(childRequest.result)
-
-            #elif self.manager.connectionstatus =='disconnected':
-
-            #with open('lib/bin/ChildlistInfo.json') as json_file:
-            #    offlinechildlist = json.load(json_file)           #loads the file
-            #    loadedfile = json.loads(offlinechildlist)         #parses it so python can use it 
-            #    ChildListScreen.child_data = loadedfile         
-            #    ChildListScreen.child_length = len(loadedfile)
+            load_Box()
+            
+        def load_offline(self,*args):
+            with open('lib/bin/ChildlistInfo.json') as json_file:
+                offlinechildlist = json.load(json_file)           #loads the file
+            loadedfile = json.loads(offlinechildlist)         #parses it so python can use it 
+            ChildListScreen.child_data = loadedfile         
+            ChildListScreen.child_length = len(loadedfile)
             #load the box
             load_Box()
 
@@ -80,7 +80,7 @@ class ChildListScreen(Screen):
         params = json.dumps({"parent_username" : ChildListScreen.parent_username})
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
         print(params)
-        childRequest = UrlRequest(LISTURL, on_success= successrequest, on_failure=failedrequest, req_body=params, req_headers=headers)
+        childRequest = UrlRequest(LISTURL, on_success= successrequest, on_failure=failedrequest,timeout = 5, on_error= load_offline,req_body=params, req_headers=headers)
         
         return super().on_enter(*args)
 
