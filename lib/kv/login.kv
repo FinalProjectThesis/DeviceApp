@@ -82,6 +82,13 @@
             pos_hint: {'center_x':.5}
             active: False
         MDLabel:
+            id: connection_status
+            text: ""
+            font_size: dp(14)
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1]
+        MDLabel:
             text: "Don't have an account yet?"
             font_size: dp(14)
             halign: 'center'
