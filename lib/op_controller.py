@@ -255,26 +255,26 @@ class ResultScreen(Screen):
             "totalscore":totalscore})    
         
         #if there is a timeout, run this code!!
-        def on_timeout():
+        def on_timeout(self,*args):
             with open("lib/bin/StoredScores.json")as file:
                 data = json.load(file)
             if str(data) =='{}':
                 print ("Empty List, will now dump params")
                 with open('lib/bin/StoredScores.json','w') as outfile:
                     json.dump(no_data_params,outfile,indent = 4)
+                    goto_menu()
             else: # if there's already a file inside 
             # Read JSON file
                 with open('lib/bin/StoredScores.json') as fp:
                     listObj = json.load(fp)
             # Verify existing list
-            print(listObj)
-            print(type(listObj))
-            listObj.append(existing_data_params)
+                listObj.append(existing_data_params)
             # Verify updated list
-            print(listObj)
-            with open('lib/bin/StoredScores.json', 'w') as json_file:
-                json.dump(listObj, json_file,indent = 4)
-            print('Successfully appended to the JSON file')
+                print(listObj)
+                with open('lib/bin/StoredScores.json', 'w') as json_file:
+                    json.dump(listObj, json_file,indent = 4)
+                print('Successfully appended to the JSON file')
+                goto_menu()
         
         headers = {'Content-type':'application/json','Accept':'text/plain', 'token':LoginScreen.token}
         Scorerequest =  UrlRequest(ADDSCOREURL + '/' + str(ChildListScreen.child_id) , on_success = successrequest,on_error=on_timeout,timeout = 5, on_failure = failedrequest, req_body = params, req_headers = headers)
