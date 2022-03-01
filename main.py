@@ -30,6 +30,7 @@ class WindowManager(ScreenManager):
 class LoadingScreen(Screen):
     def on_enter(self, *args):
         Clock.schedule_once(self.execute,2)
+        
         return super().on_pre_enter(*args)
 
     def execute(self, dt):
@@ -39,7 +40,8 @@ class LoadingScreen(Screen):
         def successrequest(self,*args):
             print("Score Uploaded")
             print ("results: " + str(Scorerequest.result))
-            counter= counter + 1 
+            #counter = 0
+            #counter= counter + 1 
         def failedrequestortimeout(self,*args):
             print("No internet.")
             test = 1 
@@ -74,12 +76,13 @@ class LoadingScreen(Screen):
                             "totalscore":data[index]["totalscore"]
                         })         
                         if test == 1:
-                            break   
+                            break
+                        print (counter)   
                         Scorerequest =  UrlRequest(ADDSCOREURL + '/' + str(data[index]["student_id"]) , on_success = successrequest,timeout = 5,on_error = failedrequestortimeout, req_body = params, req_headers = headers)
-                    if counter == length:
-                        emptylist = json.dumps({})
-                        with open('lib/bin/StoredScores.json','w') as json_file:
-                            emptyjson  = json.dump(emptylist,json_file)
+                    #if counter == length:
+                    emptylist = json.dumps({})
+                    with open('lib/bin/StoredScores.json','w') as json_file:
+                        emptyjson  = json.dump(emptylist,json_file)
 
         with open('lib/bin/SavedLogin.json') as json_file:
             data = json.load(json_file)
