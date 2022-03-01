@@ -1,4 +1,3 @@
-#: import utils kivy.utils
 <LoginScreen>:
     name: 'login'
     MDCard:
@@ -57,21 +56,12 @@
                 pos: dp(0), dp(32)
                 size_hint: 1, None
                 height: self.texture_size[1]
-        RelativeLayout:
-            size_hint: 1, None
-            height: dp(40)
-            MDRoundFlatButton:
-                id: login_button
-                text: 'Login'
-                font_size: 12
-                pos_hint: {'center_x': 0.34, 'center_y': 1}
-                on_release: root.on_login()
-            MDRoundFlatButton:
-                id: guest_mode
-                text: 'Enter as Guest'
-                font_size: 12
-                pos_hint: {'center_x': .66, 'center_y': 1}
-                on_release: root.on_login()
+        MDRoundFlatButton:
+            id: login_button
+            text: 'Login'
+            font_size: 12
+            pos_hint: {'center_x': .5}
+            on_release: root.on_login()
         Widget:
             size_hint: 1, None
             height: dp(25)
