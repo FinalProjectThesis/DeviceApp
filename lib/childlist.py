@@ -19,7 +19,6 @@ LISTURL = os.getenv('LISTURL')
 Builder.load_file('lib/kv/childlist.kv')
 
 class ChildListScreen(Screen):
-    box_status = False
     dialog = None
     parent_username = ''
     token = ''
@@ -82,10 +81,8 @@ class ChildListScreen(Screen):
 
     def generate_box(self, *args):
         if not self.child_data:
-            self.box_status = False
             print('No data entered yet')
         else:
-            self.box_status = True
             print('loading box')
             for i in range(0, self.child_length):
                 card = MDCard(
