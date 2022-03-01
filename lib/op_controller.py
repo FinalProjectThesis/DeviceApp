@@ -280,7 +280,9 @@ class ResultScreen(Screen):
         Scorerequest =  UrlRequest(ADDSCOREURL + '/' + str(ChildListScreen.child_id) , on_success = successrequest,on_error=on_timeout,timeout = 5, on_failure = failedrequest, req_body = params, req_headers = headers)
 
 class CorrectScreen(Screen):
-    pass
+    def on_enter(self, *args):
+        self.ids.gif.anim_delay = 1/30
+        return super().on_enter(*args)
 
 class WrongScreen(Screen):
     Sum = 0
