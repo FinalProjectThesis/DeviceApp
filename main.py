@@ -9,7 +9,7 @@ from kivy.config import Config
 from kivy.network.urlrequest import UrlRequest
 import os 
 
-LOGINURL = os.getenv('ADDSCOREURL')
+ADDSCOREURL = os.getenv('ADDSCOREURL')
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 # for making it read from the json file on startup ( to parse json )
@@ -22,6 +22,8 @@ from lib.childlist import ChildListScreen
 from lib.menu import MenuScreen, DifficultyScreen, ProfileScreen
 from lib.op_controller import ADDSCOREURL, AdditionScreen, SubtractionScreen, MultiplicationScreen, DivisionScreen, ResultScreen, CorrectScreen, WrongScreen
 
+
+
 class WindowManager(ScreenManager):
     pass
 
@@ -32,32 +34,52 @@ class LoadingScreen(Screen):
 
     def execute(self, dt):
         #sync
-        def successrequest():
+        test = 0
+        counter = 0
+        def successrequest(self,*args):
             print("Score Uploaded")
+            print ("results: " + str(Scorerequest.result))
+            counter= counter + 1 
+        def failedrequestortimeout(self,*args):
+            print("No internet.")
+            test = 1 
         with open('lib/bin/StoredScores.json') as json_file:
             data = json.load(json_file)
             if str(data) == '{}':
                 print ("empty scorelist")
                 pass
             else:
-                length = len(json.loads(data))
-                data = json.loads(data)
-                headers= {'Content-type':'application/json','Accept':'text/plain'}
-                for index in length:
-                    params = json.dumps({
-                        "student_id":data[index]["student_id"],
-                        "student_name":data[index]["student_name"],
-                        "date":data[index]["date"],
-                        "time": data[index]["time"],
-                        "operation":data[index]["operation"],
-                        "difficulty":data[index]["difficulty"],
-                        "rawscore":data[index]["rawscore"],
-                        "totalscore":data[index]["totalscore"]
-                    })
-                    SyncScore =  UrlRequest(ADDSCOREURL, on_success= successrequest,req_headers=headers,timeout = 2, req_body=params)
-                emptylist = json.dumps({})
-                with open('lib/bin/StoredScores.json') as json_file:
-                    emptyjson  = json.dump(emptylist,json_file)
+                with open('lib/bin/SavedLogin.json') as json_file:
+                    data = json.load(json_file)
+                json_object = json.loads(data)
+                if json_object["checkvalue"] == "False":
+                    print("Please login at least once to configure offline mode") 
+                else:
+                    token =  json_object["token"]
+                    with open('lib/bin/StoredScores.json','r') as json_file:
+                        data = json.load(json_file)
+                    length = len(data)
+                    print("number of scores is "+ str(length))
+                    headers = {'Content-type':'application/json','Accept':'text/plain', 'token':token}
+                    for index in range(0,length):
+                        print(data[index]["student_name"])
+                        params = json.dumps({
+                            "student_id":data[index]["student_id"],
+                            "student_name":data[index]["student_name"],
+                            "date":data[index]["date"],
+                            "time": data[index]["time"],
+                            "operation":data[index]["operation"],
+                            "difficulty":data[index]["difficulty"],
+                            "rawscore":data[index]["rawscore"],
+                            "totalscore":data[index]["totalscore"]
+                        })         
+                        if test == 1:
+                            break   
+                        Scorerequest =  UrlRequest(ADDSCOREURL + '/' + str(data[index]["student_id"]) , on_success = successrequest,timeout = 5,on_error = failedrequestortimeout, req_body = params, req_headers = headers)
+                    if counter == length:
+                        emptylist = json.dumps({})
+                        with open('lib/bin/StoredScores.json','w') as json_file:
+                            emptyjson  = json.dump(emptylist,json_file)
 
         with open('lib/bin/SavedLogin.json') as json_file:
             data = json.load(json_file)

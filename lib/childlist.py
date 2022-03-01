@@ -52,22 +52,18 @@ class ChildListScreen(Screen):
 
             with open('lib/bin/ChildlistInfo.json','w') as outfile:
                 json.dump(offlinesavedinfo,outfile)
-
-            # TEST OPENING OF SAVED FILES *WORKS*
-            #if self.manager.connectionstatus == 'connected':
-
             ChildListScreen.child_data = childRequest.result
             ChildListScreen.child_length = len(childRequest.result)
             load_Box()
-            
+
         def load_offline(self,*args):
             with open('lib/bin/ChildlistInfo.json') as json_file:
                 offlinechildlist = json.load(json_file)           #loads the file
             loadedfile = json.loads(offlinechildlist)         #parses it so python can use it 
             ChildListScreen.child_data = loadedfile         
             ChildListScreen.child_length = len(loadedfile)
-            #load the box
-            load_Box()
+            print (str(ChildListScreen.child_length))
+    
 
         # On Fail Message of below's request 
         def failedrequest(self,*args):
