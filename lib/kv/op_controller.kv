@@ -154,7 +154,7 @@
                 id: gif
                 source: 'assets/anims/congrats.gif'
                 center: self.parent.center
-                size: 560, 460
+                size: 800, 460
                 allow_stretch: True
                 anim_delay: -1
                 repeat: True
@@ -165,7 +165,7 @@
             background_color: 244/255, 67/255, 54/255
             size_hint: 560/root.width, 140/root.height
             pos_hint: {'center_x': .5}
-            on_release: root.manager.current = 'addition'
+            on_release: root.manager.current = 'addition'; gif.anim_delay = -1
 
 <WrongScreen>:
     name: 'wrong'
@@ -182,4 +182,6 @@
             font_size: dp(60)
         Button:
             text: 'Next Question'
+            font_size: dp(56)
+            background_normal: ''
             on_release: root.manager.current = 'addition'
