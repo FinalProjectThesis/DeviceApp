@@ -54,7 +54,7 @@ class LoadingScreen(Screen):
                         "rawscore":data[index]["rawscore"],
                         "totalscore":data[index]["totalscore"]
                     })
-                    SyncScore =  UrlRequest(ADDSCOREURL, on_success= successrequest,req_headers=headers, req_body=params)
+                    SyncScore =  UrlRequest(ADDSCOREURL, on_success= successrequest,req_headers=headers,timeout = 2, req_body=params)
                 emptylist = json.dumps({})
                 with open('lib/bin/StoredScores.json') as json_file:
                     emptyjson  = json.dump(emptylist,json_file)
