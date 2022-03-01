@@ -17,7 +17,7 @@ class LoginScreen(Screen):
     username = ''
     password = ''
     token = ''
-
+ 
     def on_login(self):
         # self.username = self.ids.user_input.text
         # self.password = self.ids.pass_input.text
@@ -33,6 +33,12 @@ class LoginScreen(Screen):
             self.ids.login_button.text = "Login"
             self.ids.login_button.disabled = False
         
+        def showconnectionerrormessage():
+            self.ids.connection_status.text = "Connection Failed, Please check internet connection"
+
+        def clearconnectionerrormessage():
+            self.ids.connection_status.text = ""
+
         def saveUserInfo():
             if (self.ids.remember_me_checkbox.active == True):
                 savedinfo = json.dumps({"checkvalue":"True","username":str(self.username),"password":str(self.password),"token":str(Loginrequest.result)})
@@ -84,7 +90,6 @@ class LoginScreen(Screen):
             
             # On Success Message of below's request 
             def successrequest(self,*args):
-
                 print ("Success request") 
                 result =  str(Loginrequest.result)
                 if result =='No such User':
@@ -94,11 +99,15 @@ class LoginScreen(Screen):
                     print("Failed Auth, Wrong Password")
                     display_failedauthentication()
                 else:
+                    clearconnectionerrormessage()
                     saveUserInfo()
                     isnotloading()
                     goto_Childlist() # GOTO next screen
-    
             # On Fail Message of below's request 
+            def showtimeoutmessage(self,*args):
+                isnotloading()
+                showconnectionerrormessage()
+
             def failedrequest(self,*args):
                 print ("Failed Request") # show error message
                 print ("Result is "+ str(Loginrequest.result))
@@ -136,8 +145,10 @@ class LoginScreen(Screen):
             params = json.dumps({"username":Username,"password":Password})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Loginrequest =  UrlRequest(LOGINURL, on_success= successrequest,on_failure=failedrequest,req_body=params,req_headers=headers)\
-    
+            Loginrequest =  UrlRequest(LOGINURL, on_success= successrequest,on_failure=failedrequest,timeout=5,on_error=showtimeoutmessage,req_body=params,req_headers=headers)
+        
+        
+                
     #def on_guest_enter(self):
     #    self.manager.connectionstatus = 'Disconnected'
 
