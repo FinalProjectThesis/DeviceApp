@@ -19,6 +19,7 @@ LISTURL = os.getenv('LISTURL')
 Builder.load_file('lib/kv/childlist.kv')
 
 class ChildListScreen(Screen):
+    box_status = False
     dialog = None
     parent_username = ''
     token = ''
@@ -70,6 +71,9 @@ class ChildListScreen(Screen):
 
         def load_Box():
             self.on_enter()
+            # To double check if the box has been generated or not
+            if self.box_status == False:
+                self.on_enter()
         
         params = json.dumps({"parent_username" : ChildListScreen.parent_username})
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
@@ -80,8 +84,10 @@ class ChildListScreen(Screen):
 
     def on_enter(self, *args):
         if not self.child_data:
+            self.box_status = False
             print('No data entered yet')
         else:
+            self.box_status = True
             print('loading box')
             for i in range(0, self.child_length):
                 card = MDCard(
@@ -90,8 +96,9 @@ class ChildListScreen(Screen):
                     orientation = 'vertical',
                     size_hint = (None, 1),
                     width = dp(175),
+                    elevation = 10
                 )
-                self.ids['card'+str(i+1)] = card    # set id of each card
+                self.ids['card'+str(i+1)] = card
                 self.ids.scroll_button.add_widget(card)
 
                 icon_btn = MDIconButton(
@@ -122,7 +129,7 @@ class ChildListScreen(Screen):
                     ChildListScreen.child_id = str(self.child_data[i]['id'])
                     self.manager.current = 'menu'
 
-        print('exiting')
+        print('done')
         return super().on_enter(*args)
 
     def on_logout(self):
