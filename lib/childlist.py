@@ -91,7 +91,7 @@ class ChildListScreen(Screen):
                     orientation = 'vertical',
                     size_hint = (None, 1),
                     width = dp(175),
-                    elevation = 10
+                    elevation = 5
                 )
                 self.ids['card'+str(i+1)] = card
                 self.ids.scroll_button.add_widget(card)
