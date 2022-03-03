@@ -11,18 +11,20 @@
                 text_color: [1, 0, 0, 1]
                 pos_hint: {'right': 1, 'top': 1}
                 on_release: root.on_exit()
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'vertical'
             size_hint: 1, .35 
-            Label:
+            MDLabel:
                 id: qcount_label
                 size_hint: 1, None
                 font_size: dp(15)
                 height: self.texture_size[1]
-            Label:
+                halign: 'center'
+            MDLabel:
                 id: add_label
                 size_hint: 1, .95
                 font_size: dp(50)
+                halign: 'center'
         BoxLayout:
             size_hint: 1, .6
             spacing: dp(15)
@@ -85,6 +87,7 @@
                     font_size: dp(35)
         Button:
             text: 'SUBMIT'
+            font_size: dp(26)
             background_normal: ''
             background_color: 0, 128/255, 128/255
             size_hint: 500/root.width, 60/root.height
@@ -100,6 +103,8 @@
         Button:
             text: 'Subtraction Page'
             on_release: root.manager.current = 'menu'
+        Button:
+            id: t1
 
 <MultiplicationScreen>:
     name: 'multiplication'
@@ -110,6 +115,8 @@
         Button:
             text: 'Multiplication Page'
             on_release: root.manager.current = 'menu'
+        Button:
+            id: t2
 
 <DivisionScreen>:
     name: 'division'
@@ -120,6 +127,8 @@
         Button:
             text: 'Division Page'
             on_release: root.manager.current = 'menu'
+        Button:
+            id: t3
 
 <ResultScreen>:
     name: 'result'
@@ -179,9 +188,9 @@
         width: root.width - 40
         height: root.height - 40
         pos_hint: {'center_x': .5, 'center_y': .5}
-        md_bg_color: 184/255, 15/255, 10/255, 1
+        md_bg_color: 237/255, 41/255, 57/255, 1
         elevation: 10
-        padding: dp(20)
+        padding: dp(15)
         spacing: dp(15)
         MDLabel:
             id: wrong_label
@@ -189,15 +198,46 @@
             pos_hint: {'top': 1}
             size_hint: 1, None
             height: self.texture_size[1]
-            font_size: dp(26)
+            font_size: dp(24)
             markup: True
         MDCard:
-            
+            radius: [dp(15), dp(15), dp(15), dp(15)]
+            elevation: 10
+            GridLayout:
+                id: first_grid
+                rows: 3
+                size_hint: .5, 1                    
+            MDLabel:
+                text: '+'
+                font_size: dp(36)
+                size_hint: None, None
+                width: self.texture_size[1]
+                height: self.texture_size[1]
+                halign: 'center'
+                pos_hint: {'center_y': .5}
+            GridLayout:
+                id: second_grid
+                rows: 3
+                size_hint: .5, 1                    
+            MDLabel:
+                text: '='
+                font_size: dp(36)
+                size_hint: None, None
+                width: self.texture_size[1]
+                height: self.texture_size[1]
+                halign: 'center'
+                pos_hint: {'center_y': .5}
+            GridLayout:
+                id: sum_grid
+                rows: 3
+                size_hint: .5, 1
+
+
         Button:
             text: 'Next Question'
-            font_size: dp(56)
+            font_size: dp(32)
             background_normal: ''
             background_color: 249/255, 129/255, 42/255
-            size_hint: 560/root.width, 140/root.height
+            size_hint: 520/root.width, 90/root.height
             pos_hint: {'center_x': .5}
             on_release: root.manager.current = 'addition'

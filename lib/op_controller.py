@@ -2,6 +2,7 @@ import random
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, ObjectProperty, NumericProperty
+from kivy.uix.image import Image
 from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.dialog import MDDialog
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -136,7 +137,7 @@ class AdditionScreen(Screen):
             size_hint = (.6, None),
             buttons = [
                 MDRaisedButton(
-                    text = "Back to Profile",
+                    text = "Back to Menu",
                     on_release = lambda x: exit(),
                     md_bg_color = (.8, 0, 0, 1)
                 ),
@@ -163,16 +164,19 @@ class AdditionScreen(Screen):
 class SubtractionScreen(Screen):
     def on_pre_enter(self, *args):
         self.ids.sub_label.text = DifficultyScreen.difficulty
+        self.ids.t1.text = MenuScreen.operation
         return super().on_pre_enter(*args)
 
 class MultiplicationScreen(Screen):
     def on_pre_enter(self, *args):
         self.ids.multi_label.text = DifficultyScreen.difficulty
+        self.ids.t2.text = MenuScreen.operation
         return super().on_pre_enter(*args)
 
 class DivisionScreen(Screen):
     def on_pre_enter(self, *args):
         self.ids.div_label.text = DifficultyScreen.difficulty
+        self.ids.t3.text = MenuScreen.operation
         return super().on_pre_enter(*args)
 
 class ResultScreen(Screen):
@@ -296,7 +300,33 @@ class WrongScreen(Screen):
         self.second_val = AdditionScreen.second_val
 
         self.ids.wrong_label.text = f'Answer is Wrong!\nCorrect answer is [color=#00FF00]{self.Sum}[/color]'
+        
+        # first_grid
+        for i in range(0, self.first_val):
+            apple = Image(
+                source = 'assets/images/apple.png'
+            )
+            self.ids.first_grid.add_widget(apple)
+        
+        # second_grid
+        for i in range(0, self.second_val):
+            apple = Image(
+                source = 'assets/images/apple.png'
+            )
+            self.ids.second_grid.add_widget(apple)
+        
+        # sum_grid
+        for i in range(0, self.Sum):
+            apple = Image(
+                source = 'assets/images/apple.png'
+            )
+            self.ids.sum_grid.add_widget(apple)
+        
+        
         return super().on_pre_enter(*args)
     
-    def on_next(self):
-        pass
+    def on_leave(self, *args):
+        self.ids.first_grid.clear_widgets()
+        self.ids.second_grid.clear_widgets()
+        self.ids.sum_grid.clear_widgets()
+        return super().on_leave(*args)
