@@ -227,38 +227,19 @@ class OperationScreen(Screen):
         if len(final_input) == 0:
             final_input = 0
 
-        if DifficultyScreen.difficulty == 'easy':
-            self.counter += 1
-            if self.answer == int(final_input):
-                OperationScreen.score += 1
-                # play correct_answer on correct screen ( I'll add them into functions ;-;)
-                # sound = SoundLoader.load("assets/music/correct_answer.wav")
-                # sound.play()
-                # move to correct screen
-                self.manager.current = 'correct'
-            else:
-                # move to wrong screen
-                # sound = SoundLoader.load("assets/music/wrong_answer.wav")
-                # sound.play()
-                self.manager.current = 'wrong'  
-        elif DifficultyScreen.difficulty == 'medium':
-            self.counter += 1
-            if self.answer == int(final_input):
-                OperationScreen.score += 1
-                # move to correct screen
-                self.manager.current = 'correct'
-            else:
-                # move to wrong screen
-                self.manager.current = 'wrong'
-        elif DifficultyScreen.difficulty == 'hard':
-            self.counter += 1
-            if self.answer == int(final_input):
-                OperationScreen.score += 1
-                # move to correct screen
-                self.manager.current = 'correct'
-            else:
-                # move to wrong screen
-                self.manager.current = 'wrong'
+        self.counter += 1
+        if self.answer == int(final_input):
+            OperationScreen.score += 1
+            # play correct_answer on correct screen ( I'll add them into functions ;-;)
+            # sound = SoundLoader.load("assets/music/correct_answer.wav")
+            # sound.play()
+            # move to correct screen
+            self.manager.current = 'correct'
+        else:
+            # move to wrong screen
+            # sound = SoundLoader.load("assets/music/wrong_answer.wav")
+            # sound.play()
+            self.manager.current = 'wrong'  
     
     def on_exit(self):
         self.dialog = MDDialog(
