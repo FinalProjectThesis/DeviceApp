@@ -5,27 +5,20 @@ from kivy.uix.image import Image
 from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.dialog import MDDialog
 from kivy.uix.screenmanager import Screen
+from kivy.network.urlrequest import UrlRequest
+from kivy.core.audio import SoundLoader
 
 from lib.childlist import ChildListScreen
 from lib.login import LoginScreen
+from lib.menu import DifficultyScreen, MenuScreen
 
-
-
-# to get date and time
 from datetime import datetime, date
-# # for the HTTP 
-from kivy.network.urlrequest import UrlRequest
-import json
 from dotenv import load_dotenv
+import json
 import os
 
 load_dotenv()
 ADDSCOREURL = os.getenv('ADDSCOREURL')
-
-from lib.menu import DifficultyScreen, MenuScreen
-
-# To add sound
-from kivy.core.audio import SoundLoader
 
 Builder.load_file('lib/kv/op_controller.kv')
 
@@ -202,15 +195,15 @@ class OperationScreen(Screen):
             OperationScreen.second_val = val2
             OperationScreen.answer = val1 * val2
             # check if over 1K
-            if OperationScreen.answer > 2000:
+            if OperationScreen.answer > 1000:
                 self.load_hard()
             else:
                 # generate labels
                 self.ids.qcount_label.text = str('Q #' + str(self.counter))
                 self.ids.question_label.text = str(val1) + ' x ' + str(val2)
         elif MenuScreen.operation == 'division':
-            val1 = random.randint(100, 500)
-            val2 = random.randint(1, 500)
+            val1 = random.randint(50, 200)
+            val2 = random.randint(1, 200)
             # store values to send
             OperationScreen.first_val = val1
             OperationScreen.second_val = val2
