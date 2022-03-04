@@ -9,6 +9,8 @@ from kivy.uix.screenmanager import Screen
 from lib.childlist import ChildListScreen
 from lib.login import LoginScreen
 
+
+
 # to get date and time
 from datetime import datetime, date
 # # for the HTTP 
@@ -111,7 +113,7 @@ class OperationScreen(Screen):
     
     def load_medium(self):
         # evaluate what operation
-        if MenuScreen.operation == 'addition':
+        if MenuScreen.operation == 'addition': 
             val1 = random.randint(10, 100)
             val2 = random.randint(10, 100)
             # store values to send
@@ -137,8 +139,8 @@ class OperationScreen(Screen):
                 self.ids.qcount_label.text = str('Q #' + str(self.counter))
                 self.ids.question_label.text = str(val1) + ' - ' + str(val2)
         elif MenuScreen.operation == 'multiplication':
-            val1 = random.randint(10, 100)
-            val2 = random.randint(10, 100)
+            val1 = random.randint(1, 10)
+            val2 = random.randint(10, 50)
             # store values to send
             OperationScreen.first_val = val1
             OperationScreen.second_val = val2
