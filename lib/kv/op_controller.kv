@@ -1,5 +1,5 @@
-<AdditionScreen>:
-    name: 'addition'
+<OperationScreen>:
+    name: 'operation'
     BoxLayout:
         padding: dp(15)
         orientation: 'vertical'
@@ -21,7 +21,7 @@
                 height: self.texture_size[1]
                 halign: 'center'
             MDLabel:
-                id: add_label
+                id: question_label
                 size_hint: 1, .95
                 font_size: dp(50)
                 halign: 'center'
@@ -94,41 +94,41 @@
             pos_hint: {'center_x': .5}
             on_release: root.validate_ans()
         
-<SubtractionScreen>:
-    name: 'subtraction'
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            id: sub_label
-        Button:
-            text: 'Subtraction Page'
-            on_release: root.manager.current = 'menu'
-        Button:
-            id: t1
+# <SubtractionScreen>:
+#     name: 'subtraction'
+#     BoxLayout:
+#         orientation: 'vertical'
+#         Label:
+#             id: sub_label
+#         Button:
+#             text: 'Subtraction Page'
+#             on_release: root.manager.current = 'menu'
+#         Button:
+#             id: t1
 
-<MultiplicationScreen>:
-    name: 'multiplication'
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            id: multi_label
-        Button:
-            text: 'Multiplication Page'
-            on_release: root.manager.current = 'menu'
-        Button:
-            id: t2
+# <MultiplicationScreen>:
+#     name: 'multiplication'
+#     BoxLayout:
+#         orientation: 'vertical'
+#         Label:
+#             id: multi_label
+#         Button:
+#             text: 'Multiplication Page'
+#             on_release: root.manager.current = 'menu'
+#         Button:
+#             id: t2
 
-<DivisionScreen>:
-    name: 'division'
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            id: div_label
-        Button:
-            text: 'Division Page'
-            on_release: root.manager.current = 'menu'
-        Button:
-            id: t3
+# <DivisionScreen>:
+#     name: 'division'
+#     BoxLayout:
+#         orientation: 'vertical'
+#         Label:
+#             id: div_label
+#         Button:
+#             text: 'Division Page'
+#             on_release: root.manager.current = 'menu'
+#         Button:
+#             id: t3
 
 <ResultScreen>:
     name: 'result'
@@ -178,7 +178,7 @@
             background_color: 244/255, 67/255, 54/255
             size_hint: 560/root.width, 140/root.height
             pos_hint: {'center_x': .5}
-            on_release: root.manager.current = 'addition'; gif.anim_delay = -1
+            on_release: root.manager.current = 'operation'; gif.anim_delay = -1
 
 <WrongScreen>:
     name: 'wrong'
@@ -212,7 +212,7 @@
                     rows: 3
                     size_hint: .5, 1                    
                 MDLabel:
-                    text: '+'
+                    id: op_label
                     font_size: dp(36)
                     size_hint: None, None
                     width: self.texture_size[1]
@@ -232,7 +232,7 @@
                     halign: 'center'
                     pos_hint: {'center_y': .5}
                 GridLayout:
-                    id: sum_grid
+                    id: answer_grid
                     rows: 3
                     size_hint: .5, 1
             BoxLayout:
@@ -252,11 +252,10 @@
                     size_hint: None, 1
                     width: dp(43)
                 MDLabel:
-                    id: sum_label
+                    id: answer_label
                     size_hint: .5, 1
                     halign: 'center'
                     markup: True
-
         Button:
             text: 'Next Question'
             font_size: dp(32)
@@ -264,4 +263,4 @@
             background_color: 249/255, 129/255, 42/255
             size_hint: 520/root.width, 90/root.height
             pos_hint: {'center_x': .5}
-            on_release: root.manager.current = 'addition'
+            on_release: root.manager.current = 'operation'

@@ -20,9 +20,7 @@ from lib.login import LoginScreen
 from lib.signup import SignupScreen
 from lib.childlist import ChildListScreen
 from lib.menu import MenuScreen, DifficultyScreen, ProfileScreen
-from lib.op_controller import ADDSCOREURL, AdditionScreen, SubtractionScreen, MultiplicationScreen, DivisionScreen, ResultScreen, CorrectScreen, WrongScreen
-
-
+from lib.op_controller import ADDSCOREURL, OperationScreen, ResultScreen, CorrectScreen, WrongScreen
 
 class WindowManager(ScreenManager):
     pass

@@ -15,7 +15,7 @@ Builder.load_file('lib/kv/menu.kv')
 
 class MenuScreen(Screen):
     dialog = None
-    operation = StringProperty('')
+    operation = ''
 
     def on_pre_enter(self, *args):
         # app = MDApp.get_running_app()
@@ -75,12 +75,9 @@ class MenuScreen(Screen):
     
 class DifficultyScreen(Screen):
     difficulty = ''
-    operation = ''
 
-    
     def on_pre_enter(self, *args):
-        DifficultyScreen.operation = MenuScreen.operation
-        self.ids.op_label.text = self.operation.capitalize()
+        self.ids.op_label.text = MenuScreen.operation.capitalize()
         return super().on_pre_enter(*args)
 
     def on_easy(self):
@@ -89,14 +86,15 @@ class DifficultyScreen(Screen):
         sound.play()
 
         DifficultyScreen.difficulty = 'easy'
-        if self.operation == 'addition':
-            self.manager.current = 'addition'
-        elif self.operation == 'subtraction':
-            self.manager.current = 'subtraction'
-        elif self.operation == 'multiplication':
-            self.manager.current = 'multiplication'
-        elif self.operation == 'division':
-            self.manager.current = 'division'
+        self.manager.current = 'operation'
+        # if self.operation == 'addition':
+        #     self.manager.current = 'addition'
+        # elif self.operation == 'subtraction':
+        #     self.manager.current = 'subtraction'
+        # elif self.operation == 'multiplication':
+        #     self.manager.current = 'multiplication'
+        # elif self.operation == 'division':
+        #     self.manager.current = 'division'
 
     def on_medium(self):
 
@@ -104,14 +102,15 @@ class DifficultyScreen(Screen):
         sound.play()
 
         DifficultyScreen.difficulty = 'medium'
-        if self.operation == 'addition':
-            self.manager.current = 'addition'
-        elif self.operation == 'subtraction':
-            self.manager.current = 'subtraction'
-        elif self.operation == 'multiplication':
-            self.manager.current = 'multiplication'
-        elif self.operation == 'division':
-            self.manager.current = 'division'
+        self.manager.current = 'operation'
+        # if self.operation == 'addition':
+        #     self.manager.current = 'addition'
+        # elif self.operation == 'subtraction':
+        #     self.manager.current = 'subtraction'
+        # elif self.operation == 'multiplication':
+        #     self.manager.current = 'multiplication'
+        # elif self.operation == 'division':
+        #     self.manager.current = 'division'
     
     def on_hard(self):
 
@@ -119,14 +118,15 @@ class DifficultyScreen(Screen):
         sound.play()
         
         DifficultyScreen.difficulty = 'hard'
-        if self.operation == 'addition':
-            self.manager.current = 'addition'
-        elif self.operation == 'subtraction':
-            self.manager.current = 'subtraction'
-        elif self.operation == 'multiplication':
-            self.manager.current = 'multiplication'
-        elif self.operation == 'division':
-            self.manager.current = 'division'
+        self.manager.current = 'operation'
+        # if self.operation == 'addition':
+        #     self.manager.current = 'addition'
+        # elif self.operation == 'subtraction':
+        #     self.manager.current = 'subtraction'
+        # elif self.operation == 'multiplication':
+        #     self.manager.current = 'multiplication'
+        # elif self.operation == 'division':
+        #     self.manager.current = 'division'
 
 class ProfileScreen(Screen):
     pass            
