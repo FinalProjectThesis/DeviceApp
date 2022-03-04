@@ -137,8 +137,8 @@ class OperationScreen(Screen):
                 self.ids.qcount_label.text = str('Q #' + str(self.counter))
                 self.ids.question_label.text = str(val1) + ' - ' + str(val2)
         elif MenuScreen.operation == 'multiplication':
-            val1 = random.randint(10, 100)
-            val2 = random.randint(10, 100)
+            val1 = random.randint(1, 100)
+            val2 = random.randint(1, 100)
             # store values to send
             OperationScreen.first_val = val1
             OperationScreen.second_val = val2
@@ -151,7 +151,7 @@ class OperationScreen(Screen):
                 self.ids.question_label.text = str(val1) + ' x ' + str(val2)
         elif MenuScreen.operation == 'division':
             val1 = random.randint(10, 100)
-            val2 = random.randint(10, 100)
+            val2 = random.randint(1, 100)
             # store values to send
             OperationScreen.first_val = val1
             OperationScreen.second_val = val2
@@ -193,8 +193,8 @@ class OperationScreen(Screen):
                 self.ids.qcount_label.text = str('Q #' + str(self.counter))
                 self.ids.question_label.text = str(val1) + ' - ' + str(val2)
         elif MenuScreen.operation == 'multiplication':
-            val1 = random.randint(100, 300)
-            val2 = random.randint(100, 300)
+            val1 = random.randint(1, 500)
+            val2 = random.randint(1, 500)
             # store values to send
             OperationScreen.first_val = val1
             OperationScreen.second_val = val2
@@ -208,7 +208,7 @@ class OperationScreen(Screen):
                 self.ids.question_label.text = str(val1) + ' x ' + str(val2)
         elif MenuScreen.operation == 'division':
             val1 = random.randint(100, 500)
-            val2 = random.randint(100, 500)
+            val2 = random.randint(1, 500)
             # store values to send
             OperationScreen.first_val = val1
             OperationScreen.second_val = val2
