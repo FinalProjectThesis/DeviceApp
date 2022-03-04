@@ -74,8 +74,8 @@ class MenuScreen(Screen):
         self.manager.current = 'profile'
     
 class DifficultyScreen(Screen):
-    difficulty = StringProperty('')
-    operation = StringProperty('')
+    difficulty = ''
+    operation = ''
 
     
     def on_pre_enter(self, *args):

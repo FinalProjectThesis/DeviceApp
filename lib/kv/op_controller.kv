@@ -136,6 +136,7 @@
         orientation: 'vertical'
         Label:
             id: result_label
+            color: 0, 0, 0, 1
         MDFlatButton:
             text: 'Submit Answers'
             on_release: root.on_submit()
@@ -203,35 +204,58 @@
         MDCard:
             radius: [dp(15), dp(15), dp(15), dp(15)]
             elevation: 10
-            GridLayout:
-                id: first_grid
-                rows: 3
-                size_hint: .5, 1                    
-            MDLabel:
-                text: '+'
-                font_size: dp(36)
-                size_hint: None, None
-                width: self.texture_size[1]
-                height: self.texture_size[1]
-                halign: 'center'
-                pos_hint: {'center_y': .5}
-            GridLayout:
-                id: second_grid
-                rows: 3
-                size_hint: .5, 1                    
-            MDLabel:
-                text: '='
-                font_size: dp(36)
-                size_hint: None, None
-                width: self.texture_size[1]
-                height: self.texture_size[1]
-                halign: 'center'
-                pos_hint: {'center_y': .5}
-            GridLayout:
-                id: sum_grid
-                rows: 3
-                size_hint: .5, 1
-
+            padding: dp(5)
+            orientation: 'vertical'
+            BoxLayout:
+                GridLayout:
+                    id: first_grid
+                    rows: 3
+                    size_hint: .5, 1                    
+                MDLabel:
+                    text: '+'
+                    font_size: dp(36)
+                    size_hint: None, None
+                    width: self.texture_size[1]
+                    height: self.texture_size[1]
+                    halign: 'center'
+                    pos_hint: {'center_y': .5}
+                GridLayout:
+                    id: second_grid
+                    rows: 3
+                    size_hint: .5, 1                    
+                MDLabel:
+                    text: '='
+                    font_size: dp(36)
+                    size_hint: None, None
+                    width: self.texture_size[1]
+                    height: self.texture_size[1]
+                    halign: 'center'
+                    pos_hint: {'center_y': .5}
+                GridLayout:
+                    id: sum_grid
+                    rows: 3
+                    size_hint: .5, 1
+            BoxLayout:
+                size_hint: 1, .1
+                MDLabel:
+                    id: val1_label
+                    size_hint: .5, 1
+                    halign: 'center'
+                Widget:
+                    size_hint: None, 1
+                    width: dp(43)
+                MDLabel:
+                    id: val2_label
+                    size_hint: .5, 1
+                    halign: 'center'
+                Widget:
+                    size_hint: None, 1
+                    width: dp(43)
+                MDLabel:
+                    id: sum_label
+                    size_hint: .5, 1
+                    halign: 'center'
+                    markup: True
 
         Button:
             text: 'Next Question'

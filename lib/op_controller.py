@@ -81,8 +81,8 @@ class AdditionScreen(Screen):
         print(str(self.counter))
     
     def load_hard(self):
-        val1 = random.randint(50, 1000)
-        val2 = random.randint(50, 1000)
+        val1 = random.randint(100, 500)
+        val2 = random.randint(100, 500)
         # store values to send
         AdditionScreen.first_val = val1
         AdditionScreen.second_val = val2
@@ -289,39 +289,161 @@ class CorrectScreen(Screen):
         return super().on_enter(*args)
 
 class WrongScreen(Screen):
-    Sum = 0
+    Ans = 0
     first_val = 0
     second_val = 0
     
     def on_pre_enter(self, *args):
         # set and call values
-        self.Sum = AdditionScreen.Sum
+        self.Ans = AdditionScreen.Sum
         self.first_val = AdditionScreen.first_val
         self.second_val = AdditionScreen.second_val
 
-        self.ids.wrong_label.text = f'Answer is Wrong!\nCorrect answer is [color=#00FF00]{self.Sum}[/color]'
+        self.ids.wrong_label.text = f'Answer is Wrong!\nCorrect answer is [color=#00FF00]{self.Ans}[/color]'
+        if self.first_val == 1:
+            self.ids.val1_label.text = f'{self.first_val} Apple'
+        elif self.second_val == 1:  
+            self.ids.val2_label.text = f'{self.second_val} Apple'
+        else:
+            self.ids.val1_label.text = f'{self.first_val} Apples'
+            self.ids.val2_label.text = f'{self.second_val} Apples'
+        self.ids.sum_label.text = f'Equals to [color=#ED2939]{self.Ans}[/color] apples!'
         
-        # first_grid
-        for i in range(0, self.first_val):
-            apple = Image(
-                source = 'assets/images/apple.png'
-            )
-            self.ids.first_grid.add_widget(apple)
+        def generate_truck(*args):
+            val1 = int(args[0]) // 100
+            val2 = int(args[1]) // 100
+            val3 = int(args[2]) // 100
+            remain1 = int(args[0]) % 100
+            remain2 = int(args[1]) % 100
+            remain3 = int(args[2]) % 100
+            
+            # first_grid
+            if val1 > 9:
+                self.ids.first_grid.rows = 4
+            else:
+                self.ids.first_grid.rows = 3
+                
+            for i in range(0, val1):
+                truck = Image(
+                    source = 'assets/images/truck_apples.png'
+                )
+                self.ids.first_grid.add_widget(truck)
+            # second_grid
+            if val2 > 9:
+                self.ids.second_grid.rows = 4
+            else:
+                self.ids.second_grid.rows = 3
+                
+            for i in range(0, val2):
+                truck = Image(
+                    source = 'assets/images/truck_apples.png'
+                )
+                self.ids.second_grid.add_widget(truck)
+            # sum_grid
+            if val3 > 9:
+                self.ids.sum_grid.rows = 4
+            else:
+                self.ids.sum_grid.rows = 3
+                
+            for i in range(0, val3):
+                truck = Image(
+                    source = 'assets/images/truck_apples.png'
+                )
+                self.ids.sum_grid.add_widget(truck)
+            
+            if remain1 != 0 or remain2 != 0 or remain3 != 0:
+                generate_basket(remain1, remain2, remain3)
         
-        # second_grid
-        for i in range(0, self.second_val):
-            apple = Image(
-                source = 'assets/images/apple.png'
-            )
-            self.ids.second_grid.add_widget(apple)
+        def generate_basket(*args):
+            val1 = int(args[0]) // 10
+            val2 = int(args[1]) // 10
+            val3 = int(args[2]) // 10
+            remain1 = int(args[0]) % 10
+            remain2 = int(args[1]) % 10
+            remain3 = int(args[2]) % 10
+            
+            # first_grid
+            if val1 > 9:
+                self.ids.first_grid.rows = 4
+            else:
+                self.ids.first_grid.rows = 3
+                
+            for i in range(0, val1):
+                basket = Image(
+                    source = 'assets/images/basket_apples.png'
+                )
+                self.ids.first_grid.add_widget(basket)
+            # second_grid
+            if val2 > 9:
+                self.ids.second_grid.rows = 4
+            else:
+                self.ids.second_grid.rows = 3
+                
+            for i in range(0, val2):
+                basket = Image(
+                    source = 'assets/images/basket_apples.png'
+                )
+                self.ids.second_grid.add_widget(basket)
+            # sum_grid
+            if val3 > 9:
+                self.ids.sum_grid.rows = 4
+            else:
+                self.ids.sum_grid.rows = 3
+                
+            for i in range(0, val3):
+                basket = Image(
+                    source = 'assets/images/basket_apples.png'
+                )
+                self.ids.sum_grid.add_widget(basket)
+            
+            if remain1 != 0 or remain2 != 0 or remain3 != 0:
+                generate_apple(remain1, remain2, remain3)
+                
+        def generate_apple(*args):
+            remain1 = int(args[0])
+            remain2 = int(args[1])
+            remain3 = int(args[2])
+            
+            # first_grid
+            if remain1 > 9:
+                self.ids.first_grid.rows = 4
+            else:
+                self.ids.first_grid.rows = 3
+                
+            for i in range(0, remain1):
+                apple = Image(
+                    source = 'assets/images/apple.png'
+                )
+                self.ids.first_grid.add_widget(apple)
+            # second_grid
+            if remain2 > 9:
+                self.ids.second_grid.rows = 4
+            else:
+                self.ids.second_grid.rows = 3
+                
+            for i in range(0, remain2):
+                apple = Image(
+                    source = 'assets/images/apple.png'
+                )
+                self.ids.second_grid.add_widget(apple)
+            # sum_grid
+            if remain3 > 9:
+                self.ids.sum_grid.rows = 4
+            else:
+                self.ids.sum_grid.rows = 3
+                
+            for i in range(0, remain3):
+                apple = Image(
+                    source = 'assets/images/apple.png'
+                )
+                self.ids.sum_grid.add_widget(apple)
         
-        # sum_grid
-        for i in range(0, self.Sum):
-            apple = Image(
-                source = 'assets/images/apple.png'
-            )
-            self.ids.sum_grid.add_widget(apple)
-        
+        if self.first_val >= 100 or self.second_val >= 100 or self.Ans >= 100:
+            generate_truck(self.first_val, self.second_val, self.Ans)
+        elif self.first_val >= 10 or self.second_val >= 10 or self.Ans >= 10:
+            generate_basket(self.first_val, self.second_val, self.Ans)
+        elif self.first_val < 10 or self.second_val < 10 or self.Ans < 10:
+            generate_apple(self.first_val, self.second_val, self.Ans)
         
         return super().on_pre_enter(*args)
     
