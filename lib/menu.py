@@ -87,14 +87,6 @@ class DifficultyScreen(Screen):
 
         DifficultyScreen.difficulty = 'easy'
         self.manager.current = 'operation'
-        # if self.operation == 'addition':
-        #     self.manager.current = 'addition'
-        # elif self.operation == 'subtraction':
-        #     self.manager.current = 'subtraction'
-        # elif self.operation == 'multiplication':
-        #     self.manager.current = 'multiplication'
-        # elif self.operation == 'division':
-        #     self.manager.current = 'division'
 
     def on_medium(self):
 
@@ -103,14 +95,6 @@ class DifficultyScreen(Screen):
 
         DifficultyScreen.difficulty = 'medium'
         self.manager.current = 'operation'
-        # if self.operation == 'addition':
-        #     self.manager.current = 'addition'
-        # elif self.operation == 'subtraction':
-        #     self.manager.current = 'subtraction'
-        # elif self.operation == 'multiplication':
-        #     self.manager.current = 'multiplication'
-        # elif self.operation == 'division':
-        #     self.manager.current = 'division'
     
     def on_hard(self):
 
@@ -119,14 +103,6 @@ class DifficultyScreen(Screen):
         
         DifficultyScreen.difficulty = 'hard'
         self.manager.current = 'operation'
-        # if self.operation == 'addition':
-        #     self.manager.current = 'addition'
-        # elif self.operation == 'subtraction':
-        #     self.manager.current = 'subtraction'
-        # elif self.operation == 'multiplication':
-        #     self.manager.current = 'multiplication'
-        # elif self.operation == 'division':
-        #     self.manager.current = 'division'
 
 class ProfileScreen(Screen):
     pass            
