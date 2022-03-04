@@ -22,6 +22,9 @@ ADDSCOREURL = os.getenv('ADDSCOREURL')
 
 Builder.load_file('lib/kv/op_controller.kv')
 
+# initialializing TTS 
+import pyttsx3
+engine = pyttsx3.init()
 class OperationScreen(Screen):
     score = 0
     first_val = 0
@@ -395,6 +398,10 @@ class WrongScreen(Screen):
         self.Ans = OperationScreen.answer
         self.first_val = OperationScreen.first_val
         self.second_val = OperationScreen.second_val
+        #TTS TEST 
+        actual_answer = str(self.Ans)
+        engine.say("Answer is Wrong, The Correct answer is " + actual_answer)
+        engine.runAndWait()
 
         self.ids.wrong_label.text = f'Answer is Wrong!\nCorrect answer is [color=#00FF00]{self.Ans}[/color]'
         if self.first_val == 1:
