@@ -1,4 +1,5 @@
 import random
+import threading
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.uix.image import Image
@@ -14,17 +15,16 @@ from lib.menu import DifficultyScreen, MenuScreen
 
 from datetime import datetime, date
 from dotenv import load_dotenv
+import pyttsx3
 import json
 import os
 
+engine = pyttsx3.init()
 load_dotenv()
 ADDSCOREURL = os.getenv('ADDSCOREURL')
 
 Builder.load_file('lib/kv/op_controller.kv')
 
-# initialializing TTS 
-import pyttsx3
-engine = pyttsx3.init()
 class OperationScreen(Screen):
     score = 0
     first_val = 0
@@ -384,7 +384,21 @@ class WrongScreen(Screen):
     first_val = 0
     second_val = 0
     
+    def on_enter(self, *args):
+        def run_TTS():
+            engine.say(f"Answer is Wrong, The Correct answer is {self.Ans}")
+            
+            engine.runAndWait()
+            self.ids.next_btn.disabled = False
+            
+        threading.Thread(
+            target = run_TTS, daemon=True
+        ).start()
+        
+        return super().on_enter(*args)
+    
     def on_pre_enter(self, *args):
+        self.ids.next_btn.disabled = True   # disable button on enter (wait on TTS)
         # set and call values
         if MenuScreen.operation == 'addition':
             self.ids.op_label.text = '+'
@@ -398,10 +412,6 @@ class WrongScreen(Screen):
         self.Ans = OperationScreen.answer
         self.first_val = OperationScreen.first_val
         self.second_val = OperationScreen.second_val
-        #TTS TEST 
-        actual_answer = str(self.Ans)
-        engine.say("Answer is Wrong, The Correct answer is " + actual_answer)
-        engine.runAndWait()
 
         self.ids.wrong_label.text = f'Answer is Wrong!\nCorrect answer is [color=#00FF00]{self.Ans}[/color]'
         if self.first_val == 1:

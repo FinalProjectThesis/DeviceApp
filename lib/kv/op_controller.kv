@@ -172,6 +172,7 @@
             orientation: 'vertical'
             BoxLayout:
                 GridLayout:
+                    spacing: dp(3)
                     id: first_grid
                     rows: 3
                     size_hint: .5, 1                    
@@ -184,6 +185,7 @@
                     halign: 'center'
                     pos_hint: {'center_y': .5}
                 GridLayout:
+                    spacing: dp(3)
                     id: second_grid
                     rows: 3
                     size_hint: .5, 1                    
@@ -196,6 +198,7 @@
                     halign: 'center'
                     pos_hint: {'center_y': .5}
                 GridLayout:
+                    spacing: dp(3)
                     id: answer_grid
                     rows: 3
                     size_hint: .5, 1
@@ -221,10 +224,12 @@
                     halign: 'center'
                     markup: True
         Button:
+            id: next_btn
             text: 'Next Question'
             font_size: dp(32)
             background_normal: ''
             background_color: 249/255, 129/255, 42/255
             size_hint: 520/root.width, 90/root.height
             pos_hint: {'center_x': .5}
+            disabled: True
             on_release: root.manager.current = 'operation'
