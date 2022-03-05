@@ -5,4 +5,4 @@ This is the device app to be loaded on the raspberry pi system. This will focus 
 * Make sure to have at least python 3.9.10
 * Check if pip is installed, if not install pip
 ## Copy into the CLI:
-* pip install kivy kivymd python-dotenv pyttsx3
+``` pip install kivy kivymd python-dotenv pyttsx3 ```
