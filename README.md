@@ -3,6 +3,6 @@ This is the device app to be loaded on the raspberry pi system. This will focus 
 
 ## Instructions before cloning:
 * Make sure to have at least python 3.9.10
-* Check if pip is installed, if not install pip
+* Check if pip is installed, if not, install pip. (It's usually installed though when installing python)
 * pip install the ff (Paste it into a command line): <br />
 ``` pip install kivy kivymd python-dotenv pyttsx3 ```
