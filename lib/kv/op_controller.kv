@@ -17,13 +17,13 @@
             MDLabel:
                 id: qcount_label
                 size_hint: 1, None
-                font_size: dp(15)
+                font_size: dp(16)
                 height: self.texture_size[1]
                 halign: 'center'
             MDLabel:
                 id: question_label
                 size_hint: 1, .95
-                font_size: dp(50)
+                font_size: dp(62)
                 halign: 'center'
         BoxLayout:
             size_hint: 1, .6
@@ -96,14 +96,47 @@
 
 <ResultScreen>:
     name: 'result'
+    Image:
+        source: 'assets/images/result_bg.png'
+        pos_hint: {'center_x':.5, 'center_y': .5}
+        size_hint: 1, 1
+        anim_delay: 1/30
+        repeat: True
     BoxLayout:
+        padding: dp(20)
         orientation: 'vertical'
-        Label:
+        MDLabel:
             id: result_label
-            color: 0, 0, 0, 1
-        MDFlatButton:
-            text: 'Submit Answers'
-            on_release: root.on_submit()
+            halign: 'center'
+            font_size: dp(36)
+        MDCard:
+            orientation: 'vertical'
+            spacing: dp(10)
+            padding: dp(10)
+            elevation: 10
+            size_hint: None, .5
+            width: root.width - 260
+            pos_hint: {'center_x':.5, 'center_y': .5}
+            MDLabel:
+                text: 'Not satisfied with your Score?\nTry Again!'
+                font_size: dp(22)
+                halign: 'center'
+                size_hint: 1, None
+                height: self.texture_size[1]
+            BoxLayout:
+                spacing: dp(10)
+                Button:
+                    text: 'Submit Answers'
+                    background_normal: ''
+                    font_size: dp(24)
+                    background_color: 0, 128/255, 128/255
+                    on_release: root.on_submit()
+                Button:
+                    text: 'Try Again!'
+                    font_size: dp(24)
+                    background_normal: ''
+                    background_color: 237/255, 41/255, 57/255
+                    on_release: root.on_again()
 
 <CorrectScreen>:
     name: 'correct'

@@ -26,7 +26,6 @@ class WindowManager(ScreenManager):
     pass
 
 class LoadingScreen(Screen):
-    test = 0
     counter = 0
     length = 0 
     def on_enter(self, *args):

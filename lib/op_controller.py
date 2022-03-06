@@ -63,8 +63,8 @@ class OperationScreen(Screen):
             OperationScreen.second_val = val2
             OperationScreen.answer = val1 + val2
             # generate labels
-            self.ids.qcount_label.text = str('Q #' + str(self.counter))
-            self.ids.question_label.text = str(val1) + ' + ' + str(val2)
+            self.ids.qcount_label.text = f'Question #{self.counter}'
+            self.ids.question_label.text = f'{val1} + {val2} = ???'
             print(str(self.counter))
         elif MenuScreen.operation == 'subtraction':
             val1 = random.randint(1, 10)
@@ -78,8 +78,8 @@ class OperationScreen(Screen):
                 self.load_easy()
             else:
                 # generate labels
-                self.ids.qcount_label.text = str('Q #' + str(self.counter))
-                self.ids.question_label.text = str(val1) + ' - ' + str(val2)
+                self.ids.qcount_label.text = f'Question #{self.counter}'
+                self.ids.question_label.text = f'{val1} - {val2} = ???'
         elif MenuScreen.operation == 'multiplication':
             val1 = random.randint(1, 10)
             val2 = random.randint(1, 10)
@@ -88,8 +88,8 @@ class OperationScreen(Screen):
             OperationScreen.second_val = val2
             OperationScreen.answer = val1 * val2
             # generate labels
-            self.ids.qcount_label.text = str('Q #' + str(self.counter))
-            self.ids.question_label.text = str(val1) + ' x ' + str(val2)
+            self.ids.qcount_label.text = f'Question #{self.counter}'
+            self.ids.question_label.text = f'{val1} x {val2} = ???'
         elif MenuScreen.operation == 'division':
             val1 = random.randint(1, 20)
             val2 = random.randint(1, 20)
@@ -103,8 +103,8 @@ class OperationScreen(Screen):
                 self.load_easy()
             else:
                 # generate labels
-                self.ids.qcount_label.text = str('Q #' + str(self.counter))
-                self.ids.question_label.text = str(val1) + ' ÷ ' + str(val2)
+                self.ids.qcount_label.text = f'Question #{self.counter}'
+                self.ids.question_label.text = f'{val1} ÷ {val2} = ???'
         
     
     def load_medium(self):
@@ -117,8 +117,8 @@ class OperationScreen(Screen):
             OperationScreen.second_val = val2
             OperationScreen.answer = val1 + val2
             # generate labels
-            self.ids.qcount_label.text = str('Q #' + str(self.counter))
-            self.ids.question_label.text = str(val1) + ' + ' + str(val2)
+            self.ids.qcount_label.text = f'Question #{self.counter}'
+            self.ids.question_label.text = f'{val1} + {val2} = ???'
             print(str(self.counter))
         elif MenuScreen.operation == 'subtraction':
             val1 = random.randint(10, 100)
@@ -132,8 +132,8 @@ class OperationScreen(Screen):
                 self.load_medium()
             else:
                 # generate labels
-                self.ids.qcount_label.text = str('Q #' + str(self.counter))
-                self.ids.question_label.text = str(val1) + ' - ' + str(val2)
+                self.ids.qcount_label.text = f'Question #{self.counter}'
+                self.ids.question_label.text = f'{val1} - {val2} = ???'
         elif MenuScreen.operation == 'multiplication':
             val1 = random.randint(1, 10)
             val2 = random.randint(10, 50)
@@ -145,8 +145,8 @@ class OperationScreen(Screen):
             if OperationScreen.answer > 1000:
                 self.load_medium()
             else:
-                self.ids.qcount_label.text = str('Q #' + str(self.counter))
-                self.ids.question_label.text = str(val1) + ' x ' + str(val2)
+                self.ids.qcount_label.text = f'Question #{self.counter}'
+                self.ids.question_label.text = f'{val1} x {val2} = ???'
         elif MenuScreen.operation == 'division':
             val1 = random.randint(10, 100)
             val2 = random.randint(1, 100)
@@ -160,8 +160,8 @@ class OperationScreen(Screen):
                 self.load_medium()
             else:
                 # generate labels
-                self.ids.qcount_label.text = str('Q #' + str(self.counter))
-                self.ids.question_label.text = str(val1) + ' ÷ ' + str(val2)
+                self.ids.qcount_label.text = f'Question #{self.counter}'
+                self.ids.question_label.text = f'{val1} ÷ {val2} = ???'
             
     def load_hard(self):
         # evaluate what operation
@@ -173,8 +173,8 @@ class OperationScreen(Screen):
             OperationScreen.second_val = val2
             OperationScreen.answer = val1 + val2
             # generate labels
-            self.ids.qcount_label.text = str('Q #' + str(self.counter))
-            self.ids.question_label.text = str(val1) + ' + ' + str(val2)
+            self.ids.qcount_label.text = f'Question #{self.counter}'
+            self.ids.question_label.text = f'{val1} + {val2} = ???'
             print(str(self.counter))
         elif MenuScreen.operation == 'subtraction':
             val1 = random.randint(100, 500)
@@ -188,8 +188,8 @@ class OperationScreen(Screen):
                 self.load_hard()
             else:
                 # generate labels
-                self.ids.qcount_label.text = str('Q #' + str(self.counter))
-                self.ids.question_label.text = str(val1) + ' - ' + str(val2)
+                self.ids.qcount_label.text = f'Question #{self.counter}'
+                self.ids.question_label.text = f'{val1} - {val2} = ???'
         elif MenuScreen.operation == 'multiplication':
             val1 = random.randint(10,20)
             val2 = random.randint(10,50)
@@ -202,8 +202,8 @@ class OperationScreen(Screen):
                 self.load_hard()
             else:
                 # generate labels
-                self.ids.qcount_label.text = str('Q #' + str(self.counter))
-                self.ids.question_label.text = str(val1) + ' x ' + str(val2)
+                self.ids.qcount_label.text = f'Question #{self.counter}'
+                self.ids.question_label.text = f'{val1} x {val2} = ???'
         elif MenuScreen.operation == 'division':
             val1 = random.randint(50, 200)
             val2 = random.randint(1, 200)
@@ -217,8 +217,8 @@ class OperationScreen(Screen):
                 self.load_hard()
             else:
                 # generate labels
-                self.ids.qcount_label.text = str('Q #' + str(self.counter))
-                self.ids.question_label.text = str(val1) + ' ÷ ' + str(val2)
+                self.ids.qcount_label.text = f'Question #{self.counter}'
+                self.ids.question_label.text = f'{val1} ÷ {val2} = ???'
 
     def validate_ans(self):
         final_input = self.ids.thousands_input.text + self.ids.hundreds_input.text + self.ids.tens_input.text + self.ids.ones_input.text
@@ -274,7 +274,7 @@ class ResultScreen(Screen):
     rawscore = 0
     totalscore = 0
     def on_pre_enter(self, *args):
-        self.ids.result_label.text = 'Scores is ' + str(OperationScreen.score) + '/' + str(OperationScreen.quiz_length)
+        self.ids.result_label.text = f'Score is\n{OperationScreen.score}/{OperationScreen.quiz_length}'
         Average_score = OperationScreen.score * .6
         if (OperationScreen.score >= Average_score):
             above_average_sound = SoundLoader.load("assets/music/positive_results.wav")
@@ -286,6 +286,9 @@ class ResultScreen(Screen):
     def on_leave(self, *args):
         OperationScreen.score = 0
         return super().on_leave(*args)
+    
+    def on_again(self):
+        self.manager.current = 'operation'
     
     def on_submit(self):
         # to get the current date and time 
