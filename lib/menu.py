@@ -18,7 +18,6 @@ class MenuScreen(Screen):
     operation = ''
 
     def on_pre_enter(self, *args):
-        # app = MDApp.get_running_app()
         self.ids.menu_toolbar.title = ChildListScreen.child
 
         def set_icon_properties(i):
@@ -105,4 +104,12 @@ class DifficultyScreen(Screen):
         self.manager.current = 'operation'
 
 class ProfileScreen(Screen):
-    pass            
+    
+    def on_pre_enter(self, *args):
+        self.ids.name_label.text = ChildListScreen.child
+        self.ids.age_label.text = ChildListScreen.child_age
+        self.ids.parent_label.text = ChildListScreen.parent_username
+        return super().on_pre_enter(*args)
+    
+    def on_exit(self):
+        self.manager.current = 'menu'

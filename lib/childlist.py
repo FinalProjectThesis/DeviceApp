@@ -26,6 +26,7 @@ class ChildListScreen(Screen):
     child_data = {}
     child_id = ''
     child = ''
+    child_age = ''
     indxSize = 0
 
     def on_pre_enter(self, *args):
@@ -120,6 +121,7 @@ class ChildListScreen(Screen):
             for i in range(0, self.child_length):
                 if self.ids['btn'+str(i+1)].state == 'down':
                     print('Entered as: ' + str(self.child_data[i]['student_name']) + '\nID: ' + str(self.child_data[i]['id']))
+                    ChildListScreen.child_age = str(self.child_data[i]['student_age'])
                     ChildListScreen.child = str(self.child_data[i]['student_name'])
                     ChildListScreen.child_id = str(self.child_data[i]['id'])
                     self.manager.current = 'menu'

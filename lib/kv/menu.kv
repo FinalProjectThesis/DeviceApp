@@ -5,7 +5,6 @@
         orientation: 'vertical'
         MDToolbar:
             id: menu_toolbar
-            title: 'Top Bar'
             left_action_items: [['account-circle', lambda x: root.on_profile()]]
             right_action_items: [['logout', lambda x: root.on_exit()]]
         BoxLayout:
@@ -110,6 +109,53 @@
 
 <ProfileScreen>:
     name: 'profile'
-    Button:
-        text: 'profile screen'
-        on_release: root.manager.current = 'menu'
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            id: profile_toolbar
+            title: 'Your Profile'
+            pos_hint: {'top': 1}
+            left_action_items: [['arrow-left', lambda x: root.on_exit()]]
+        BoxLayout:
+            padding: dp(15)
+            MDCard:
+                elevation: 10
+                BoxLayout:
+                    Image:
+                        source: 'assets/images/account.png'
+                    BoxLayout:
+                        padding: dp(25)
+                        orientation: 'vertical'
+                        MDLabel:
+                            text: 'NAME:'
+                            font_size: dp(12)
+                            size_hint: 1, None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            id: name_label
+                            font_size: dp(26)
+                            size_hint: 1, None
+                            height: self.texture_size[1]
+                        Widget:
+                        MDLabel:
+                            text: 'AGE:'
+                            font_size: dp(12)
+                            size_hint: 1, None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            id: age_label
+                            font_size: dp(26)
+                            size_hint: 1, None
+                            height: self.texture_size[1]
+                        Widget:
+                        MDLabel:
+                            text: 'PARENT:'
+                            font_size: dp(12)
+                            size_hint: 1, None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            id: parent_label
+                            font_size: dp(26)
+                            size_hint: 1, None
+                            height: self.texture_size[1]
+                        Widget:
