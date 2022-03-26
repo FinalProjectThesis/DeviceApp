@@ -221,18 +221,9 @@ class OperationScreen(Screen):
 
     def validate_ans(self):
         correct_sound_ping=SoundLoader.load("assets/music/correct_answer.wav")
-        correct_sound_ping.play()
         voice_1 = SoundLoader.load("assets/music/voice_excellent_1.wav")
         voice_2 = SoundLoader.load("assets/music/voice_very_good_1.wav")
         voice_3 = SoundLoader.load("assets/music/voice_good_job_1.wav")
-        success_voice = random.randint(1,3)
-        print ("success_voice_choice is " + str(success_voice))
-        if success_voice ==1:
-                voice_1.play()
-        if success_voice ==2:    
-                voice_2.play()
-        if success_voice ==3:    
-                voice_3.play()
         final_input = self.ids.thousands_input.text + self.ids.hundreds_input.text + self.ids.tens_input.text + self.ids.ones_input.text
         if len(final_input) == 0:
             final_input = 0
@@ -240,6 +231,15 @@ class OperationScreen(Screen):
         self.counter += 1
         if self.answer == int(final_input):
             OperationScreen.score += 1
+            correct_sound_ping.play()
+            success_voice = random.randint(1,3)
+            print ("success_voice_choice is " + str(success_voice))
+            if success_voice ==1:
+                voice_1.play()
+            if success_voice ==2:    
+                voice_2.play()
+            if success_voice ==3:    
+                voice_3.play()
             # play correct_answer on correct screen ( I'll add them into functions ;-;)
             # sound = SoundLoader.load("assets/music/correct_answer.wav")
             # sound.play()
