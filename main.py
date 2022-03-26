@@ -118,8 +118,6 @@ class MainApp(MDApp):
         # sound = SoundLoader.load('assets/music/general_bg_music.wav')
         # sound.loop = True
         # sound.play()
-        self.theme_cls.theme_style = 'Light'
-        self.theme_cls.primary_palette = 'Teal'
         
         return Builder.load_file('lib/kv/mainapp.kv')
     
