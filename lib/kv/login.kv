@@ -2,8 +2,9 @@
     name: 'login'
     Image:
         source: 'assets/images/background2.png'
-        pos_hint: {'center_x':.5, 'center_y': .5}
-        size: root.width, root.height
+        allow_stretch: True
+        keep_ratio: False
+        size: self.texture_size
         repeat: True
     MDCard:
         orientation: 'vertical'
