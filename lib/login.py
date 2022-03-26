@@ -19,8 +19,8 @@ class LoginScreen(Screen):
     token = ''
  
     def on_login(self):
-        # self.username = self.ids.user_input.text
-        # self.password = self.ids.pass_input.text
+        LoginScreen.username = self.ids.user_input.text
+        self.password = self.ids.pass_input.text
 
         #shows when it's loading
         def isloading():
@@ -55,8 +55,8 @@ class LoginScreen(Screen):
         sound.play()
 
         # Temp data or easy access out of login, remove for final/actual testing
-        LoginScreen.username = 'Carmen'
-        self.password = '123'
+        #LoginScreen.username = 'Carmen'
+        #self.password = '123'
 
         if len(str(self.username)) == 0 or len(str(self.password)) == 0:
             print ("both fields are empty") # for debugging
