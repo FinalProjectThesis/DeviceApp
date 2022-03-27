@@ -1,6 +1,12 @@
 #:import hex kivy.utils.get_color_from_hex
 <MenuScreen>:
     name: 'menu'
+    Image:
+        source: 'assets\images\menu_background.png'
+        allow_stretch: True
+        keep_ratio: False
+        size: self.texture_size
+        repeat: True
     BoxLayout:
         orientation: 'vertical'
         MDToolbar:
@@ -58,6 +64,12 @@
         
 <DifficultyScreen>:
     name: 'difficulty'
+    Image:
+        source: 'assets/images/difficulty_screen.png'
+        allow_stretch: True
+        keep_ratio: False
+        size: self.texture_size
+        repeat: True
     MDCard:
         orientation: 'vertical'
         size_hint: None, None

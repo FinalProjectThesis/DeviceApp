@@ -1,6 +1,12 @@
 #:import Factory kivy.factory.Factory
 <ChildListScreen>:
     name: 'childlist'
+    Image:
+        source: 'assets\images\studentlist_background.jpg'
+        allow_stretch: True
+        keep_ratio: False
+        size: self.texture_size
+        repeat: True
     BoxLayout:
         id: main_layout
         orientation: 'vertical'
