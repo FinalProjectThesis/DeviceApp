@@ -5,6 +5,7 @@ from kivymd.uix.button import MDFlatButton, MDIconButton, MDRaisedButton
 from kivymd.uix.card import MDCard
 from kivymd.uix.label import MDLabel
 from kivymd.uix.dialog import MDDialog
+from kivymd.app import MDApp
 from kivy.metrics import dp
 from dotenv import load_dotenv
 import os
@@ -81,6 +82,7 @@ class ChildListScreen(Screen):
         return super().on_enter(*args)
 
     def generate_box(self, *args):
+        app = MDApp.get_running_app()
         if not self.child_data:
             print('No data entered yet')
         else:
@@ -101,7 +103,7 @@ class ChildListScreen(Screen):
                     icon = 'account',
                     user_font_size = dp(125),
                     theme_text_color = 'Custom',
-                    text_color = '00BFA5',
+                    text_color = app.theme_cls.primary_color,
                     pos_hint = {'center_x': .5}
                 )
                 self.ids['btn'+str(i+1)] = icon_btn

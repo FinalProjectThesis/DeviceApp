@@ -10,12 +10,16 @@
     BoxLayout:
         id: main_layout
         orientation: 'vertical'
-        MDLabel:
+        Image:
+            source: "assets\images\Whos_Learning.png"
             size_hint: 1, .5
-            id: title_label
-            text: "Who's Learning?"
-            font_size: dp(50)
-            halign: 'center'
+        # MDLabel:
+        #     size_hint: 1, .5
+        #     id: title_label
+        #     text: "Who's Learning?"
+        #     font_size: dp(50)
+        #     outline_color: 1, 0, 0, 1
+        #     halign: 'center'
         ScrollView:
             id: scroll_view
             size_hint_y: 1
