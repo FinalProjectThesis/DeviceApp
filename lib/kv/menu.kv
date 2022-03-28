@@ -72,7 +72,7 @@
         orientation: 'vertical'
         size_hint: None, None
         width: dp(680)
-        height: dp(460)
+        height: dp(480)
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         elevation: dp(10)
         padding: dp(20)
@@ -83,13 +83,10 @@
             halign: 'center'
             size_hint: 1, None
             height: self.texture_size[1]
-        MDLabel:
-            text: 'Choose your difficulty!'
-            font_size: dp(25)
-            set_size: 500, 100
-            halign: 'center'
+        Image:
+            source: "assets\images\choose_your_difficulty_text.png"
             size_hint: 1, None
-            height: self.texture_size[1]
+            height: dp(75)
         MDRaisedButton:
             text: "EASY"
             font_size: dp(40)
