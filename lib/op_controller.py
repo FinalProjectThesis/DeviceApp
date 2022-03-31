@@ -44,6 +44,10 @@ class OperationScreen(Screen):
     def on_pre_enter(self, *args):
         # reset inputs
         self.reset_inputs()
+        #enable RFID reading
+        background_thread = Thread(target = self.readfromRFIDreaders)
+        self.stop_threads = False
+        background_thread.start() 
 
         # evaluate
         if self.counter > self.quiz_length:
@@ -70,7 +74,7 @@ class OperationScreen(Screen):
             #recieved_data += ser.read(data_left)
             #decoded_data = received_data.decode('utf-8')
             #Scanned_Raw = str(decoded_data)
-            Scanned_Raw = str("")
+            Scanned_Raw = str("P32B59462511")
             Scanned_Pos = Scanned_Raw[0:2]
             Scanned_Value = Scanned_Raw[2:]
             print ("The Position of the Card is " + str(Scanned_Pos))
@@ -103,6 +107,8 @@ class OperationScreen(Screen):
                 self.ids.hundreds_input.text = str(value)
             elif Scanned_Pos == 'P4':
                 self.ids.thousands_input.text = str(value)
+            if self.stop_threads:
+                break
     def load_easy(self):
         # evaluate what operation
         if MenuScreen.operation == 'addition':
@@ -112,9 +118,6 @@ class OperationScreen(Screen):
             OperationScreen.first_val = val1
             OperationScreen.second_val = val2
             OperationScreen.answer = val1 + val2
-            #enable RFID reading
-            background_thread = Thread(target = self.readfromRFIDreaders)
-            background_thread.start() 
             # generate labels
             self.ids.qcount_label.text = f'Question #{self.counter}'
             self.ids.question_label.text = f'{val1} + {val2} = ???'
@@ -275,6 +278,7 @@ class OperationScreen(Screen):
 
     def validate_ans(self):
         # loading sounds
+        self.stop_threads = True # stop the loop 
         correct_sound_ping=SoundLoader.load("assets/music/correct_answer.wav")
         voice_1 = SoundLoader.load("assets/music/voice_excellent_1.wav")
         voice_2 = SoundLoader.load("assets/music/voice_very_good_1.wav")
@@ -282,7 +286,6 @@ class OperationScreen(Screen):
         final_input = self.ids.thousands_input.text + self.ids.hundreds_input.text + self.ids.tens_input.text + self.ids.ones_input.text
         if len(final_input) == 0:
             final_input = 0
-
         self.counter += 1
         if self.answer == int(final_input):
             OperationScreen.score += 1
@@ -326,6 +329,7 @@ class OperationScreen(Screen):
         self.dialog.open()
 
         def exit():
+            self.stop_threads= True
             self.dialog.dismiss()
             self.manager.current = 'menu'
             self.score = 0
