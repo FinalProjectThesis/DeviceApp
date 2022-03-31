@@ -99,8 +99,11 @@ class SignupScreen(Screen):
                 print("Register Success")
                 print("Result is " + str(Registerrequest.result))
                 if Registerrequest.result == 'SameUsername':
+                    isnotloading()
                     on_sameUser()
                 else:
+                    isnotloading()
+                    clearconnectionerrormessage()
                     to_login()
                 
             # On Failed message of below's request             
@@ -109,6 +112,16 @@ class SignupScreen(Screen):
                 print (params)
                 print ("Result is "+ str(Registerrequest.result))
                 isnotloading()
+            
+            def showtimeoutmessage(self,*args):
+                isnotloading()
+                showconnectionerrormessage()
+
+            def showconnectionerrormessage():
+                self.ids.connection_status.text = "Connection Failed, Please check internet connection"
+            
+            def clearconnectionerrormessage():
+                self.ids.connection_status.text = ""
 
             def on_sameUser():
                 self.reset_all()
@@ -125,7 +138,7 @@ class SignupScreen(Screen):
             params =json.dumps({"username":Username,"password":Password, "first_name": First_name, "last_name": Last_name})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Registerrequest = UrlRequest(REGURL, on_success= successrequest,on_failure=failedrequest, req_body=params,req_headers=headers)
+            Registerrequest = UrlRequest(REGURL, on_success= successrequest,on_failure=failedrequest,timeout=5,on_error=showtimeoutmessage,req_body=params,req_headers=headers)
 
     def reset_username(self):
         self.ids.user_input.error = False
@@ -155,12 +168,23 @@ class SignupScreen(Screen):
         self.ids.last_input.focus = True
         self.ids.last_input.focus = False
 
+    def reset_connection_status_message(self):
+        self.ids.signup_button.text = "Sign Up"
+        self.ids.connection_status.text = ""
+
+    def clear_spinner(self):
+        self.ids.loading_spinner.active = False
+        self.ids.signup_button.text = "Sign Up"
+        self.ids.signup_button.disabled = False
+
     def reset_all(self):
         self.reset_username()
         self.reset_password()
         self.reset_confirm_pass()
         self.reset_firstname()
         self.reset_lastname()
+        self.reset_connection_status_message()
+        self.clear_spinner()
 
     def on_pre_leave(self, *args):
         self.ids.user_input.text = ''

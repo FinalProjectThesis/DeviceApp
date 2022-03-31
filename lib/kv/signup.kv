@@ -77,6 +77,14 @@
                     size_hint_y: None
                     height: dp(52)
         
+        MDLabel:
+            id: connection_status
+            text: 
+            font_size: dp(14)
+            halign: 'center'
+            size_hint: 1, None
+            height: self.texture_size[1]
+        
         MDSpinner:
             id: loading_spinner
             size_hint: None, None

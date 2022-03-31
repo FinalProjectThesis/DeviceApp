@@ -61,7 +61,7 @@ class LoadingScreen(Screen):
             with open('lib/bin/StoredScores.json','w') as json_file:
                 emptyjson  = json.dump(emptylist,json_file)
             print ("Emptying Stored JSON")
-
+ 
         with open('lib/bin/StoredScores.json') as json_file:
             data = json.load(json_file)
             if str(data) == '{}':
