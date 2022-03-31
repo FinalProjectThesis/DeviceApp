@@ -309,6 +309,10 @@ class OperationScreen(Screen):
             # sound.play()
             self.manager.current = 'wrong'  
     
+    def on_leave(self, *args):
+        self.stop_threads = True
+        return super().on_leave(*args)
+
     def on_exit(self):
         self.dialog = MDDialog(
             title = "Go back to Menu?",
