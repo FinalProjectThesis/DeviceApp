@@ -76,7 +76,17 @@ class DifficultyScreen(Screen):
     difficulty = ''
 
     def on_pre_enter(self, *args):
-        self.ids.op_label.text = MenuScreen.operation.capitalize()
+        #self.ids.op_label.text = MenuScreen.operation.capitalize()
+        #print (str(MenuScreen.operation))
+        if MenuScreen.operation == 'addition':
+            self.ids.op_label.source = "assets\images\Addition_textart.png"
+        elif MenuScreen.operation =='subtraction':
+            self.ids.op_label.source= "assets\images\Subtraction_textart.png"
+        elif MenuScreen.operation == 'multiplication':
+            self.ids.op_label.source ="assets\images\Multiplication_textart.png"
+        else: 
+            self.ids.op_label.source = "assets\images\Division_textart.png"
+
         return super().on_pre_enter(*args)
 
     def on_easy(self):

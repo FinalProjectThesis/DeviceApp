@@ -72,17 +72,21 @@
         orientation: 'vertical'
         size_hint: None, None
         width: dp(680)
-        height: dp(480)
+        height: dp(530)
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         elevation: dp(10)
         padding: dp(20)
         spacing: dp(20)
-        MDLabel:
+        #MDLabel:
+        #    id: op_label
+        #    font_size: dp(20)
+        #    halign: 'center'
+        #    size_hint: 1, None
+        #    height: self.texture_size[1]
+        Image:
             id: op_label
-            font_size: dp(20)
-            halign: 'center'
             size_hint: 1, None
-            height: self.texture_size[1]
+            height: dp(65)
         Image:
             source: "assets\images\choose_your_difficulty_text.png"
             size_hint: 1, None

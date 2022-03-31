@@ -74,7 +74,7 @@ class OperationScreen(Screen):
             #recieved_data += ser.read(data_left)
             #decoded_data = received_data.decode('utf-8')
             #Scanned_Raw = str(decoded_data)
-            Scanned_Raw = str("P32B59462511")
+            Scanned_Raw = "P32B59462511"
             Scanned_Pos = Scanned_Raw[0:2]
             Scanned_Value = Scanned_Raw[2:]
             print ("The Position of the Card is " + str(Scanned_Pos))
