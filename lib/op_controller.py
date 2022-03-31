@@ -277,10 +277,11 @@ class OperationScreen(Screen):
             self.counter = 1
     
     def reset_inputs(self):
-        self.ids.thousands_input.text = ''
-        self.ids.hundreds_input.text = ''
-        self.ids.tens_input.text = ''
-        self.ids.ones_input.text = ''
+        pass
+        # self.ids.thousands_input.text = ''
+        # self.ids.hundreds_input.text = ''
+        # self.ids.tens_input.text = ''
+        # self.ids.ones_input.text = ''
     
 class ResultScreen(Screen):
     rawscore = 0

@@ -40,9 +40,12 @@
                     height: self.texture_size[1]
                     halign: 'center'
                     pos_hint: {'top': 1}
-                TextInput:
+                MDLabel:
                     id: thousands_input
-                    font_size: dp(35)
+                    text: '5'
+                    halign: 'center'
+                    pos_hint: {'center_y': .5}
+                    font_size: dp(80)
             MDCard:
                 orientation: 'vertical'
                 spacing: dp(10)
@@ -54,9 +57,12 @@
                     height: self.texture_size[1]
                     halign: 'center'
                     pos_hint: {'top': 1}
-                TextInput:
+                MDLabel:
                     id: hundreds_input
-                    font_size: dp(35)
+                    text: '5'
+                    halign: 'center'
+                    pos_hint: {'center_y': .5}
+                    font_size: dp(80)
             MDCard:
                 orientation: 'vertical'
                 spacing: dp(10)
@@ -68,9 +74,12 @@
                     height: self.texture_size[1]
                     halign: 'center'
                     pos_hint: {'top': 1}
-                TextInput:
+                MDLabel:
                     id: tens_input
-                    font_size: dp(35)
+                    text: '5'
+                    halign: 'center'
+                    pos_hint: {'center_y': .5}
+                    font_size: dp(80)
             MDCard:
                 orientation: 'vertical'
                 spacing: dp(10)
@@ -82,9 +91,12 @@
                     height: self.texture_size[1]
                     halign: 'center'
                     pos_hint: {'top': 1}
-                TextInput:
+                MDLabel:
                     id: ones_input
-                    font_size: dp(35)
+                    text: '5'
+                    halign: 'center'
+                    pos_hint: {'center_y': .5}
+                    font_size: dp(80)
         Button:
             text: 'SUBMIT'
             font_size: dp(26)
