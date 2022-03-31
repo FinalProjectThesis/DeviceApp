@@ -1,5 +1,12 @@
 import random
+
 import threading
+from threading import Thread
+
+# for UART
+import serial
+from time import sleep
+# for KIVY
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.uix.image import Image
@@ -12,11 +19,13 @@ from lib.childlist import ChildListScreen
 from lib.login import LoginScreen
 from lib.menu import DifficultyScreen, MenuScreen
 
+
 from datetime import datetime, date
 from dotenv import load_dotenv
 import pyttsx3
 import json
 import os
+
 
 engine = pyttsx3.init()
 load_dotenv()
@@ -51,7 +60,49 @@ class OperationScreen(Screen):
                 self.load_hard()
         
         return super().on_pre_enter(*args)
-    
+
+    def readfromRFIDreaders(self):
+        #ser = serial.Serial ("/dev/ttyS0", 9600) 
+        while True:
+            #received_data = ser.read()
+            #sleep(0.03)
+            #data_left = ser.inWaiting()
+            #recieved_data += ser.read(data_left)
+            #decoded_data = received_data.decode('utf-8')
+            #Scanned_Raw = str(decoded_data)
+            Scanned_Raw = str("")
+            Scanned_Pos = Scanned_Raw[0:2]
+            Scanned_Value = Scanned_Raw[2:]
+            print ("The Position of the Card is " + str(Scanned_Pos))
+            print ("The Value of the Card is: " + str(Scanned_Value))
+            if Scanned_Value in ('BB84A82BF','6B74B22885','1BB7BE283A','ABB6BE288B'):
+                value = 0
+            elif Scanned_Value in ('6B31B128C3','8BAEB228BF','7BD3B92839','6B9CAA2873'):
+                value = 1
+            elif Scanned_Value in ('6B32B828C9','1B08CB28F0','EB7D4625F5','4B974625BF'):
+                value = 2
+            elif Scanned_Value in ('9BB03D2533','3B0F3D252C','1B24382522','AB503025EE'):
+                value = 3
+            elif Scanned_Value in ('ABC8332575','8BB12C2533','4B72C728D6','FB95BE28F8'):
+                value = 4
+            elif Scanned_Value in ('3B894525D2','1B624D2511','6B1F582509','1B68462510'):
+                value = 5 
+            elif Scanned_Value in ('9B9140256F','9BD5AD28CB','9B61C72815',' 6BB7AB285F'):
+                value = 6
+            elif Scanned_Value in ('2B83B42834','1BC6A9285C' ,'2BBFC6287A','8B66BD2878') :
+                value = 7
+            elif Scanned_Value in ('2B59462511','EBD6C428D1','3B8FBD2821','AB7BB5284D'):
+                value = 8
+            else:
+                value = 9
+            if Scanned_Pos == 'P1':
+                self.ids.ones_input.text = str(value)
+            elif Scanned_Pos == 'P2':
+                self.ids.tens_input.text  = str(value)
+            elif Scanned_Pos == 'P3':
+                self.ids.hundreds_input.text = str(value)
+            elif Scanned_Pos == 'P4':
+                self.ids.thousands_input.text = str(value)
     def load_easy(self):
         # evaluate what operation
         if MenuScreen.operation == 'addition':
@@ -61,6 +112,9 @@ class OperationScreen(Screen):
             OperationScreen.first_val = val1
             OperationScreen.second_val = val2
             OperationScreen.answer = val1 + val2
+            #enable RFID reading
+            background_thread = Thread(target = self.readfromRFIDreaders)
+            background_thread.start() 
             # generate labels
             self.ids.qcount_label.text = f'Question #{self.counter}'
             self.ids.question_label.text = f'{val1} + {val2} = ???'
@@ -220,6 +274,7 @@ class OperationScreen(Screen):
                 self.ids.question_label.text = f'{val1} ÷ {val2} = ???'
 
     def validate_ans(self):
+        # loading sounds
         correct_sound_ping=SoundLoader.load("assets/music/correct_answer.wav")
         voice_1 = SoundLoader.load("assets/music/voice_excellent_1.wav")
         voice_2 = SoundLoader.load("assets/music/voice_very_good_1.wav")
