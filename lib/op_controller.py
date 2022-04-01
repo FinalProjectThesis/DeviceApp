@@ -71,7 +71,7 @@ class OperationScreen(Screen):
             received_data = ser.read()
             sleep(0.03)
             data_left = ser.inWaiting()
-            recieved_data += ser.read(data_left)
+            received_data += ser.read(data_left)
             decoded_data = received_data.decode('utf-8')
             Scanned_Raw = str(decoded_data)
             Scanned_Pos = Scanned_Raw[0:2]
@@ -84,7 +84,7 @@ class OperationScreen(Screen):
                 value = 1
             elif Scanned_Value in ('6B32B828C9','1B08CB28F0','EB7D4625F5','4B974625BF'):
                 value = 2
-            elif Scanned_Value in ('9BB03D2533','3B0F3D252C','1B24382522','AB503025EE'):
+            elif Scanned_Value in ('9BB03D2533','3BF3D252C','1B24382522','AB503025EE'):
                 value = 3
             elif Scanned_Value in ('ABC8332575','8BB12C2533','4B72C728D6','FB95BE28F8'):
                 value = 4
