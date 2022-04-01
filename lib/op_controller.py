@@ -27,7 +27,7 @@ import json
 import os
 
 
-engine = pyttsx3.init()
+# engine = pyttsx3.init()
 load_dotenv()
 ADDSCOREURL = os.getenv('ADDSCOREURL')
 
@@ -462,18 +462,18 @@ class WrongScreen(Screen):
     first_val = 0
     second_val = 0
     
-    def on_enter(self, *args):
-        def run_TTS():
-            engine.say(f"Answer is Wrong, The Correct answer is {self.Ans}")
+    # def on_enter(self, *args):
+    #     def run_TTS():
+    #         engine.say(f"Answer is Wrong, The Correct answer is {self.Ans}")
             
-            engine.runAndWait()
-            self.ids.next_btn.disabled = False
+    #         engine.runAndWait()
+    #         self.ids.next_btn.disabled = False
             
-        threading.Thread(
-            target = run_TTS, daemon=True
-        ).start()
+    #     threading.Thread(
+    #         target = run_TTS, daemon=True
+    #     ).start()
         
-        return super().on_enter(*args)
+    #     return super().on_enter(*args)
     
     def on_pre_enter(self, *args):
         self.ids.next_btn.disabled = True   # disable button on enter (wait on TTS)
