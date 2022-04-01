@@ -73,7 +73,7 @@ class OperationScreen(Screen):
             data_left = ser.inWaiting()
             received_data += ser.read(data_left)
             decoded_data = received_data.decode('utf-8')
-            Scanned_Raw = str(decoded_data)
+            Scanned_Raw = str('decoded_data')
             Scanned_Pos = Scanned_Raw[0:2]
             Scanned_Value = Scanned_Raw[2:]
             
@@ -81,7 +81,7 @@ class OperationScreen(Screen):
                 value = 0
             elif Scanned_Value in ('6B31B128C3','8BAEB228BF','7BD3B92839','6B9CAA2875'):
                 value = 1
-            elif Scanned_Value in ('6B32B828C9','1B08CB28F0','EB7D4625F5','4B974625BF'):
+            elif Scanned_Value in ('6B32B828C9','1B8CB28F0','EB7D4625F5','4B974625BF'):
                 value = 2
             elif Scanned_Value in ('9BB03D2533','3BF3D252C','1B24382522','AB503025EE'):
                 value = 3
@@ -89,7 +89,7 @@ class OperationScreen(Screen):
                 value = 4
             elif Scanned_Value in ('3B894525D2','1B624D2511','6B1F582509','1B68462510'):
                 value = 5 
-            elif Scanned_Value in ('9B9140256F','9BD5AD28CB','9B61C72815',' 6BB7AB285F'):
+            elif Scanned_Value in ('9B9140256F','9BD5AD28CB','9B61C72815','6BB7AB285F'):
                 value = 6
             elif Scanned_Value in ('2B83B42834','1BC6A9285C' ,'2BBFC6287A','8B66BD2878') :
                 value = 7
@@ -340,10 +340,10 @@ class OperationScreen(Screen):
     
     def reset_inputs(self):
         pass
-        # self.ids.thousands_input.text = ''
-        # self.ids.hundreds_input.text = ''
-        # self.ids.tens_input.text = ''
-        # self.ids.ones_input.text = ''
+        self.ids.thousands_input.text = ''
+        self.ids.hundreds_input.text = ''
+        self.ids.tens_input.text = ''
+        self.ids.ones_input.text = ''
     
 class ResultScreen(Screen):
     rawscore = 0
@@ -462,18 +462,19 @@ class WrongScreen(Screen):
     first_val = 0
     second_val = 0
     
-    # def on_enter(self, *args):
-    #     def run_TTS():
-    #         engine.say(f"Answer is Wrong, The Correct answer is {self.Ans}")
+    def on_enter(self, *args):
+        self.ids.next_btn.disabled = False
+        # def run_TTS():
+        #     engine.say(f"Answer is Wrong, The Correct answer is {self.Ans}")
             
-    #         engine.runAndWait()
-    #         self.ids.next_btn.disabled = False
+        #     engine.runAndWait()
+        #     self.ids.next_btn.disabled = False
             
-    #     threading.Thread(
-    #         target = run_TTS, daemon=True
-    #     ).start()
+        # threading.Thread(
+        #     target = run_TTS, daemon=True
+        # ).start()
         
-    #     return super().on_enter(*args)
+        return super().on_enter(*args)
     
     def on_pre_enter(self, *args):
         self.ids.next_btn.disabled = True   # disable button on enter (wait on TTS)
