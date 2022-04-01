@@ -67,30 +67,21 @@
         allow_stretch: True
         keep_ratio: False
         size: self.texture_size
-        repeat: True
     MDCard:
         orientation: 'vertical'
         size_hint: None, None
-        width: dp(680)
-        height: dp(530)
+        width: root.width - 100
+        height: root.height - 40
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         elevation: dp(10)
-        padding: dp(20)
-        spacing: dp(20)
-        #MDLabel:
-        #    id: op_label
-        #    font_size: dp(20)
-        #    halign: 'center'
-        #    size_hint: 1, None
-        #    height: self.texture_size[1]
-        Image:
-            id: op_label
-            size_hint: 1, None
-            height: dp(65)
-        Image:
-            source: "assets\images\choose_your_difficulty_text.png"
-            size_hint: 1, None
-            height: dp(75)
+        padding: dp(10)
+        spacing: dp(15)
+        BoxLayout:
+            orientation: 'vertical'
+            Image:
+                id: op_label
+            Image:
+                source: "assets\images\choose_your_difficulty_text.png"
         MDRaisedButton:
             text: "EASY"
             font_size: dp(40)
@@ -116,6 +107,7 @@
             theme_text_color: 'Custom'
             text_color: [1, 0, 0, 1]
             pos_hint: {'right': 1}
+            height: dp(5)
             on_release: root.manager.current = 'menu'
 
 <ProfileScreen>:
