@@ -76,11 +76,10 @@ class OperationScreen(Screen):
             Scanned_Raw = str(decoded_data)
             Scanned_Pos = Scanned_Raw[0:2]
             Scanned_Value = Scanned_Raw[2:]
-            print ("The Position of the Card is " + str(Scanned_Pos))
-            print ("The Value of the Card is: " + str(Scanned_Value))
-            if Scanned_Value in ('BB84A82BF','6B74B22885','1BB7BE283A','ABB6BE288B'):
+            
+            if Scanned_Value in ('BB84A828BF','6B74B22885','1BB7BE283A','ABB6BE288B'):
                 value = 0
-            elif Scanned_Value in ('6B31B128C3','8BAEB228BF','7BD3B92839','6B9CAA2873'):
+            elif Scanned_Value in ('6B31B128C3','8BAEB228BF','7BD3B92839','6B9CAA2875'):
                 value = 1
             elif Scanned_Value in ('6B32B828C9','1B08CB28F0','EB7D4625F5','4B974625BF'):
                 value = 2
@@ -96,8 +95,9 @@ class OperationScreen(Screen):
                 value = 7
             elif Scanned_Value in ('2B59462511','EBD6C428D1','3B8FBD2821','AB7BB5284D'):
                 value = 8
-            else:
+            elif Scanned_Value in ('FB503F25B1','6B1F472516','EBBE3A254A','7BED4925FA'):
                 value = 9
+                
             if Scanned_Pos == 'P1':
                 self.ids.ones_input.text = str(value)
             elif Scanned_Pos == 'P2':
