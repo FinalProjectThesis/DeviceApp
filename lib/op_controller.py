@@ -66,15 +66,14 @@ class OperationScreen(Screen):
         return super().on_pre_enter(*args)
 
     def readfromRFIDreaders(self):
-        #ser = serial.Serial ("/dev/ttyS0", 9600) 
+        ser = serial.Serial ("/dev/ttyS0", 9600) 
         while True:
-            #received_data = ser.read()
-            #sleep(0.03)
-            #data_left = ser.inWaiting()
-            #recieved_data += ser.read(data_left)
-            #decoded_data = received_data.decode('utf-8')
-            #Scanned_Raw = str(decoded_data)
-            Scanned_Raw = "P32B59462511"
+            received_data = ser.read()
+            sleep(0.03)
+            data_left = ser.inWaiting()
+            recieved_data += ser.read(data_left)
+            decoded_data = received_data.decode('utf-8')
+            Scanned_Raw = str(decoded_data)
             Scanned_Pos = Scanned_Raw[0:2]
             Scanned_Value = Scanned_Raw[2:]
             print ("The Position of the Card is " + str(Scanned_Pos))
