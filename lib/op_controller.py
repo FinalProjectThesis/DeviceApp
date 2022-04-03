@@ -346,6 +346,7 @@ class OperationScreen(Screen):
         self.ids.ones_input.text = ''
     
 class ResultScreen(Screen):
+    
     rawscore = 0
     totalscore = 0
     def on_pre_enter(self, *args):
@@ -356,9 +357,12 @@ class ResultScreen(Screen):
             above_average_sound.play()
         #else: 
             #below_average_sound = Soundloader.load("assets/music/negative_results.wav")
+        
+        
         return super().on_pre_enter(*args)
     
     def on_leave(self, *args):
+        self.ids.upload_status.text = ""
         OperationScreen.score = 0
         return super().on_leave(*args)
     
@@ -366,7 +370,20 @@ class ResultScreen(Screen):
         self.manager.current = 'operation'
     
     def on_submit(self):
+
+        def isLoading():
+            self.ids.upload_status.text = "Loading, Please Wait"
+            self.ids.submit_answers_button.disabled = True
+            self.ids.try_again_button.disabled = True
+
+        def isnotLoading():
+            self.ids.upload_status.text = ""
+            self.ids.submit_answers_button.disabled = False
+            self.ids.try_again_button.disabled = False
+
+        isLoading()
         # to get the current date and time 
+        self.ids.upload_status.text = "Loading, Please Wait"
         current_time = datetime.now()
         current_date = datetime.today()
 
@@ -380,6 +397,7 @@ class ResultScreen(Screen):
         totalscore = str(OperationScreen.quiz_length)
 
         def successrequest(self,*args):
+            isnotLoading()
             print ("Submitted Scores") 
             result =  str(Scorerequest.result)
             print(result)
@@ -390,6 +408,7 @@ class ResultScreen(Screen):
 
         # On Fail Message of below's request 
         def failedrequest(self,*args):
+            isnotLoading()
             print ("Failed Request") # show error message
             print ("Result is "+ str(Scorerequest.result))
         
@@ -429,6 +448,7 @@ class ResultScreen(Screen):
         
         #if there is a timeout, run this code!!
         def on_timeout(self,*args):
+            isnotLoading()
             with open("lib/bin/StoredScores.json")as file:
                 data = json.load(file)
             if str(data) =='{}':

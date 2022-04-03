@@ -145,7 +145,7 @@ class LoginScreen(Screen):
             params = json.dumps({"username":Username,"password":Password})
             print (params)
             headers= {'Content-type':'application/json','Accept':'text/plain'}
-            Loginrequest =  UrlRequest(LOGINURL, on_success= successrequest,on_failure=failedrequest,timeout=5,on_error=showtimeoutmessage,req_body=params,req_headers=headers)
+            Loginrequest =  UrlRequest(LOGINURL, on_success= successrequest,on_failure=failedrequest,timeout=10,on_error=showtimeoutmessage,req_body=params,req_headers=headers)
         
         
                 

@@ -31,6 +31,18 @@ class ChildListScreen(Screen):
     indxSize = 0
 
     def on_pre_enter(self, *args):
+        
+        def isloading():
+            self.ids.loading_spinner.active = True
+            self.ids.login_button.text = "Loading.."
+            self.ids.login_button.disabled = True
+        def isnotloading():
+            self.ids.loading_spinner.active = False
+            self.ids.login_button.text = "Login"
+            self.ids.login_button.disabled = False
+
+
+        #isloading()
         print('communicating..')
         with open('lib/bin/SavedLogin.json') as json_file:
             data = json.load(json_file)
@@ -47,6 +59,7 @@ class ChildListScreen(Screen):
         
         # On Success Message of below's request 
         def successrequest(self,*args):
+           # isnotloading()
             print ("Success request")
             print("Result is " + str(childRequest.result))
             offlinesavedinfo = json.dumps(childRequest.result)
@@ -58,6 +71,7 @@ class ChildListScreen(Screen):
             call_Box()
 
         def load_offline(self,*args):
+           # isnotloading()
             print('Offline Mode')
             with open('lib/bin/ChildlistInfo.json') as json_file:
                 offlinechildlist = json.load(json_file)           #loads the file
@@ -68,6 +82,8 @@ class ChildListScreen(Screen):
 
         # On Fail Message of below's request 
         def failedrequest(self,*args):
+           # isnotloading()
+            load_offline()
             print ("Failed Request") # show error message
             print ("Result is "+ str(childRequest.result))
 
@@ -91,9 +107,9 @@ class ChildListScreen(Screen):
                 card = MDCard(
                     spacing = dp(15),
                     padding = dp(40),
-                    orientation = 'vertical',
+                    orientation = 'vertical', 
                     size_hint = (None, 1),
-                    width = dp(175),
+                    width = dp(175),     
                     elevation = 5
                 )
                 self.ids['card'+str(i+1)] = card
