@@ -93,7 +93,7 @@ class ChildListScreen(Screen):
         params = json.dumps({"parent_username" : ChildListScreen.parent_username})
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
         print(params)
-        childRequest = UrlRequest(LISTURL, on_success= successrequest, on_failure=failedrequest,timeout = 5, on_error= load_offline,req_body=params, req_headers=headers)
+        childRequest = UrlRequest(LISTURL, on_success= successrequest, on_failure=failedrequest,timeout = 10, on_error= load_offline,req_body=params, req_headers=headers)
         
         return super().on_enter(*args)
 
