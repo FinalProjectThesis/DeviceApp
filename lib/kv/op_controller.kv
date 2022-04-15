@@ -138,15 +138,23 @@
                 halign: 'center'
                 size_hint: 1, None
                 height: self.texture_size[1]
+            MDLabel:
+                id: upload_status
+                text: ""
+                font_size: dp(22)
+                size_hint: 1, None
+                height: self.texture_size[1]
             BoxLayout:
                 spacing: dp(10)
                 Button:
+                    id: submit_answers_button
                     text: 'Submit Answers'
                     background_normal: ''
                     font_size: dp(24)
                     background_color: 0, 128/255, 128/255
                     on_release: root.on_submit()
                 Button:
+                    id: try_again_button
                     text: 'Try Again!'
                     font_size: dp(24)
                     background_normal: ''

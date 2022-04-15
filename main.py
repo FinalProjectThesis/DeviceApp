@@ -1,16 +1,17 @@
 # from kivy.app import App
+from kivy.config import Config
+Config.set('kivy', 'keyboard_mode','systemanddock')
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.properties import StringProperty
 from kivy.clock import Clock
 from kivy.uix.vkeyboard import VKeyboard
-from kivy.config import Config
+
 from kivy.network.urlrequest import UrlRequest
 import os 
 
 ADDSCOREURL = os.getenv('ADDSCOREURL')
-Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 # for making it read from the json file on startup ( to parse json )
 import json 
@@ -21,6 +22,8 @@ from lib.signup import SignupScreen
 from lib.childlist import ChildListScreen
 from lib.menu import MenuScreen, DifficultyScreen, ProfileScreen
 from lib.op_controller import ADDSCOREURL, OperationScreen, ResultScreen, CorrectScreen, WrongScreen
+
+
 
 class WindowManager(ScreenManager):
     pass
