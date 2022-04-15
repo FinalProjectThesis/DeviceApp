@@ -2,7 +2,7 @@
 <ChildListScreen>:
     name: 'childlist'
     Image:
-        source: 'assets\images\studentlist_background.jpg'
+        source: 'assets/images/studentlist_background.jpg'
         allow_stretch: True
         keep_ratio: False
         size: self.texture_size
@@ -11,15 +11,8 @@
         id: main_layout
         orientation: 'vertical'
         Image:
-            source: "assets\images\Whos_Learning.png"
+            source: "assets/images/Whos_Learning.png"
             size_hint: 1, .5
-        # MDLabel:
-        #     size_hint: 1, .5
-        #     id: title_label
-        #     text: "Who's Learning?"
-        #     font_size: dp(50)
-        #     outline_color: 1, 0, 0, 1
-        #     halign: 'center'
         ScrollView:
             id: scroll_view
             size_hint_y: 1

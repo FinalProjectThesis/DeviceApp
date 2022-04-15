@@ -73,7 +73,7 @@ class OperationScreen(Screen):
             data_left = ser.inWaiting()
             received_data += ser.read(data_left)
             decoded_data = received_data.decode('utf-8')
-            Scanned_Raw = str('decoded_data')
+            Scanned_Raw = str(decoded_data)
             Scanned_Pos = Scanned_Raw[0:2]
             Scanned_Value = Scanned_Raw[2:]
             
@@ -108,6 +108,7 @@ class OperationScreen(Screen):
                 self.ids.thousands_input.text = str(value)
             if self.stop_threads:
                 break
+            
     def load_easy(self):
         # evaluate what operation
         if MenuScreen.operation == 'addition':
