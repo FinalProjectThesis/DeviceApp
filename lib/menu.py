@@ -77,9 +77,9 @@ class DifficultyScreen(Screen):
 
     def on_pre_enter(self, *args):
         if MenuScreen.operation == 'addition':
-            self.ids.op_label.source = "assets/images/Addition_textart.png"
+            self.ids.op_label.source = "assets/images/addition.png"
         elif MenuScreen.operation =='subtraction':
-            self.ids.op_label.source= "assets/images/Subtraction_textart.png"
+            self.ids.op_label.source= "assets/images/subtraction.png"
         elif MenuScreen.operation == 'multiplication':
             self.ids.op_label.source ="assets/images/Multiplication_textart.png"
         else: 

@@ -1,11 +1,11 @@
 <OperationScreen>:
     name: 'operation'
-    Image:
-        source: 'assets/images/question_screen_background.png'
-        allow_stretch: True
-        keep_ratio: False
-        size: self.texture_size
-        repeat: True
+    # Image:
+    #     source: 'assets/images/question_screen_background.png'
+    #     allow_stretch: True
+    #     keep_ratio: False
+    #     size: self.texture_size
+    #     repeat: True
     BoxLayout:
         padding: dp(15)
         orientation: 'vertical'
@@ -33,73 +33,72 @@
                 halign: 'center'
         BoxLayout:
             size_hint: 1, .6
-            spacing: dp(15)
-            padding: dp(15)
+            spacing: dp(65)
+            padding: dp(20)
             MDCard:
                 orientation: 'vertical'
-                spacing: dp(10)
-                padding: dp(15)
-                size_hint: .25, 1
-                MDLabel:
-                    text: 'Thousands'
-                    size_hint: 1, None
-                    height: self.texture_size[1]
-                    halign: 'center'
-                    pos_hint: {'top': 1}
-                MDLabel:
-                    id: thousands_input
-                    halign: 'center'
-                    pos_hint: {'center_y': .5}
-                    font_size: dp(80)
-            MDCard:
-                orientation: 'vertical'
+                md_bg_color: 244/255, 67/255, 54/255, 1
+                elevation: 20
                 spacing: dp(10)
                 padding: dp(15)
                 size_hint: .25, 1
                 MDLabel:
                     text: 'Hundreds'
+                    bold: True
                     size_hint: 1, None
                     height: self.texture_size[1]
                     halign: 'center'
                     pos_hint: {'top': 1}
-                MDLabel:
+                Image:
                     id: hundreds_input
-                    halign: 'center'
-                    pos_hint: {'center_y': .5}
-                    font_size: dp(80)
+                # MDLabel:
+                #     id: hundreds_input
+                #     halign: 'center'
+                #     pos_hint: {'center_y': .5}
+                #     font_size: dp(85)
             MDCard:
                 orientation: 'vertical'
+                md_bg_color: 193/255, 244/255, 54/255, 1
+                elevation: 20
                 spacing: dp(10)
                 padding: dp(15)
                 size_hint: .25, 1
                 MDLabel:
                     text: 'Tens'
+                    bold: True
                     size_hint: 1, None
                     height: self.texture_size[1]
                     halign: 'center'
                     pos_hint: {'top': 1}
-                MDLabel:
+                Image:
                     id: tens_input
-                    halign: 'center'
-                    pos_hint: {'center_y': .5}
-                    font_size: dp(80)
+                # MDLabel:
+                #     id: tens_input
+                #     halign: 'center'
+                #     pos_hint: {'center_y': .5}
+                #     font_size: dp(85)
             MDCard:
                 orientation: 'vertical'
+                md_bg_color: 54/255, 117/255, 244/255, 1
+                elevation: 20
                 spacing: dp(10)
                 padding: dp(15)
                 size_hint: .25, 1
                 background_color: 237/255, 41/255, 57/255
                 MDLabel:
                     text: 'Ones'
+                    bold: True
                     size_hint: 1, None
                     height: self.texture_size[1]
                     halign: 'center'
                     pos_hint: {'top': 1}
-                MDLabel:
+                Image:
                     id: ones_input
-                    halign: 'center'
-                    pos_hint: {'center_y': .5}
-                    font_size: dp(80)
+                # MDLabel:
+                #     id: ones_input
+                #     halign: 'center'
+                #     pos_hint: {'center_y': .5}
+                #     font_size: dp(85)
         Button:
             text: 'SUBMIT'
             font_size: dp(26)

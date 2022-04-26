@@ -78,25 +78,26 @@
         spacing: dp(15)
         BoxLayout:
             orientation: 'vertical'
+            spacing: dp(15)
             Image:
                 id: op_label
             Image:
                 source: "assets/images/choose_your_difficulty_text.png"
         MDRaisedButton:
-            text: "EASY"
+            text: "LEVEL 1"
             font_size: dp(40)
             width: root.width*0.55
             pos_hint: {'center_x': .5}
             on_release: root.on_easy()
         MDRaisedButton:
-            text: 'MEDIUM'
+            text: 'LEVEL 2'
             md_bg_color: 230/255, 178/255, 15/255, 1
             font_size: dp(40)
             width: root.width*0.55
             pos_hint: {'center_x': .5}
             on_release: root.on_medium()
         MDRaisedButton:
-            text: 'HARD'
+            text: 'LEVEL 3'
             md_bg_color: 237/255, 41/255, 57/255, 1
             font_size: dp(40)
             width: root.width*0.55
