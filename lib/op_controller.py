@@ -78,76 +78,56 @@ class OperationScreen(Screen):
             Scanned_Value = Scanned_Raw[2:]
             
             if Scanned_Pos == 'P1':
-                pass
                 # check values if available for P1 (ones)
                 if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1'):
+                    self.ids.ones_input.opacity = 1
                     if Scanned_Value == 'BB84A828BF':
                         self.ids.ones_input.source = 'assets/images/ones/0.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == '6B31B128C3':
                         self.ids.ones_input.source = 'assets/images/ones/1.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == '6B32B828C9':
                         self.ids.ones_input.source = 'assets/images/ones/2.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == '9BB03D2533':
                         self.ids.ones_input.source = 'assets/images/ones/3.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == 'ABC8332575':
                         self.ids.ones_input.source = 'assets/images/ones/4.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == '3B894525D2':
                         self.ids.ones_input.source = 'assets/images/ones/5.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == '9B9140256F':
                         self.ids.ones_input.source = 'assets/images/ones/6.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == '2B83B42834':
                         self.ids.ones_input.source = 'assets/images/ones/7.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == '2B59462511':
                         self.ids.ones_input.source = 'assets/images/ones/8.png'
-                        self.ids.ones_input.opacity = 1
                     elif Scanned_Value == 'FB503F25B1':
                         self.ids.ones_input.source = 'assets/images/ones/9.png'
-                        self.ids.ones_input.opacity = 1
                 else:
                     pass
                     # send error message
             elif Scanned_Pos == 'P2':
-                pass
                 # check values if available for P2 (tens)
                 if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B08CB28F0', '3B0F3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516'):
+                    self.ids.tens_input.opacity = 1
                     if Scanned_Value == '6B74B22885':
                         self.ids.tens_input.source = 'assets/images/tens/0.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == '8BAEB228BF':
                         self.ids.tens_input.source = 'assets/images/tens/1.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == '1B08CB28F0':
                         self.ids.tens_input.source = 'assets/images/tens/2.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == '3B0F3D252C':
                         self.ids.tens_input.source = 'assets/images/tens/3.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == '8BB12C2533':
                         self.ids.tens_input.source = 'assets/images/tens/4.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == '1B624D2511':
                         self.ids.tens_input.source = 'assets/images/tens/5.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == '9BD5AD28CB':
                         self.ids.tens_input.source = 'assets/images/tens/6.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == '1BC6A9285C':
                         self.ids.tens_input.source = 'assets/images/tens/7.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == 'EBD6C428D1':
                         self.ids.tens_input.source = 'assets/images/tens/8.png'
-                        self.ids.tens_input.opacity = 1
                     elif Scanned_Value == '6B1F472516':
                         self.ids.tens_input.source = 'assets/images/tens/9.png'
-                        self.ids.tens_input.opacity = 1
                 else:
                     pass
                     # send error message
@@ -155,36 +135,27 @@ class OperationScreen(Screen):
                 pass
                 # check values if available for P3 (hundreds)
                 if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F582509', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A'):
+                    self.ids.hundreds_input.opacity = 1
                     if Scanned_Value == '1BB7BE283A':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/0.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == '7BD3B92839':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/1.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == 'EB7D4625F5':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/2.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == '1B24382522':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/3.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == '4B72C728D6':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/4.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == '6B1F582509':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/5.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == '9B61C72815':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/6.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == '2BBFC6287A':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/7.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == '3B8FBD2821':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/8.png'
-                        self.ids.hundreds_input.opacity = 1
                     elif Scanned_Value == 'EBBE3A254A':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/9.png'
-                        self.ids.hundreds_input.opacity = 1
                 else:
                     pass
                     # send error message
@@ -455,7 +426,7 @@ class OperationScreen(Screen):
             self.counter = 1
     
     def reset_inputs(self):
-        self.ids.hundreds_input.source = ''
+        self.ids.hundreds_input.source = 'assets/images/hundreds/0.png'
         self.ids.hundreds_input.opacity = 0
         self.ids.tens_input.source = ''
         self.ids.tens_input.opacity = 0
