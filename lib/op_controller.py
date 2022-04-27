@@ -66,31 +66,7 @@ class OperationScreen(Screen):
                 self.load_hard()
         
         return super().on_pre_enter(*args)
-
-    def render_image_num(self):
-        if len(self.ones) != 0:
-            self.ids.ones_input.opacity = 1
-            if self.ones == '0':
-                self.ids.ones_input.source = 'assets/images/ones/0.png'
-            elif self.ones == '1':
-                self.ids.ones_input.source = 'assets/images/ones/1.png'
-            elif self.ones == '2':
-                self.ids.ones_input.source = 'assets/images/ones/2.png'
-            elif self.ones == '3':
-                self.ids.ones_input.source = 'assets/images/ones/3.png'
-            elif self.ones == '4':
-                self.ids.ones_input.source = 'assets/images/ones/4.png'
-            elif self.ones == '5':
-                self.ids.ones_input.source = 'assets/images/ones/5.png'
-            elif self.ones == '6':
-                self.ids.ones_input.source = 'assets/images/ones/6.png'
-            elif self.ones == '7':
-                self.ids.ones_input.source = 'assets/images/ones/7.png'
-            elif self.ones == '8':
-                self.ids.ones_input.source = 'assets/images/ones/8.png'
-            elif self.ones == '9':
-                self.ids.ones_input.source = 'assets/images/ones/9.png'
-
+                
     def readfromRFIDreaders(self):
         ser = serial.Serial ("/dev/ttyS0", 9600) 
         while True:
@@ -108,38 +84,38 @@ class OperationScreen(Screen):
                 if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1'):
                     self.ids.ones_input.opacity = 1
                     if Scanned_Value == 'BB84A828BF':
+                        self.ids.ones_input.source = 'assets/images/ones/0.png'
                         self.ones = '0'
                     elif Scanned_Value == '6B31B128C3':
-                        
+                        self.ids.ones_input.source = 'assets/images/ones/1.png'
                         self.ones = '1'
                     elif Scanned_Value == '6B32B828C9':
-                        
+                        self.ids.ones_input.source = 'assets/images/ones/2.png'
                         self.ones = '2'
                     elif Scanned_Value == '9BB03D2533':
-                        
+                        self.ids.ones_input.source = 'assets/images/ones/3.png'
                         self.ones = '3'
                     elif Scanned_Value == 'ABC8332575':
-                        
+                        self.ids.ones_input.source = 'assets/images/ones/4.png'
                         self.ones = '4'
                     elif Scanned_Value == '3B894525D2':
-                        
+                        self.ids.ones_input.source = 'assets/images/ones/5.png'
                         self.ones = '5'
                     elif Scanned_Value == '9B9140256F':
-                        
+                        self.ids.ones_input.source = 'assets/images/ones/6.png'
                         self.ones = '6'
                     elif Scanned_Value == '2B83B42834':
-                        
+                        self.ids.ones_input.source = 'assets/images/ones/7.png'
                         self.ones = '7'
                     elif Scanned_Value == '2B59462511':
-                        
+                        self.ids.ones_input.source = 'assets/images/ones/8.png'
                         self.ones = '8'
                     elif Scanned_Value == 'FB503F25B1':
-
+                        self.ids.ones_input.source = 'assets/images/ones/9.png'
                         self.ones = '9'
                 else:
                     pass
                     # send error message
-                self.render_image_num()
             elif Scanned_Pos == 'P2':
                 # check values if available for P2 (tens)
                 if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B08CB28F0', '3B0F3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516'):
@@ -478,12 +454,12 @@ class OperationScreen(Screen):
             self.counter = 1
     
     def reset_inputs(self):
-        # self.ids.hundreds_input.source = ''
-        # self.ids.hundreds_input.opacity = 0
-        # self.ids.tens_input.source = ''
-        # self.ids.tens_input.opacity = 0
-        # self.ids.ones_input.source = ''
-        # self.ids.ones_input.opacity = 0
+        self.ids.hundreds_input.source = ''
+        self.ids.hundreds_input.opacity = 0
+        self.ids.tens_input.source = ''
+        self.ids.tens_input.opacity = 0
+        self.ids.ones_input.source = ''
+        self.ids.ones_input.opacity = 0
         
         self.ones = ''
         self.tens = ''
