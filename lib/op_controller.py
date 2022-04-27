@@ -124,10 +124,10 @@ class OperationScreen(Screen):
                     elif Scanned_Value == '8BAEB228BF':
                         self.ids.tens_input.source = 'assets/images/tens/1.png'
                         self.tens = '1'
-                    elif Scanned_Value == '1B08CB28F0':
+                    elif Scanned_Value == '1B8CB28F0':
                         self.ids.tens_input.source = 'assets/images/tens/2.png'
                         self.tens = '2'
-                    elif Scanned_Value == '3B0F3D252C':
+                    elif Scanned_Value == '3BF3D252C':
                         self.ids.tens_input.source = 'assets/images/tens/3.png'
                         self.tens = '3'
                     elif Scanned_Value == '8BB12C2533':
@@ -170,7 +170,7 @@ class OperationScreen(Screen):
                     elif Scanned_Value == '4B72C728D6':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/4.png'
                         self.hundreds = '4'
-                    elif Scanned_Value == '6B1F582509':
+                    elif Scanned_Value == '6B1F58259':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/5.png'
                         self.hundreds = '5'
                     elif Scanned_Value == '9B61C72815':
