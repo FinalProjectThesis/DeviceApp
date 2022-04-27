@@ -66,7 +66,15 @@ class OperationScreen(Screen):
                 self.load_hard()
         
         return super().on_pre_enter(*args)
-                
+    
+    def show_num_image(self):
+        if len(self.ones) != 0:
+            self.ids.ones_input.opacity = 1
+        if len(self.ones) != 0:
+            self.ids.tens_input.opacity = 1
+        if len(self.ones) != 0:
+            self.ids.hundreds_input.opacity = 1
+    
     def readfromRFIDreaders(self):
         ser = serial.Serial ("/dev/ttyS0", 9600) 
         while True:
@@ -82,7 +90,7 @@ class OperationScreen(Screen):
             if Scanned_Pos == 'P1':
                 # check values if available for P1 (ones)
                 if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1'):
-                    self.ids.ones_input.opacity = 1
+                    # self.show_image()
                     if Scanned_Value == 'BB84A828BF':
                         self.ids.ones_input.source = 'assets/images/ones/0.png'
                         self.ones = '0'
@@ -116,6 +124,7 @@ class OperationScreen(Screen):
                 else:
                     pass
                     # send error message
+                self.show_num_image()
             elif Scanned_Pos == 'P2':
                 # check values if available for P2 (tens)
                 if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B08CB28F0', '3B0F3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516'):
