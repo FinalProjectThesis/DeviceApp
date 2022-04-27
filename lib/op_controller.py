@@ -117,7 +117,7 @@ class OperationScreen(Screen):
                     # send error message
             elif Scanned_Pos == 'P2':
                 # check values if available for P2 (tens)
-                if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B08CB28F0', '3B0F3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516'):
+                if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B8CB28F0', '3BF3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516'):
                     if Scanned_Value == '6B74B22885':
                         self.ids.tens_input.source = 'assets/images/tens/0.png'
                         self.tens = '0'
@@ -154,7 +154,7 @@ class OperationScreen(Screen):
             elif Scanned_Pos == 'P3':
                 pass
                 # check values if available for P3 (hundreds)
-                if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F582509', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A'):
+                if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F58259', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A'):
                     if Scanned_Value == '1BB7BE283A':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/0.png'
                         self.hundreds = '0'
