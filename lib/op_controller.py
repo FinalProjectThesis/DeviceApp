@@ -12,6 +12,7 @@ from kivy.metrics import dp
 from kivy.uix.image import Image
 from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.dialog import MDDialog
+from kivymd.uix.snackbar import Snackbar
 from kivy.uix.screenmanager import Screen
 from kivy.network.urlrequest import UrlRequest
 from kivy.core.audio import SoundLoader
@@ -81,7 +82,7 @@ class OperationScreen(Screen):
             
             if Scanned_Pos == 'P1':
                 # check values if available for P1 (ones)
-                if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1'):
+                if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
                     if Scanned_Value == 'BB84A828BF':
                         self.ids.ones_input.source = 'assets/images/ones/0.png'
                         self.ones = '0'
@@ -112,12 +113,14 @@ class OperationScreen(Screen):
                     elif Scanned_Value == 'FB503F25B1':
                         self.ids.ones_input.source = 'assets/images/ones/9.png'
                         self.ones = '9'
+                    else:
+                        self.ids.ones_input.source = 'assets/images/trans_bg.png'
+                        self.ones = ''
                 else:
-                    pass
-                    # send error message
+                    self.error_snackbar()
             elif Scanned_Pos == 'P2':
                 # check values if available for P2 (tens)
-                if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B8CB28F0', '3BF3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516'):
+                if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B8CB28F0', '3BF3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
                     if Scanned_Value == '6B74B22885':
                         self.ids.tens_input.source = 'assets/images/tens/0.png'
                         self.tens = '0'
@@ -148,13 +151,15 @@ class OperationScreen(Screen):
                     elif Scanned_Value == '6B1F472516':
                         self.ids.tens_input.source = 'assets/images/tens/9.png'
                         self.tens = '9'
+                    else:
+                        self.ids.tens_input.source = 'assets/images/trans_bg.png'
+                        self.tens = ''
                 else:
-                    pass
-                    # send error message
+                    self.error_snackbar()
             elif Scanned_Pos == 'P3':
                 pass
                 # check values if available for P3 (hundreds)
-                if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F58259', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A'):
+                if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F58259', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
                     if Scanned_Value == '1BB7BE283A':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/0.png'
                         self.hundreds = '0'
@@ -185,44 +190,27 @@ class OperationScreen(Screen):
                     elif Scanned_Value == 'EBBE3A254A':
                         self.ids.hundreds_input.source = 'assets/images/hundreds/9.png'
                         self.hundreds = '9'
+                    else:
+                        self.ids.hundreds_input.source = 'assets/images/trans_bg.png'
+                        self.hundreds = ''
                 else:
-                    pass
-                    # send error message
+                    self.error_snackbar()
             
             if self.stop_threads:
                 break
-            
-            # if Scanned_Value in ('BB84A828BF','6B74B22885','1BB7BE283A','ABB6BE288B'):
-            #     value = 0
-            # elif Scanned_Value in ('6B31B128C3','8BAEB228BF','7BD3B92839','6B9CAA2875'):
-            #     value = 1
-            # elif Scanned_Value in ('6B32B828C9','1B8CB28F0','EB7D4625F5','4B974625BF'):
-            #     value = 2
-            # elif Scanned_Value in ('9BB03D2533','3BF3D252C','1B24382522','AB503025EE'):
-            #     value = 3
-            # elif Scanned_Value in ('ABC8332575','8BB12C2533','4B72C728D6','FB95BE28F8'):
-            #     value = 4
-            # elif Scanned_Value in ('3B894525D2','1B624D2511','6B1F582509','1B68462510'):
-            #     value = 5 
-            # elif Scanned_Value in ('9B9140256F','9BD5AD28CB','9B61C72815','6BB7AB285F'):
-            #     value = 6
-            # elif Scanned_Value in ('2B83B42834','1BC6A9285C' ,'2BBFC6287A','8B66BD2878'):
-            #     value = 7
-            # elif Scanned_Value in ('2B59462511','EBD6C428D1','3B8FBD2821','AB7BB5284D'):
-            #     value = 8
-            # elif Scanned_Value in ('FB503F25B1','6B1F472516','EBBE3A254A','7BED4925FA'):
-            #     value = 9
-                
-            # if Scanned_Pos == 'P1':
-            #     self.ids.ones_input.text = str(value)
-            # elif Scanned_Pos == 'P2':
-            #     self.ids.tens_input.text  = str(value)
-            # elif Scanned_Pos == 'P3':
-            #     self.ids.hundreds_input.text = str(value)
-            # elif Scanned_Pos == 'P4':
-            #     self.ids.thousands_input.text = str(value)
-            # if self.stop_threads:
-            #     break
+    
+    def error_snackbar(self):
+        snackbar = Snackbar(
+            text = 'Wrong placement of card!',
+            font_size = "16dp",
+            snackbar_x = "5dp",
+            snackbar_y = "5dp",
+            size_hint_x = .7,
+            pos_hint = {'center_x': 0.5,'center_y': 0.93},
+            bg_color = (1, 0, 0, 1),
+            duration = 1
+        )
+        snackbar.open()
             
     def load_easy(self):
         # evaluate what operation
@@ -234,8 +222,8 @@ class OperationScreen(Screen):
             OperationScreen.second_val = val2
             OperationScreen.answer = val1 + val2
             # generate labels
-            self.ids.qcount_label.text = f'Question #{self.counter}'
-            self.ids.question_label.text = f'{val1} + {val2} = ???'
+            self.ids.qcount_label.text = f'Question # {self.counter}'
+            self.ids.question_label.text = f'{val1} + {val2} = ?'
             print(str(self.counter))
         elif MenuScreen.operation == 'subtraction':
             val1 = random.randint(1, 10)
@@ -250,7 +238,7 @@ class OperationScreen(Screen):
             else:
                 # generate labels
                 self.ids.qcount_label.text = f'Question #{self.counter}'
-                self.ids.question_label.text = f'{val1} - {val2} = ???'
+                self.ids.question_label.text = f'{val1} - {val2} = ?'
         elif MenuScreen.operation == 'multiplication':
             val1 = random.randint(1, 10)
             val2 = random.randint(1, 10)
