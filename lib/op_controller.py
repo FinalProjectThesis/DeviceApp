@@ -49,7 +49,7 @@ class OperationScreen(Screen):
         #enable RFID reading
         background_thread = Thread(target = self.readfromRFIDreaders)
         self.stop_threads = False
-        background_thread.start() 
+        background_thread.start()
 
         # evaluate
         if self.counter > self.quiz_length:
@@ -77,7 +77,7 @@ class OperationScreen(Screen):
             decoded_data = received_data.decode('utf-8')
             Scanned_Raw = str(decoded_data)
             Scanned_Pos = Scanned_Raw[0:2]
-            Scanned_Value = Scanned_Raw[2:0]
+            Scanned_Value = Scanned_Raw[2:]
             
             if Scanned_Pos == 'P1':
                 # check values if available for P1 (ones)
@@ -86,9 +86,11 @@ class OperationScreen(Screen):
                     if Scanned_Value == 'BB84A828BF':
                         self.ids.ones_input.source = 'assets/images/ones/0.png'
                         self.ones = '0'
+                        print('zero')
                     elif Scanned_Value == '6B31B128C3':
                         self.ids.ones_input.source = 'assets/images/ones/1.png'
                         self.ones = '1'
+                        print('one')
                     elif Scanned_Value == '6B32B828C9':
                         self.ids.ones_input.source = 'assets/images/ones/2.png'
                         self.ones = '2'
@@ -108,11 +110,13 @@ class OperationScreen(Screen):
                         self.ids.ones_input.source = 'assets/images/ones/7.png'
                         self.ones = '7'
                     elif Scanned_Value == '2B59462511':
-                        self.ids.ones_input.source = 'assets/images/ones/8.png'
+                        # self.ids.ones_input.source = 'assets/images/ones/8.png'
                         self.ones = '8'
+                        print('eight')
                     elif Scanned_Value == 'FB503F25B1':
-                        self.ids.ones_input.source = 'assets/images/ones/9.png'
+                        # self.ids.ones_input.source = 'assets/images/ones/9.png'
                         self.ones = '9'
+                        print('nine')
                 else:
                     pass
                     # send error message
