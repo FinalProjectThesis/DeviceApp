@@ -118,7 +118,7 @@ class OperationScreen(Screen):
                         self.ids.ones_input.source = 'assets/images/trans_bg.png'
                         self.ones = ''
                 else:
-                    Clock.schedule_once(lambda dt: self.error_snackbar())
+                    Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
             elif Scanned_Pos == 'P2':
                 # check values if available for P2 (tens)
                 if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B8CB28F0', '3BF3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
@@ -156,7 +156,7 @@ class OperationScreen(Screen):
                         self.ids.tens_input.source = 'assets/images/trans_bg.png'
                         self.tens = ''
                 else:
-                    Clock.schedule_once(lambda dt: self.error_snackbar())
+                    Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
             elif Scanned_Pos == 'P3':
                 pass
                 # check values if available for P3 (hundreds)
@@ -195,7 +195,7 @@ class OperationScreen(Screen):
                         self.ids.hundreds_input.source = 'assets/images/trans_bg.png'
                         self.hundreds = ''
                 else:
-                    Clock.schedule_once(lambda dt: self.error_snackbar())
+                    Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
             
             if self.stop_threads:
                 break
