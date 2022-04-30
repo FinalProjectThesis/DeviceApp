@@ -18,7 +18,7 @@ class MenuScreen(Screen):
     operation = ''
 
     def on_pre_enter(self, *args):
-        self.ids.menu_toolbar.title = ChildListScreen.child
+        self.ids.menu_toolbar.title = f'Hello {ChildListScreen.child}!'
 
         def set_icon_properties(i):
             counter = 0
@@ -27,8 +27,8 @@ class MenuScreen(Screen):
                 if counter == len(self.ids.menu_toolbar.ids.right_actions.children) - (len(self.ids.menu_toolbar.ids.right_actions.children) - 1):
                     icon.text_color = (210/255, 4/255, 45/255, 1)
             
-            for icon in self.ids.menu_toolbar.ids.left_actions.children:
-                icon.user_font_size = dp(28)
+            # for icon in self.ids.menu_toolbar.ids.left_actions.children:
+            #     icon.user_font_size = dp(28)
 
         Clock.schedule_once(set_icon_properties)
 
@@ -40,11 +40,11 @@ class MenuScreen(Screen):
     def on_subtraction(self):
         MenuScreen.operation = 'subtraction'
 
-    def on_multiplication(self):
-        MenuScreen.operation = 'multiplication'
+    # def on_multiplication(self):
+    #     MenuScreen.operation = 'multiplication'
     
-    def on_division(self):
-        MenuScreen.operation = 'division'
+    # def on_division(self):
+    #     MenuScreen.operation = 'division'
     
     def on_exit(self):
         self.dialog = MDDialog(

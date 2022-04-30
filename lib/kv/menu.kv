@@ -11,7 +11,7 @@
         orientation: 'vertical'
         MDToolbar:
             id: menu_toolbar
-            left_action_items: [['account-circle', lambda x: root.on_profile()]]
+            # left_action_items: [['account-circle', lambda x: root.on_profile()]]
             right_action_items: [['logout', lambda x: root.on_exit()]]
         BoxLayout:
             orientation: 'vertical'
@@ -22,43 +22,57 @@
                 source: "assets/images/Choose_your_Operation.png"
                 size_hint: 1, None
                 height: self.texture_size[1]
-            GridLayout:
+            BoxLayout:
+                orientation: 'vertical'
                 spacing: dp(10)
-                rows: 2
-                cols: 2
+                # rows: 2
+                # cols: 2
+                BoxLayout:
+                    spacing: dp(10)
+                    Button:
+                        background_normal: ''
+                        background_color: 244/255, 67/255, 54/255
+                        on_release: root.on_addition(); root.manager.current = 'difficulty'
+                        Image:
+                            source: 'assets/images/addition.png'
+                            center_x: self.parent.center_x
+                            center_y: self.parent.center_y
+                        
+                    Button:
+                        background_normal: ''
+                        background_color: 33/255, 150/255, 243/255
+                        on_release: root.on_subtraction(); root.manager.current = 'difficulty'
+                        Image:
+                            source: 'assets/images/subtraction.png'
+                            center_x: self.parent.center_x
+                            center_y: self.parent.center_y
                 Button:
-                    background_normal: ''
-                    background_color: 244/255, 67/255, 54/255
-                    on_release: root.on_addition(); root.manager.current = 'difficulty'
-                    Image:
-                        source: 'assets/images/addition.png'
+                    size_hint_y: .4
+                    background_normal: '' # 255, 192, 32, 1
+                    background_color: 255/255, 192/255, 32/255
+                    on_release: root.manager.current = 'profile'
+                    Image: # w760 h90
+                        source: 'assets/images/profile.png'
+                        size: 70, 70
                         center_x: self.parent.center_x
                         center_y: self.parent.center_y
                     
-                Button:
-                    background_normal: ''
-                    background_color: 33/255, 150/255, 243/255
-                    on_release: root.on_subtraction(); root.manager.current = 'difficulty'
-                    Image:
-                        source: 'assets/images/subtraction.png'
-                        center_x: self.parent.center_x
-                        center_y: self.parent.center_y
-                Button:
-                    background_normal: ''
-                    background_color: 0, 86/255, 1
-                    on_release: root.on_multiplication(); root.manager.current = 'difficulty'
-                    Image:
-                        source: 'assets/images/multiplication.png'
-                        center_x: self.parent.center_x
-                        center_y: self.parent.center_y
-                Button:
-                    background_normal: ''
-                    background_color: 255/255, 103/255, 43/255
-                    on_release: root.on_division(); root.manager.current = 'difficulty'
-                    Image:
-                        source: 'assets/images/division.png'
-                        center_x: self.parent.center_x
-                        center_y: self.parent.center_y
+                # Button:
+                #     background_normal: ''
+                #     background_color: 0, 86/255, 1
+                #     on_release: root.on_multiplication(); root.manager.current = 'difficulty'
+                #     Image:
+                #         source: 'assets/images/multiplication.png'
+                #         center_x: self.parent.center_x
+                #         center_y: self.parent.center_y
+                # Button:
+                #     background_normal: ''
+                #     background_color: 255/255, 103/255, 43/255
+                #     on_release: root.on_division(); root.manager.current = 'difficulty'
+                #     Image:
+                #         source: 'assets/images/division.png'
+                #         center_x: self.parent.center_x
+                #         center_y: self.parent.center_y
         
 <DifficultyScreen>:
     name: 'difficulty'
