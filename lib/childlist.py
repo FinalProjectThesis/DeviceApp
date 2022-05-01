@@ -31,18 +31,7 @@ class ChildListScreen(Screen):
     indxSize = 0
 
     def on_pre_enter(self, *args):
-        
-        def isloading():
-            self.ids.loading_spinner.active = True
-            self.ids.login_button.text = "Loading.."
-            self.ids.login_button.disabled = True
-        def isnotloading():
-            self.ids.loading_spinner.active = False
-            self.ids.login_button.text = "Login"
-            self.ids.login_button.disabled = False
-
-
-        #isloading()
+        self.ids.loading_spinner.active = True
         print('communicating..')
         with open('lib/bin/SavedLogin.json') as json_file:
             data = json.load(json_file)
@@ -89,7 +78,7 @@ class ChildListScreen(Screen):
 
         def call_Box():
             self.generate_box()
-        
+                  
         params = json.dumps({"parent_username" : ChildListScreen.parent_username})
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
         print(params)
@@ -134,6 +123,7 @@ class ChildListScreen(Screen):
                     height = dp(20)
                 )
                 self.ids['card'+str(i+1)].add_widget(label)
+            self.ids.loading_spinner.active = False
 
         def goto_Menu():
             for i in range(0, self.child_length):
