@@ -25,8 +25,6 @@
             BoxLayout:
                 orientation: 'vertical'
                 spacing: dp(10)
-                # rows: 2
-                # cols: 2
                 BoxLayout:
                     spacing: dp(10)
                     Button:
@@ -37,7 +35,6 @@
                             source: 'assets/images/addition.png'
                             center_x: self.parent.center_x
                             center_y: self.parent.center_y
-                        
                     Button:
                         background_normal: ''
                         background_color: 33/255, 150/255, 243/255
@@ -46,8 +43,24 @@
                             source: 'assets/images/subtraction.png'
                             center_x: self.parent.center_x
                             center_y: self.parent.center_y
+                    Button:
+                        background_normal: ''
+                        background_color: 0, 86/255, 1
+                        on_release: root.on_multiplication(); root.manager.current = 'difficulty'
+                        Image:
+                            source: 'assets/images/multiplication.png'
+                            center_x: self.parent.center_x
+                            center_y: self.parent.center_y
+                    Button:
+                        background_normal: ''
+                        background_color: 255/255, 103/255, 43/255
+                        on_release: root.on_division(); root.manager.current = 'difficulty'
+                        Image:
+                            source: 'assets/images/division.png'
+                            center_x: self.parent.center_x
+                            center_y: self.parent.center_y
                 Button:
-                    size_hint_y: .4
+                    size_hint_y: .35
                     background_normal: '' # 255, 192, 32, 1
                     background_color: 255/255, 192/255, 32/255
                     on_release: root.manager.current = 'profile'
@@ -56,23 +69,6 @@
                         size: 70, 70
                         center_x: self.parent.center_x
                         center_y: self.parent.center_y
-                    
-                # Button:
-                #     background_normal: ''
-                #     background_color: 0, 86/255, 1
-                #     on_release: root.on_multiplication(); root.manager.current = 'difficulty'
-                #     Image:
-                #         source: 'assets/images/multiplication.png'
-                #         center_x: self.parent.center_x
-                #         center_y: self.parent.center_y
-                # Button:
-                #     background_normal: ''
-                #     background_color: 255/255, 103/255, 43/255
-                #     on_release: root.on_division(); root.manager.current = 'difficulty'
-                #     Image:
-                #         source: 'assets/images/division.png'
-                #         center_x: self.parent.center_x
-                #         center_y: self.parent.center_y
         
 <DifficultyScreen>:
     name: 'difficulty'

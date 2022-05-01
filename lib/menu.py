@@ -40,11 +40,11 @@ class MenuScreen(Screen):
     def on_subtraction(self):
         MenuScreen.operation = 'subtraction'
 
-    # def on_multiplication(self):
-    #     MenuScreen.operation = 'multiplication'
+    def on_multiplication(self):
+        MenuScreen.operation = 'multiplication'
     
-    # def on_division(self):
-    #     MenuScreen.operation = 'division'
+    def on_division(self):
+        MenuScreen.operation = 'division'
     
     def on_exit(self):
         self.dialog = MDDialog(
