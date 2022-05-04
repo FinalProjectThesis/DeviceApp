@@ -86,6 +86,10 @@ class ChildListScreen(Screen):
         
         return super().on_enter(*args)
 
+    def on_refresh(self):
+        self.on_leave()
+        self.on_pre_enter()
+
     def generate_box(self, *args):
         app = MDApp.get_running_app()
         if not self.child_data:

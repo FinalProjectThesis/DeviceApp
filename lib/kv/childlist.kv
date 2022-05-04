@@ -40,3 +40,11 @@
                 text: 'Logout'
                 md_bg_color: .8, 0, 0, 1
                 on_release: root.on_logout()
+            RelativeLayout:
+                MDFloatingActionButton:
+                    icon: 'refresh'
+                    type: 'small'
+                    user_font_size: dp(32)
+                    theme_text_color: "Custom"
+                    md_bg_color: app.theme_cls.primary_color
+                    on_release: root.on_refresh()
