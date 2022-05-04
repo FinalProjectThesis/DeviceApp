@@ -95,9 +95,11 @@ class LoginScreen(Screen):
                 if result =='No such User':
                     print ("No such User!")
                     display_nosuchuser()
+                    isnotloading()
                 elif result =='Failed':
                     print("Failed Auth, Wrong Password")
                     display_failedauthentication()
+                    isnotloading()
                 else:
                     clearconnectionerrormessage()
                     saveUserInfo()
