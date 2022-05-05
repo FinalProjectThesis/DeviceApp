@@ -10,6 +10,8 @@ from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 from kivy.core.audio import SoundLoader
 import serial
+import threading
+from threading import Thread
 
 from lib.childlist import ChildListScreen
 
@@ -78,6 +80,9 @@ class DifficultyScreen(Screen):
     difficulty = ''
 
     def on_pre_enter(self, *args):
+        # background_thread = Thread(target = self.read_A)
+        # self.stop_threads = False
+        # background_thread.start()
         if MenuScreen.operation == 'addition':
             self.ids.op_label.source = "assets/images/addition.png"
         elif MenuScreen.operation =='subtraction':
@@ -90,6 +95,7 @@ class DifficultyScreen(Screen):
         return super().on_pre_enter(*args)
     
     def on_leave(self, *args):
+        self.stop_threads = True
         self.ids.lvl1_btn.disabled = False
         self.ids.lvl2_btn.disabled = False
         self.ids.lvl3_btn.disabled = False
@@ -105,7 +111,7 @@ class DifficultyScreen(Screen):
         self.ids.lvl3_btn.disabled = True
 
     def on_easy(self):
-        
+        self.read_A()
         sound = SoundLoader.load("assets/music/button_click.wav")
         sound.play()
 
@@ -116,16 +122,15 @@ class DifficultyScreen(Screen):
         
     def read_A(self):
         ser = serial.Serial ("/dev/ttyS0", 9600) 
-        while True:
-            received_data = ser.read()
-            sleep(0.03)
-            data_left = ser.inWaiting()
-            received_data += ser.read(data_left)
-            decoded_data = received_data.decode('utf-8')
-            
-            if decoded_data != 'A':
-                ser.write()
-                self.manager.current = 'home'
+        received_data = ser.read()
+        sleep(0.03)
+        data_left = ser.inWaiting()
+        received_data += ser.read(data_left)
+        decoded_data = received_data.decode('utf-8')
+        
+        if decoded_data != 'A':
+            ser.write()
+            self.manager.current = 'home'          
 
     def on_medium(self):
         
