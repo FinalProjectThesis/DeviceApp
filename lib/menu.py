@@ -1,4 +1,5 @@
 from kivy.lang import Builder
+from time import sleep
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, ObjectProperty
 from kivy.clock import Clock
@@ -8,6 +9,7 @@ from kivymd.uix.dialog import MDDialog
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics.context_instructions import Color
 from kivy.core.audio import SoundLoader
+import serial
 
 from lib.childlist import ChildListScreen
 
@@ -111,6 +113,19 @@ class DifficultyScreen(Screen):
         self.ids.difficulty_spinner.active = True
         self.disable_btns()
         Clock.schedule_once(lambda dt: self.to_operation(), 2)
+        
+    def read_A(self):
+        ser = serial.Serial ("/dev/ttyS0", 9600) 
+        while True:
+            received_data = ser.read()
+            sleep(0.03)
+            data_left = ser.inWaiting()
+            received_data += ser.read(data_left)
+            decoded_data = received_data.decode('utf-8')
+            
+            if decoded_data != 'A':
+                ser.write()
+                self.manager.current = 'home'
 
     def on_medium(self):
         
