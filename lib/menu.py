@@ -110,17 +110,7 @@ class DifficultyScreen(Screen):
         self.ids.lvl2_btn.disabled = True
         self.ids.lvl3_btn.disabled = True
 
-    def on_easy(self):
-        self.read_A()
-        sound = SoundLoader.load("assets/music/button_click.wav")
-        sound.play()
-
-        DifficultyScreen.difficulty = 'easy'
-        self.ids.difficulty_spinner.active = True
-        self.disable_btns()
-        Clock.schedule_once(lambda dt: self.to_operation(), 2)
-        
-    def read_A(self):
+    def read_Q(self):
         ser = serial.Serial ("/dev/ttyS0", 9600) 
         received_data = ser.read()
         sleep(0.03)
@@ -130,10 +120,20 @@ class DifficultyScreen(Screen):
         
         if decoded_data != 'A':
             ser.write()
-            self.manager.current = 'home'          
+            self.manager.current = 'home' 
+
+    def on_easy(self):
+        self.read_Q()
+        sound = SoundLoader.load("assets/music/button_click.wav")
+        sound.play()
+
+        DifficultyScreen.difficulty = 'easy'
+        self.ids.difficulty_spinner.active = True
+        self.disable_btns()
+        Clock.schedule_once(lambda dt: self.to_operation(), 2)         
 
     def on_medium(self):
-        
+        self.read_Q()
         sound = SoundLoader.load("assets/music/button_click.wav")
         sound.play()
 
@@ -143,7 +143,7 @@ class DifficultyScreen(Screen):
         Clock.schedule_once(lambda dt: self.to_operation(), 2)
     
     def on_hard(self):
-
+        self.read_Q()
         sound = SoundLoader.load("assets/music/button_click.wav")
         sound.play()
         
