@@ -72,135 +72,261 @@ class OperationScreen(Screen):
     def read_micro(self):
         ser = serial.Serial ("/dev/ttyS0", 9600) 
         while True:
-            try:
-                received_data = ser.read()
-                sleep(0.03)
-                data_left = ser.inWaiting()
-                received_data += ser.read(data_left)
-                decoded_data = received_data.decode('utf-8')
-                Scanned_Raw = str(decoded_data)
-                Scanned_Pos = Scanned_Raw[0:2]
-                Scanned_Value = Scanned_Raw[2:]
+            received_data = ser.read()
+            sleep(0.03)
+            data_left = ser.inWaiting()
+            received_data += ser.read(data_left)
+            decoded_data = received_data.decode('utf-8')
+            Scanned_Raw = str(decoded_data)
+            Scanned_Pos = Scanned_Raw[0:2]
+            Scanned_Value = Scanned_Raw[2:]
             
-                if Scanned_Pos == 'P1':
-                # check values if available for P1 (ones)
-                    if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
-                        if Scanned_Value == 'BB84A828BF':
-                            self.ids.ones_input.source = 'assets/images/ones/0.png'
-                            self.ones = '0'
-                        elif Scanned_Value == '6B31B128C3':
-                            self.ids.ones_input.source = 'assets/images/ones/1.png'
-                            self.ones = '1'
-                        elif Scanned_Value == '6B32B828C9':
-                            self.ids.ones_input.source = 'assets/images/ones/2.png'
-                            self.ones = '2'
-                        elif Scanned_Value == '9BB03D2533':
-                            self.ids.ones_input.source = 'assets/images/ones/3.png'
-                            self.ones = '3'
-                        elif Scanned_Value == 'ABC8332575':
-                            self.ids.ones_input.source = 'assets/images/ones/4.png'
-                            self.ones = '4'
-                        elif Scanned_Value == '3B894525D2':
-                            self.ids.ones_input.source = 'assets/images/ones/5.png'
-                            self.ones = '5'
-                        elif Scanned_Value == '9B9140256F':
-                            self.ids.ones_input.source = 'assets/images/ones/6.png'
-                            self.ones = '6'
-                        elif Scanned_Value == '2B83B42834':
-                            self.ids.ones_input.source = 'assets/images/ones/7.png'
-                            self.ones = '7'
-                        elif Scanned_Value == '2B59462511':
-                            self.ids.ones_input.source = 'assets/images/ones/8.png'
-                            self.ones = '8'
-                        elif Scanned_Value == 'FB503F25B1':
-                            self.ids.ones_input.source = 'assets/images/ones/9.png'
-                            self.ones = '9'
-                        else:
-                            self.ids.ones_input.source = 'assets/images/trans_bg.png'
-                            self.ones = ''
+            if Scanned_Pos == 'P1':
+            # check values if available for P1 (ones)
+                if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
+                    if Scanned_Value == 'BB84A828BF':
+                        self.ids.ones_input.source = 'assets/images/ones/0.png'
+                        self.ones = '0'
+                    elif Scanned_Value == '6B31B128C3':
+                        self.ids.ones_input.source = 'assets/images/ones/1.png'
+                        self.ones = '1'
+                    elif Scanned_Value == '6B32B828C9':
+                        self.ids.ones_input.source = 'assets/images/ones/2.png'
+                        self.ones = '2'
+                    elif Scanned_Value == '9BB03D2533':
+                        self.ids.ones_input.source = 'assets/images/ones/3.png'
+                        self.ones = '3'
+                    elif Scanned_Value == 'ABC8332575':
+                        self.ids.ones_input.source = 'assets/images/ones/4.png'
+                        self.ones = '4'
+                    elif Scanned_Value == '3B894525D2':
+                        self.ids.ones_input.source = 'assets/images/ones/5.png'
+                        self.ones = '5'
+                    elif Scanned_Value == '9B9140256F':
+                        self.ids.ones_input.source = 'assets/images/ones/6.png'
+                        self.ones = '6'
+                    elif Scanned_Value == '2B83B42834':
+                        self.ids.ones_input.source = 'assets/images/ones/7.png'
+                        self.ones = '7'
+                    elif Scanned_Value == '2B59462511':
+                        self.ids.ones_input.source = 'assets/images/ones/8.png'
+                        self.ones = '8'
+                    elif Scanned_Value == 'FB503F25B1':
+                        self.ids.ones_input.source = 'assets/images/ones/9.png'
+                        self.ones = '9'
                     else:
-                        Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
-                elif Scanned_Pos == 'P2':
-                # check values if available for P2 (tens)
-                    if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B8CB28F0', '3BF3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
-                        if Scanned_Value == '6B74B22885':
-                            self.ids.tens_input.source = 'assets/images/tens/0.png'
-                            self.tens = '0'
-                        elif Scanned_Value == '8BAEB228BF':
-                            self.ids.tens_input.source = 'assets/images/tens/1.png'
-                            self.tens = '1'
-                        elif Scanned_Value == '1B8CB28F0':
-                            self.ids.tens_input.source = 'assets/images/tens/2.png'
-                            self.tens = '2'
-                        elif Scanned_Value == '3BF3D252C':
-                            self.ids.tens_input.source = 'assets/images/tens/3.png'
-                            self.tens = '3'
-                        elif Scanned_Value == '8BB12C2533':
-                            self.ids.tens_input.source = 'assets/images/tens/4.png'
-                            self.tens = '4'
-                        elif Scanned_Value == '1B624D2511':
-                            self.ids.tens_input.source = 'assets/images/tens/5.png'
-                            self.tens = '5'
-                        elif Scanned_Value == '9BD5AD28CB':
-                            self.ids.tens_input.source = 'assets/images/tens/6.png'
-                            self.tens = '6'
-                        elif Scanned_Value == '1BC6A9285C':
-                            self.ids.tens_input.source = 'assets/images/tens/7.png'
-                            self.tens = '7'
-                        elif Scanned_Value == 'EBD6C428D1':
-                            self.ids.tens_input.source = 'assets/images/tens/8.png'
-                            self.tens = '8'
-                        elif Scanned_Value == '6B1F472516':
-                            self.ids.tens_input.source = 'assets/images/tens/9.png'
-                            self.tens = '9'
-                        else:
-                            self.ids.tens_input.source = 'assets/images/trans_bg.png'
-                            self.tens = ''
+                        self.ids.ones_input.source = 'assets/images/trans_bg.png'
+                        self.ones = ''
+                else:
+                    Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
+            elif Scanned_Pos == 'P2':
+            # check values if available for P2 (tens)
+                if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B8CB28F0', '3BF3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
+                    if Scanned_Value == '6B74B22885':
+                        self.ids.tens_input.source = 'assets/images/tens/0.png'
+                        self.tens = '0'
+                    elif Scanned_Value == '8BAEB228BF':
+                        self.ids.tens_input.source = 'assets/images/tens/1.png'
+                        self.tens = '1'
+                    elif Scanned_Value == '1B8CB28F0':
+                        self.ids.tens_input.source = 'assets/images/tens/2.png'
+                        self.tens = '2'
+                    elif Scanned_Value == '3BF3D252C':
+                        self.ids.tens_input.source = 'assets/images/tens/3.png'
+                        self.tens = '3'
+                    elif Scanned_Value == '8BB12C2533':
+                        self.ids.tens_input.source = 'assets/images/tens/4.png'
+                        self.tens = '4'
+                    elif Scanned_Value == '1B624D2511':
+                        self.ids.tens_input.source = 'assets/images/tens/5.png'
+                        self.tens = '5'
+                    elif Scanned_Value == '9BD5AD28CB':
+                        self.ids.tens_input.source = 'assets/images/tens/6.png'
+                        self.tens = '6'
+                    elif Scanned_Value == '1BC6A9285C':
+                        self.ids.tens_input.source = 'assets/images/tens/7.png'
+                        self.tens = '7'
+                    elif Scanned_Value == 'EBD6C428D1':
+                        self.ids.tens_input.source = 'assets/images/tens/8.png'
+                        self.tens = '8'
+                    elif Scanned_Value == '6B1F472516':
+                        self.ids.tens_input.source = 'assets/images/tens/9.png'
+                        self.tens = '9'
                     else:
-                        Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
-                elif Scanned_Pos == 'P3':
-                # check values if available for P3 (hundreds)
-                    if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F58259', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
-                        if Scanned_Value == '1BB7BE283A':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/0.png'
-                            self.hundreds = '0'
-                        elif Scanned_Value == '7BD3B92839':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/1.png'
-                            self.hundreds = '1'
-                        elif Scanned_Value == 'EB7D4625F5':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/2.png'
-                            self.hundreds = '2'
-                        elif Scanned_Value == '1B24382522':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/3.png'
-                            self.hundreds = '3'
-                        elif Scanned_Value == '4B72C728D6':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/4.png'
-                            self.hundreds = '4'
-                        elif Scanned_Value == '6B1F58259':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/5.png'
-                            self.hundreds = '5'
-                        elif Scanned_Value == '9B61C72815':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/6.png'
-                            self.hundreds = '6'
-                        elif Scanned_Value == '2BBFC6287A':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/7.png'
-                            self.hundreds = '7'
-                        elif Scanned_Value == '3B8FBD2821':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/8.png'
-                            self.hundreds = '8'
-                        elif Scanned_Value == 'EBBE3A254A':
-                            self.ids.hundreds_input.source = 'assets/images/hundreds/9.png'
-                            self.hundreds = '9'
-                        else:
-                            self.ids.hundreds_input.source = 'assets/images/trans_bg.png'
-                            self.hundreds = ''
+                        self.ids.tens_input.source = 'assets/images/trans_bg.png'
+                        self.tens = ''
+                else:
+                    Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
+            elif Scanned_Pos == 'P3':
+            # check values if available for P3 (hundreds)
+                if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F58259', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
+                    if Scanned_Value == '1BB7BE283A':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/0.png'
+                        self.hundreds = '0'
+                    elif Scanned_Value == '7BD3B92839':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/1.png'
+                        self.hundreds = '1'
+                    elif Scanned_Value == 'EB7D4625F5':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/2.png'
+                        self.hundreds = '2'
+                    elif Scanned_Value == '1B24382522':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/3.png'
+                        self.hundreds = '3'
+                    elif Scanned_Value == '4B72C728D6':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/4.png'
+                        self.hundreds = '4'
+                    elif Scanned_Value == '6B1F58259':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/5.png'
+                        self.hundreds = '5'
+                    elif Scanned_Value == '9B61C72815':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/6.png'
+                        self.hundreds = '6'
+                    elif Scanned_Value == '2BBFC6287A':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/7.png'
+                        self.hundreds = '7'
+                    elif Scanned_Value == '3B8FBD2821':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/8.png'
+                        self.hundreds = '8'
+                    elif Scanned_Value == 'EBBE3A254A':
+                        self.ids.hundreds_input.source = 'assets/images/hundreds/9.png'
+                        self.hundreds = '9'
                     else:
-                        Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
-            except Exception as err:
-                print(err)
-            finally:
-                if self.stop_threads:
-                    return
+                        self.ids.hundreds_input.source = 'assets/images/trans_bg.png'
+                        self.hundreds = ''
+                else:
+                    Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
+            if self.stop_threads:
+                return
+            
+            # try:
+            #     received_data = ser.read()
+            #     sleep(0.03)
+            #     data_left = ser.inWaiting()
+            #     received_data += ser.read(data_left)
+            #     decoded_data = received_data.decode('utf-8')
+            #     Scanned_Raw = str(decoded_data)
+            #     Scanned_Pos = Scanned_Raw[0:2]
+            #     Scanned_Value = Scanned_Raw[2:]
+            
+            #     if Scanned_Pos == 'P1':
+            #     # check values if available for P1 (ones)
+            #         if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
+            #             if Scanned_Value == 'BB84A828BF':
+            #                 self.ids.ones_input.source = 'assets/images/ones/0.png'
+            #                 self.ones = '0'
+            #             elif Scanned_Value == '6B31B128C3':
+            #                 self.ids.ones_input.source = 'assets/images/ones/1.png'
+            #                 self.ones = '1'
+            #             elif Scanned_Value == '6B32B828C9':
+            #                 self.ids.ones_input.source = 'assets/images/ones/2.png'
+            #                 self.ones = '2'
+            #             elif Scanned_Value == '9BB03D2533':
+            #                 self.ids.ones_input.source = 'assets/images/ones/3.png'
+            #                 self.ones = '3'
+            #             elif Scanned_Value == 'ABC8332575':
+            #                 self.ids.ones_input.source = 'assets/images/ones/4.png'
+            #                 self.ones = '4'
+            #             elif Scanned_Value == '3B894525D2':
+            #                 self.ids.ones_input.source = 'assets/images/ones/5.png'
+            #                 self.ones = '5'
+            #             elif Scanned_Value == '9B9140256F':
+            #                 self.ids.ones_input.source = 'assets/images/ones/6.png'
+            #                 self.ones = '6'
+            #             elif Scanned_Value == '2B83B42834':
+            #                 self.ids.ones_input.source = 'assets/images/ones/7.png'
+            #                 self.ones = '7'
+            #             elif Scanned_Value == '2B59462511':
+            #                 self.ids.ones_input.source = 'assets/images/ones/8.png'
+            #                 self.ones = '8'
+            #             elif Scanned_Value == 'FB503F25B1':
+            #                 self.ids.ones_input.source = 'assets/images/ones/9.png'
+            #                 self.ones = '9'
+            #             else:
+            #                 self.ids.ones_input.source = 'assets/images/trans_bg.png'
+            #                 self.ones = ''
+            #         else:
+            #             Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
+            #     elif Scanned_Pos == 'P2':
+            #     # check values if available for P2 (tens)
+            #         if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B8CB28F0', '3BF3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
+            #             if Scanned_Value == '6B74B22885':
+            #                 self.ids.tens_input.source = 'assets/images/tens/0.png'
+            #                 self.tens = '0'
+            #             elif Scanned_Value == '8BAEB228BF':
+            #                 self.ids.tens_input.source = 'assets/images/tens/1.png'
+            #                 self.tens = '1'
+            #             elif Scanned_Value == '1B8CB28F0':
+            #                 self.ids.tens_input.source = 'assets/images/tens/2.png'
+            #                 self.tens = '2'
+            #             elif Scanned_Value == '3BF3D252C':
+            #                 self.ids.tens_input.source = 'assets/images/tens/3.png'
+            #                 self.tens = '3'
+            #             elif Scanned_Value == '8BB12C2533':
+            #                 self.ids.tens_input.source = 'assets/images/tens/4.png'
+            #                 self.tens = '4'
+            #             elif Scanned_Value == '1B624D2511':
+            #                 self.ids.tens_input.source = 'assets/images/tens/5.png'
+            #                 self.tens = '5'
+            #             elif Scanned_Value == '9BD5AD28CB':
+            #                 self.ids.tens_input.source = 'assets/images/tens/6.png'
+            #                 self.tens = '6'
+            #             elif Scanned_Value == '1BC6A9285C':
+            #                 self.ids.tens_input.source = 'assets/images/tens/7.png'
+            #                 self.tens = '7'
+            #             elif Scanned_Value == 'EBD6C428D1':
+            #                 self.ids.tens_input.source = 'assets/images/tens/8.png'
+            #                 self.tens = '8'
+            #             elif Scanned_Value == '6B1F472516':
+            #                 self.ids.tens_input.source = 'assets/images/tens/9.png'
+            #                 self.tens = '9'
+            #             else:
+            #                 self.ids.tens_input.source = 'assets/images/trans_bg.png'
+            #                 self.tens = ''
+            #         else:
+            #             Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
+            #     elif Scanned_Pos == 'P3':
+            #     # check values if available for P3 (hundreds)
+            #         if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F58259', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
+            #             if Scanned_Value == '1BB7BE283A':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/0.png'
+            #                 self.hundreds = '0'
+            #             elif Scanned_Value == '7BD3B92839':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/1.png'
+            #                 self.hundreds = '1'
+            #             elif Scanned_Value == 'EB7D4625F5':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/2.png'
+            #                 self.hundreds = '2'
+            #             elif Scanned_Value == '1B24382522':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/3.png'
+            #                 self.hundreds = '3'
+            #             elif Scanned_Value == '4B72C728D6':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/4.png'
+            #                 self.hundreds = '4'
+            #             elif Scanned_Value == '6B1F58259':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/5.png'
+            #                 self.hundreds = '5'
+            #             elif Scanned_Value == '9B61C72815':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/6.png'
+            #                 self.hundreds = '6'
+            #             elif Scanned_Value == '2BBFC6287A':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/7.png'
+            #                 self.hundreds = '7'
+            #             elif Scanned_Value == '3B8FBD2821':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/8.png'
+            #                 self.hundreds = '8'
+            #             elif Scanned_Value == 'EBBE3A254A':
+            #                 self.ids.hundreds_input.source = 'assets/images/hundreds/9.png'
+            #                 self.hundreds = '9'
+            #             else:
+            #                 self.ids.hundreds_input.source = 'assets/images/trans_bg.png'
+            #                 self.hundreds = ''
+            #         else:
+            #             Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
+            # except Exception as err:
+            #     print(err)
+            # finally:
+            #     if self.stop_threads:
+            #         return
                 
             
     def error_snackbar(self):
