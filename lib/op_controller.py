@@ -81,9 +81,7 @@ class OperationScreen(Screen):
                 Scanned_Raw = str(decoded_data)
                 Scanned_Pos = Scanned_Raw[0:2]
                 Scanned_Value = Scanned_Raw[2:]
-            except:
-                pass
-            else:
+            
                 if Scanned_Pos == 'P1':
                 # check values if available for P1 (ones)
                     if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
@@ -198,8 +196,12 @@ class OperationScreen(Screen):
                             self.hundreds = ''
                     else:
                         Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
-                if self.stop_threads:
-                    return
+                    
+                    if self.stop_threads:
+                        return
+            except:
+                print('error happened!')
+                
             
     def error_snackbar(self):
         snackbar = Snackbar(
