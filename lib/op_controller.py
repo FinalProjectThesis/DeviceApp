@@ -447,10 +447,12 @@ class OperationScreen(Screen):
             self.counter = 1
     
     def reset_inputs(self):
-        self.ids.hundreds_input.source = 'assets/images/trans_bg.png'
-        self.ids.tens_input.source = 'assets/images/trans_bg.png'
-        self.ids.ones_input.source = 'assets/images/trans_bg.png'
-
+        # self.ids.hundreds_input.source = 'assets/images/trans_bg.png'
+        # self.ids.tens_input.source = 'assets/images/trans_bg.png'
+        # self.ids.ones_input.source = 'assets/images/trans_bg.png'
+        self.ids.hundreds_input.text = ''
+        self.ids.tens_input.text = ''
+        self.ids.ones_input.text = ''
         self.ones = ''
         self.tens = ''
         self.hundreds = ''   
