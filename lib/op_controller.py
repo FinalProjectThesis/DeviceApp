@@ -196,11 +196,11 @@ class OperationScreen(Screen):
                             self.hundreds = ''
                     else:
                         Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
-                    
-                    if self.stop_threads:
-                        return
-            except:
-                print('error happened!')
+            except Exception as err:
+                print(err)
+            finally:
+                if self.stop_threads:
+                    return
                 
             
     def error_snackbar(self):
