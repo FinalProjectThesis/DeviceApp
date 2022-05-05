@@ -636,10 +636,10 @@ class WrongScreen(Screen):
             remain3 = int(args[2]) % 100
             
             # first_grid
-            if val1 > 9:
-                self.ids.first_grid.rows = 4
-            else:
-                self.ids.first_grid.rows = 3
+            # if val1 > 9:
+            #     self.ids.first_grid.rows = 4
+            # else:
+            #     self.ids.first_grid.rows = 3
                 
             for i in range(0, val1):
                 truck = Image(
@@ -647,10 +647,10 @@ class WrongScreen(Screen):
                 )
                 self.ids.first_grid.add_widget(truck)
             # second_grid
-            if val2 > 9:
-                self.ids.second_grid.rows = 4
-            else:
-                self.ids.second_grid.rows = 3
+            # if val2 > 9:
+            #     self.ids.second_grid.rows = 4
+            # else:
+            #     self.ids.second_grid.rows = 3
                 
             for i in range(0, val2):
                 truck = Image(
@@ -658,10 +658,10 @@ class WrongScreen(Screen):
                 )
                 self.ids.second_grid.add_widget(truck)
             # answer_grid
-            if val3 > 9:
-                self.ids.answer_grid.rows = 4
-            else:
-                self.ids.answer_grid.rows = 3
+            # if val3 > 9:
+            #     self.ids.answer_grid.rows = 4
+            # else:
+            #     self.ids.answer_grid.rows = 3
                 
             for i in range(0, val3):
                 truck = Image(
@@ -681,10 +681,10 @@ class WrongScreen(Screen):
             remain3 = int(args[2]) % 10
             
             # first_grid
-            if val1 > 9:
-                self.ids.first_grid.rows = 4
-            else:
-                self.ids.first_grid.rows = 3
+            # if val1 > 9:
+            #     self.ids.first_grid.rows = 4
+            # else:
+            #     self.ids.first_grid.rows = 3
                 
             for i in range(0, val1):
                 basket = Image(
@@ -692,10 +692,10 @@ class WrongScreen(Screen):
                 )
                 self.ids.first_grid.add_widget(basket)
             # second_grid
-            if val2 > 9:
-                self.ids.second_grid.rows = 4
-            else:
-                self.ids.second_grid.rows = 3
+            # if val2 > 9:
+            #     self.ids.second_grid.rows = 4
+            # else:
+            #     self.ids.second_grid.rows = 3
                 
             for i in range(0, val2):
                 basket = Image(
@@ -703,10 +703,10 @@ class WrongScreen(Screen):
                 )
                 self.ids.second_grid.add_widget(basket)
             # answer_grid
-            if val3 > 9:
-                self.ids.answer_grid.rows = 4
-            else:
-                self.ids.answer_grid.rows = 3
+            # if val3 > 9:
+            #     self.ids.answer_grid.rows = 4
+            # else:
+            #     self.ids.answer_grid.rows = 3
                 
             for i in range(0, val3):
                 basket = Image(
@@ -723,10 +723,10 @@ class WrongScreen(Screen):
             remain3 = int(args[2])
             
             # first_grid
-            if remain1 > 9:
-                self.ids.first_grid.rows = 4
-            else:
-                self.ids.first_grid.rows = 3
+            # if remain1 > 9:
+            #     self.ids.first_grid.rows = 4
+            # else:
+            #     self.ids.first_grid.rows = 3
                 
             for i in range(0, remain1):
                 apple = Image(
@@ -734,10 +734,10 @@ class WrongScreen(Screen):
                 )
                 self.ids.first_grid.add_widget(apple)
             # second_grid
-            if remain2 > 9:
-                self.ids.second_grid.rows = 4
-            else:
-                self.ids.second_grid.rows = 3
+            # if remain2 > 9:
+            #     self.ids.second_grid.rows = 4
+            # else:
+            #     self.ids.second_grid.rows = 3
                 
             for i in range(0, remain2):
                 apple = Image(
@@ -745,10 +745,10 @@ class WrongScreen(Screen):
                 )
                 self.ids.second_grid.add_widget(apple)
             # answer_grid
-            if remain3 > 9:
-                self.ids.answer_grid.rows = 4
-            else:
-                self.ids.answer_grid.rows = 3
+            # if remain3 > 9:
+            #     self.ids.answer_grid.rows = 4
+            # else:
+            #     self.ids.answer_grid.rows = 3
                 
             for i in range(0, remain3):
                 apple = Image(

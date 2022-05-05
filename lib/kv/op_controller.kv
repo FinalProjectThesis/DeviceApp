@@ -221,14 +221,24 @@
         elevation: 10
         padding: dp(15)
         spacing: dp(15)
-        MDLabel:
-            id: wrong_label
-            halign: 'center'
-            pos_hint: {'top': 1}
-            size_hint: 1, None
-            height: self.texture_size[1]
-            font_size: dp(24)
-            markup: True
+        RelativeLayout:
+            size_hint_y: None
+            height: dp(50)
+            MDIconButton:
+                icon: 'information-outline'
+                user_font_size: dp(32)
+                pos_hint: {'right': 1, 'top': 1}
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release: Factory.Op_Popup().open()
+            MDLabel:
+                id: wrong_label
+                halign: 'center'
+                pos_hint: {'top': 1}
+                size_hint: 1, None
+                height: self.texture_size[1]
+                font_size: dp(24)
+                markup: True
         MDCard:
             radius: [dp(15), dp(15), dp(15), dp(15)]
             elevation: 10
@@ -297,3 +307,48 @@
             pos_hint: {'center_x': .5}
             disabled: True
             on_release: root.manager.current = 'operation'
+
+<Op_Popup@Popup>:
+    auto_dismiss: False
+    size_hint: .85, .85
+    title: 'Information'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(5)
+        spacing: dp(10) 
+        Label:
+            text: 'Representation of the apples!'
+        BoxLayout:
+            Image:
+                source: 'assets/images/apple.png'
+            Label:
+                text: '='
+                font_size: dp(32)
+            Label:
+                text: '1'
+                font_size: dp(32)
+        BoxLayout:
+            Image:
+                source: 'assets/images/basket_apples.png'
+            Label:
+                text: '='
+                font_size: dp(32)
+            Label:
+                text: '10'
+                font_size: dp(32)  
+        BoxLayout:
+            Image:
+                source: 'assets/images/truck_apples.png'
+            Label:
+                text: '='
+                font_size: dp(32)
+            Label:
+                text: '100'
+                font_size: dp(32)      
+        Button:
+            text: 'Close'
+            background_normal: ''
+            background_color: 1, 0, 0
+            size_hint: 1, .5
+            pos_hint: {'center_x': .5}
+            on_release: root.dismiss()
