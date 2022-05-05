@@ -75,7 +75,11 @@ class OperationScreen(Screen):
             received_data = ser.read()
             sleep(0.03)
             data_left = ser.inWaiting()
-            received_data += ser.read(data_left)
+            try:
+                received_data += ser.read(data_left)
+            except Exception as err:
+                print(err)    
+            
             decoded_data = received_data.decode('utf-8')
             Scanned_Raw = str(decoded_data)
             Scanned_Pos = Scanned_Raw[0:2]
