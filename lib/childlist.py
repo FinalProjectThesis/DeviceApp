@@ -32,6 +32,7 @@ class ChildListScreen(Screen):
 
     def on_pre_enter(self, *args):
         self.ids.loading_spinner.active = True
+        self.ids.refresh.disabled = True
         print('communicating..')
         with open('lib/bin/SavedLogin.json') as json_file:
             data = json.load(json_file)
@@ -78,6 +79,7 @@ class ChildListScreen(Screen):
 
         def call_Box():
             self.generate_box()
+            self.ids.refresh.disabled = False
                   
         params = json.dumps({"parent_username" : ChildListScreen.parent_username})
         headers= {'Content-type':'application/json','Accept':'text/plain', 'token': self.token}
