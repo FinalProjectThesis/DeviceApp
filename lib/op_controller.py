@@ -89,37 +89,37 @@ class OperationScreen(Screen):
             # check values if available for P1 (ones)
                 if Scanned_Value in ('BB84A828BF', '6B31B128C3', '6B32B828C9', '9BB03D2533', 'ABC8332575', '3B894525D2', '9B9140256F', '2B83B42834', '2B59462511', 'FB503F25B1', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
                     if Scanned_Value == 'BB84A828BF':
-                        self.ids.ones_input.source = 'assets/images/ones/0.png'
+                        self.ids.ones_input.text = '0'
                         self.ones = '0'
                     elif Scanned_Value == '6B31B128C3':
-                        self.ids.ones_input.source = 'assets/images/ones/1.png'
+                        self.ids.ones_input.text = '1'
                         self.ones = '1'
                     elif Scanned_Value == '6B32B828C9':
-                        self.ids.ones_input.source = 'assets/images/ones/2.png'
+                        self.ids.ones_input.text = '2'
                         self.ones = '2'
                     elif Scanned_Value == '9BB03D2533':
-                        self.ids.ones_input.source = 'assets/images/ones/3.png'
+                        self.ids.ones_input.text = '3'
                         self.ones = '3'
                     elif Scanned_Value == 'ABC8332575':
-                        self.ids.ones_input.source = 'assets/images/ones/4.png'
+                        self.ids.ones_input.text = '4'
                         self.ones = '4'
                     elif Scanned_Value == '3B894525D2':
-                        self.ids.ones_input.source = 'assets/images/ones/5.png'
+                        self.ids.ones_input.text = '5'
                         self.ones = '5'
                     elif Scanned_Value == '9B9140256F':
-                        self.ids.ones_input.source = 'assets/images/ones/6.png'
+                        self.ids.ones_input.text = '6'
                         self.ones = '6'
                     elif Scanned_Value == '2B83B42834':
-                        self.ids.ones_input.source = 'assets/images/ones/7.png'
+                        self.ids.ones_input.text = '7'
                         self.ones = '7'
                     elif Scanned_Value == '2B59462511':
-                        self.ids.ones_input.source = 'assets/images/ones/8.png'
+                        self.ids.ones_input.text = '8'
                         self.ones = '8'
                     elif Scanned_Value == 'FB503F25B1':
-                        self.ids.ones_input.source = 'assets/images/ones/9.png'
+                        self.ids.ones_input.text = '9'
                         self.ones = '9'
                     else:
-                        self.ids.ones_input.source = 'assets/images/trans_bg.png'
+                        self.ids.ones_input.text = ''
                         self.ones = ''
                 else:
                     Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
@@ -127,37 +127,37 @@ class OperationScreen(Screen):
             # check values if available for P2 (tens)
                 if Scanned_Value in ('6B74B22885', '8BAEB228BF', '1B8CB28F0', '3BF3D252C', '8BB12C2533', '1B624D2511', '9BD5AD28CB', '1BC6A9285C', 'EBD6C428D1', '6B1F472516', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
                     if Scanned_Value == '6B74B22885':
-                        self.ids.tens_input.source = 'assets/images/tens/0.png'
+                        self.ids.tens_input.text = '0'
                         self.tens = '0'
                     elif Scanned_Value == '8BAEB228BF':
-                        self.ids.tens_input.source = 'assets/images/tens/1.png'
+                        self.ids.tens_input.text = '1'
                         self.tens = '1'
                     elif Scanned_Value == '1B8CB28F0':
-                        self.ids.tens_input.source = 'assets/images/tens/2.png'
+                        self.ids.tens_input.text = '2'
                         self.tens = '2'
                     elif Scanned_Value == '3BF3D252C':
-                        self.ids.tens_input.source = 'assets/images/tens/3.png'
+                        self.ids.tens_input.text = '3'
                         self.tens = '3'
                     elif Scanned_Value == '8BB12C2533':
-                        self.ids.tens_input.source = 'assets/images/tens/4.png'
+                        self.ids.tens_input.text = '4'
                         self.tens = '4'
                     elif Scanned_Value == '1B624D2511':
-                        self.ids.tens_input.source = 'assets/images/tens/5.png'
+                        self.ids.tens_input.text = '5'
                         self.tens = '5'
                     elif Scanned_Value == '9BD5AD28CB':
-                        self.ids.tens_input.source = 'assets/images/tens/6.png'
+                        self.ids.tens_input.text = '6'
                         self.tens = '6'
                     elif Scanned_Value == '1BC6A9285C':
-                        self.ids.tens_input.source = 'assets/images/tens/7.png'
+                        self.ids.tens_input.text = '7'
                         self.tens = '7'
                     elif Scanned_Value == 'EBD6C428D1':
-                        self.ids.tens_input.source = 'assets/images/tens/8.png'
+                        self.ids.tens_input.text = '8'
                         self.tens = '8'
                     elif Scanned_Value == '6B1F472516':
-                        self.ids.tens_input.source = 'assets/images/tens/9.png'
+                        self.ids.tens_input.text = '9'
                         self.tens = '9'
                     else:
-                        self.ids.tens_input.source = 'assets/images/trans_bg.png'
+                        self.ids.tens_input.text = ''
                         self.tens = ''
                 else:
                     Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
@@ -165,37 +165,37 @@ class OperationScreen(Screen):
             # check values if available for P3 (hundreds)
                 if Scanned_Value in ('1BB7BE283A', '7BD3B92839', 'EB7D4625F5', '1B24382522', '4B72C728D6', '6B1F58259', '9B61C72815', '2BBFC6287A', '3B8FBD2821', 'EBBE3A254A', 'ABB6BE288B', '6B9CAA2875', '4B974625BF'):
                     if Scanned_Value == '1BB7BE283A':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/0.png'
+                        self.ids.hundreds_input.text = '0'
                         self.hundreds = '0'
                     elif Scanned_Value == '7BD3B92839':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/1.png'
+                        self.ids.hundreds_input.text = '1'
                         self.hundreds = '1'
                     elif Scanned_Value == 'EB7D4625F5':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/2.png'
+                        self.ids.hundreds_input.text ='2'
                         self.hundreds = '2'
                     elif Scanned_Value == '1B24382522':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/3.png'
+                        self.ids.hundreds_input.text ='3'
                         self.hundreds = '3'
                     elif Scanned_Value == '4B72C728D6':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/4.png'
+                        self.ids.hundreds_input.text ='4'
                         self.hundreds = '4'
                     elif Scanned_Value == '6B1F58259':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/5.png'
+                        self.ids.hundreds_input.text ='5'
                         self.hundreds = '5'
                     elif Scanned_Value == '9B61C72815':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/6.png'
+                        self.ids.hundreds_input.text ='6'
                         self.hundreds = '6'
                     elif Scanned_Value == '2BBFC6287A':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/7.png'
+                        self.ids.hundreds_input.text ='7'
                         self.hundreds = '7'
                     elif Scanned_Value == '3B8FBD2821':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/8.png'
+                        self.ids.hundreds_input.text ='8'
                         self.hundreds = '8'
                     elif Scanned_Value == 'EBBE3A254A':
-                        self.ids.hundreds_input.source = 'assets/images/hundreds/9.png'
+                        self.ids.hundreds_input.text ='9'
                         self.hundreds = '9'
                     else:
-                        self.ids.hundreds_input.source = 'assets/images/trans_bg.png'
+                        self.ids.hundreds_input.text =''
                         self.hundreds = ''
                 else:
                     Clock.schedule_once(lambda dt: self.error_snackbar(), 1.5)
