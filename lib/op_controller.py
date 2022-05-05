@@ -382,6 +382,10 @@ class OperationScreen(Screen):
                 self.ids.qcount_label.text = f'Question #{self.counter}'
                 self.ids.question_label.text = f'{val1} ÷ {val2} = ???'
 
+    def on_leave(self, *args):
+        self.stop_threads = True
+        return super().on_leave(*args)
+
     def validate_ans(self):
         # loading sounds
         self.stop_threads = True # stop the loop 
