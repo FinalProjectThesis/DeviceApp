@@ -81,11 +81,26 @@ class DifficultyScreen(Screen):
         elif MenuScreen.operation =='subtraction':
             self.ids.op_label.source= "assets/images/subtraction.png"
         elif MenuScreen.operation == 'multiplication':
-            self.ids.op_label.source ="assets/images/Multiplication_textart.png"
+            self.ids.op_label.source ="assets/images/multiplication.png"
         else: 
-            self.ids.op_label.source = "assets/images/Division_textart.png"
+            self.ids.op_label.source = "assets/images/division.png"
 
         return super().on_pre_enter(*args)
+    
+    def on_leave(self, *args):
+        self.ids.lvl1_btn.disabled = False
+        self.ids.lvl2_btn.disabled = False
+        self.ids.lvl3_btn.disabled = False
+        return super().on_leave(*args)
+
+    def to_operation(self):
+        self.manager.current = 'operation'
+        self.ids.difficulty_spinner.active = False
+            
+    def disable_btns(self):
+        self.ids.lvl1_btn.disabled = True
+        self.ids.lvl2_btn.disabled = True
+        self.ids.lvl3_btn.disabled = True
 
     def on_easy(self):
         
@@ -93,15 +108,19 @@ class DifficultyScreen(Screen):
         sound.play()
 
         DifficultyScreen.difficulty = 'easy'
-        self.manager.current = 'operation'
+        self.ids.difficulty_spinner.active = True
+        self.disable_btns()
+        Clock.schedule_once(lambda dt: self.to_operation(), 2)
 
     def on_medium(self):
-
+        
         sound = SoundLoader.load("assets/music/button_click.wav")
         sound.play()
 
         DifficultyScreen.difficulty = 'medium'
-        self.manager.current = 'operation'
+        self.ids.difficulty_spinner.active = True
+        self.disable_btns()
+        Clock.schedule_once(lambda dt: self.to_operation(), 2)
     
     def on_hard(self):
 
@@ -109,7 +128,9 @@ class DifficultyScreen(Screen):
         sound.play()
         
         DifficultyScreen.difficulty = 'hard'
-        self.manager.current = 'operation'
+        self.ids.difficulty_spinner.active = True
+        self.disable_btns()
+        Clock.schedule_once(lambda dt: self.to_operation(), 2)
 
 class ProfileScreen(Screen):
     

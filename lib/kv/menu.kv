@@ -1,4 +1,5 @@
 #:import hex kivy.utils.get_color_from_hex
+#:import Factory kivy.factory.Factory
 <MenuScreen>:
     name: 'menu'
     Image:
@@ -86,20 +87,30 @@
         elevation: dp(10)
         padding: dp(10)
         spacing: dp(15)
-        BoxLayout:
-            orientation: 'vertical'
-            spacing: dp(15)
-            Image:
-                id: op_label
-            Image:
-                source: "assets/images/choose_your_difficulty_text.png"
+        RelativeLayout:
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(15)            
+                Image:
+                    id: op_label
+                Image:
+                    source: "assets/images/choose_your_difficulty_text.png"
+            MDIconButton:
+                icon: 'information-outline'
+                user_font_size: dp(32)
+                pos_hint: {'right': 1, 'top': 1}
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release: Factory.MyPopup().open()
         MDRaisedButton:
+            id: lvl1_btn
             text: "LEVEL 1"
             font_size: dp(40)
             width: root.width*0.55
             pos_hint: {'center_x': .5}
             on_release: root.on_easy()
         MDRaisedButton:
+            id: lvl2_btn
             text: 'LEVEL 2'
             md_bg_color: 230/255, 178/255, 15/255, 1
             font_size: dp(40)
@@ -107,19 +118,50 @@
             pos_hint: {'center_x': .5}
             on_release: root.on_medium()
         MDRaisedButton:
+            id: lvl3_btn
             text: 'LEVEL 3'
             md_bg_color: 237/255, 41/255, 57/255, 1
             font_size: dp(40)
             width: root.width*0.55
             pos_hint: {'center_x': .5}
             on_release: root.on_hard()
-        MDIconButton:
-            icon: 'backspace'
-            theme_text_color: 'Custom'
-            text_color: [1, 0, 0, 1]
-            pos_hint: {'right': 1}
-            height: dp(5)
-            on_release: root.manager.current = 'menu'
+        RelativeLayout:
+            size_hint: 1, 0.5
+            MDSpinner:
+                id: difficulty_spinner
+                active: False
+                line_width: dp(2.5)
+                size_hint: .05, .05
+                pos_hint: {'center_x': .5, 'center_y': .5}
+            MDIconButton:
+                icon: 'backspace'
+                theme_text_color: 'Custom'
+                text_color: [1, 0, 0, 1]
+                pos_hint: {'right': 1}
+                height: dp(5)
+                on_release: root.manager.current = 'menu'
+        
+<MyPopup@Popup>:
+    auto_dismiss: False
+    size_hint: .6, .6
+    title: 'Information'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(5)
+        spacing: dp(10) 
+        Label:
+            text: "Choose the level of your choice!\nFor beginners we recommend Level 1"
+            size_hint_y: None
+            height: self.texture_size[1]
+        Image:
+            source: 'assets/images/popup_sc.png'
+        Button:
+            text: 'Close'
+            background_normal: ''
+            background_color: 1, 0, 0
+            size_hint: 1, .5
+            pos_hint: {'center_x': .5}
+            on_release: root.dismiss()
 
 <ProfileScreen>:
     name: 'profile'
